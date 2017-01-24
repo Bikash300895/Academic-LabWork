@@ -1,7 +1,7 @@
-int inputButton = 13;
-int green = 12;
-int yellow = 11;
-int red = 10;
+int inputButton = 10;
+int green = 13;
+int yellow = 12;
+int red = 11;
 bool justGreen = true;
 
 void setup() {
@@ -15,7 +15,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  int buttonState = digitalRead(inputButton)
+  int buttonState = digitalRead(inputButton);
   if(buttonState == HIGH){
     digitalWrite(red, HIGH);
     digitalWrite(yellow,LOW);
