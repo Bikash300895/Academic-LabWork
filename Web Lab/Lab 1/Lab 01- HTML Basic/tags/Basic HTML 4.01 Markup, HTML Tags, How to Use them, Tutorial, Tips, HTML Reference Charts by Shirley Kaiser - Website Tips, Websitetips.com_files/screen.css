@@ -1,0 +1,5 @@
+/* hide from ie3-5win via null, then IE5mac
+\*/
+@import "null?\"\{";
+@import url("/css3/import.php");
+/* END hide from Mac IE5 */

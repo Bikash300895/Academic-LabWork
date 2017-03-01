@@ -1,0 +1,494 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+
+
+<title>HTML Tags and attributes</title>
+<link rel="shortcut icon" href="http://www.htmlquick.com/favicon.ico">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="Diego Ponce de León">
+<meta name="netinsert" content="0.0.1.3.4.4.1">
+<meta name="description" content="Tutorial intented to introduce the HTML code basis to users that have never written a web site manually. Writing HTML code is pretty much writing tags, attributes and content. That's why we'll focus in explaining how a tag and it's attributes and contents are defined. Note that we'll also set the rules to write XHTML compliant documents.">
+<meta name="Keywords" content="HTML, tutorials, reference, tags, free, learn">
+<link rel="stylesheet" type="text/css" href="tags-attributes_files/default.css">
+<link href="http://www.htmlquick.com/tutorials/rss20.xml" rel="alternate" type="application/rss+xml" title="HTML Tutorials - RSS 2.0">
+<link href="http://www.htmlquick.com/tutorials/atom.xml" rel="alternate" type="application/atom+xml" title="HTML Tutorials - Atom">
+<link href="http://www.htmlquick.com/reference/rss20.xml" rel="alternate" type="application/rss+xml" title="HTML Reference - RSS 2.0">
+<link href="http://www.htmlquick.com/reference/atom.xml" rel="alternate" type="application/atom+xml" title="HTML Reference - Atom">
+<link href="http://www.htmlquick.com/articles/rss20.xml" rel="alternate" type="application/rss+xml" title="HTML Articles - RSS 2.0">
+<link href="http://www.htmlquick.com/articles/atom.xml" rel="alternate" type="application/atom+xml" title="HTML Articles - Atom">
+<link href="http://www.htmlquick.com/faq/rss20.xml" rel="alternate" type="application/rss+xml" title="HTML FAQ - RSS 2.0">
+<link href="http://www.htmlquick.com/faq/atom.xml" rel="alternate" type="application/atom+xml" title="HTML FAQ - Atom">
+<script type="text/javascript" src="tags-attributes_files/common.js"></script>
+</head><body>
+<div id="maintitletop">
+<div id="mainflags">
+<a id="aftertopnavbar" name="aftertopnavbar" href="http://www.htmlquick.com/es/tutorials/tags-attributes.html" rel="alternate" hreflang="es" accesskey="L"><img class="flag" src="tags-attributes_files/esflag.gif" alt="Versión en español"></a>
+</div>
+</div>
+<div id="mainpageback">
+<div id="maintitlebottom">
+<div id="maintopnav">
+<map id="topnavbar" title="Top navigation bar">
+<div>
+<a href="http://www.htmlquick.com/" class="mainnav" accesskey="H">Home</a>|<a href="http://www.htmlquick.com/tutorials.html" class="mainnav" accesskey="T" title="HTML Tutorials">Tutorials</a>|<a href="http://www.htmlquick.com/reference.html" class="mainnav" accesskey="R" title="HTML Reference">Reference</a>|<a href="http://www.htmlquick.com/reference/tags.html" class="mainnav" accesskey="G" title="HTML Tags">Tags</a>|<a href="http://www.htmlquick.com/articles.html" class="mainnav" accesskey="A" title="HTML Articles">Articles</a>|<a href="http://www.htmlquick.com/faq.html" class="mainnav" accesskey="F" title="HTML Frequently Asked Questions">FAQ</a>
+</div>
+</map>
+</div>
+<div id="mainmenuleft">
+<div id="mainadleft">
+<script type="text/javascript"><!--
+google_ad_client = "pub-3474820532303962";
+google_ad_slot = "4387115482";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript" src="tags-attributes_files/show_ads.js">
+</script><script src="tags-attributes_files/expansion_embed.js"></script><script src="tags-attributes_files/test_domain.js"></script><script>google_protectAndRun("ads_core.google_render_ad", google_handleError, google_render_ad);</script><ins style="display: inline-table; border: medium none; height: 600px; margin: 0pt; padding: 0pt; position: relative; visibility: visible; width: 160px;"><ins id="google_ads_frame1_anchor" style="display: block; border: medium none; height: 600px; margin: 0pt; padding: 0pt; position: relative; visibility: visible; width: 160px;"><iframe allowtransparency="true" hspace="0" id="google_ads_frame1" marginheight="0" marginwidth="0" name="google_ads_frame" src="tags-attributes_files/ads.htm" style="left: 0pt; position: absolute; top: 0pt;" vspace="0" scrolling="no" frameborder="0" height="600" width="160"></iframe></ins></ins>
+</div>
+</div>
+<div id="maincontent">
+<div class="nav">
+<a class="firstnavsegment" href="http://www.htmlquick.com/">Home</a>&gt;<a class="navsegment" href="http://www.htmlquick.com/tutorials.html">HTML Tutorials</a>&gt;<span class="navsegment">HTML Tags and attributes</span>
+</div>
+<h1>HTML Tags and attributes</h1>
+<div class="adsright">
+<script type="text/javascript"><!--
+google_ad_client = "pub-3474820532303962";
+google_ad_slot = "9218319339";
+google_ad_width = 336;
+google_ad_height = 280;
+//-->
+</script>
+<script type="text/javascript" src="tags-attributes_files/show_ads.js">
+</script><script>google_protectAndRun("ads_core.google_render_ad", google_handleError, google_render_ad);</script><ins style="display: inline-table; border: medium none; height: 280px; margin: 0pt; padding: 0pt; position: relative; visibility: visible; width: 336px;"><ins id="google_ads_frame2_anchor" style="display: block; border: medium none; height: 280px; margin: 0pt; padding: 0pt; position: relative; visibility: visible; width: 336px;"><iframe allowtransparency="true" hspace="0" id="google_ads_frame2" marginheight="0" marginwidth="0" name="google_ads_frame" src="tags-attributes_files/ads_002.htm" style="left: 0pt; position: absolute; top: 0pt;" vspace="0" scrolling="no" frameborder="0" height="280" width="336"></iframe></ins></ins>
+
+</div>
+<div class="attrcontainer toc">
+<div class="attrt"><div class="attrb"><div class="attrl"><div class="attrr">
+<div class="attrtl"><div class="attrtr"><div class="attrbl"><div class="attrbr">
+<div class="attrcontent toccontent">
+<p class="boldbegin">Table of contents</p>
+<ul>
+<li><a href="#tags">Elements and tags</a></li>
+<li><a href="#attributes">Attributes</a></li>
+<li><a href="#events">Events</a></li>
+<li><a href="#content">Content</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#practice">Practice</a></li>
+</ul>
+</div>&nbsp;
+</div></div></div></div>
+</div></div></div></div>
+</div><br>
+<p>Tutorial intended to introduce the <acronym title="Hyper Text Markup Language">HTML</acronym>
+ code basis to users that have never written a web site manually. 
+Writing HTML code is pretty much writing tags, attributes and content. 
+That's why we'll focus in explaining how a tag and it's attributes and 
+contents are defined. Note that we'll also set the rules to write <a href="http://www.htmlquick.com/tutorials/xhtml.html"><acronym title="eXtensible Hyper Text Markup Language">XHTML</acronym> code</a> compliant documents.</p><p>You
+ may find a lot of tags, attributes and JavaScript codes in this 
+tutorial but none of them are properly described. This is because the 
+objective of this tutorial is to focus on the general syntax, not on the
+ characteristics of each tag. To find a list of tags refer to this <a href="http://www.htmlquick.com/reference/tags.html">HTML tags</a>
+ list, where you can find links to descriptive resources about each tag 
+in HTML, with it's respective list of attributes and events.</p>
+<h2 class="title"><a id="tags" name="tags">Elements and tags</a></h2>
+<p>HTML is composed by a set of elements that are the basis of its 
+structure. Elements are designed to provide tools to authors and give 
+special information that will be used to compute the final 
+representation of it. This means that where a tag is defined in the HTML
+ code, something will happen in the representation of that document, 
+that may be visual or not.</p>
+<p>Elements are composed by two tags: start tag and end tag (except for 
+empty elements when the end tag is ommitted). Elements are not tags, 
+elements are represented by tags in the code, but they are usually 
+considered, erroneously, the same thing. Here is a basic example of an <a href="http://www.htmlquick.com/reference/tags/b.html">HTML b element</a> with both start and end tags, and the content in the middle:</p>
+<div class="ccontainer"><div class="tt"><div class="cb"><div class="cl"><div class="cr">
+<div class="ttl"><div class="ttr"><div class="cbl"><div class="cbr">
+<table class="eg">
+<tbody><tr>
+<th class="eg ttl">Code</th>
+<th class="eg ttr">View</th>
+</tr>
+<tr>
+<td class="eg">
+&lt;b&gt;Bold text&lt;/b&gt;<br>
+</td>
+<td class="eg div">
+<b>Bold text</b></td>
+</tr>
+</tbody></table>
+</div></div></div></div>
+</div></div></div></div>
+</div>
+<p>Note how the start tag is composed by the tag's name enclosed by 
+"&lt;" and "&gt;" symbols. In the other hand, the end tag is declared 
+exactly as the star tag but with a slash before the tag's name. Whatever
+ falls in the middle of them is called content, but be aware that not 
+all elements allow content (empty elements).</p>
+<p>Each one of the 93 standard tags produces a specific result when the document is rendered (e.g., the <a href="http://www.htmlquick.com/reference/tags/b.html">HTML b tag</a>
+ produces bold text) allowing authors to format and/or insert 
+information into documents. Every tag may have attributes and events 
+that must be declared inside the star tag separated from the name and 
+other attributes or events by a space. Its content is placed inbetween 
+the start and end tags. Look at this generic example:</p>
+<div class="ccontainer">
+<div class="ct"><div class="cb"><div class="cl"><div class="cr">
+<div class="ctl"><div class="ctr"><div class="cbl"><div class="cbr">
+<div class="ccontent"><span class="waihide">Code begin</span>&lt;tag_name attribute1="value1" attribute2="value2" ... event1="function1" event2="function2" ...&gt;Content&lt;/tag_name&gt;<br><span class="waihide">Code end</span></div>&nbsp;</div></div></div></div>
+</div></div></div></div>
+</div>
+<p>This code could be difficult to understand, so we'll replace the 
+generic values by some common examples to make it friendly (see the 
+presentation on the right):</p>
+<div class="ccontainer"><div class="tt"><div class="cb"><div class="cl"><div class="cr">
+<div class="ttl"><div class="ttr"><div class="cbl"><div class="cbr">
+<table class="eg">
+<tbody><tr>
+<th class="eg ttl">Code</th>
+<th class="eg ttr">View</th>
+</tr>
+<tr>
+<td class="eg">&lt;a href="http://www.htmlquick.com/reference/tags.html"
+ onmouseover="this.style.color='#FFFFFF'" 
+onmouseout="this.style.color='#000000'"&gt;List of HTML tags&lt;/a&gt;<br>
+</td>
+<td class="eg div">
+<a href="http://www.htmlquick.com/reference/tags.html" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#000000'">List of HTML tags</a></td>
+</tr>
+</tbody></table>
+</div></div></div></div>
+</div></div></div></div>
+</div>
+<p>Now we can see clearly the tag's name (a), the attribute and its 
+value (href), the two events and their functions (onmouseover and 
+onmouseout), the content (List of HTML tags) and the tag's closing 
+(&lt;/a&gt;). Note that the events as well as the attributes share a 
+common syntax: The attribute/event's name is followed by an equal sign 
+and the value enclosed by quotes.</p>
+<p>As we strongly recomend you to write <a href="http://www.htmlquick.com/tutorials/xhtml.html">XHTML code</a>
+ compliant documents, you should always use lowercase names for tags and
+ attributes (&lt;tag_name&gt; instead of &lt;TAG_NAME&gt;).</p><h2 class="title"><a id="attributes" name="attributes">Attributes</a></h2>
+<p>Attributes give certain characteristics to a tag (e.g., height, 
+width, color, etc.), sometimes very important, that will finally set how
+ the tag must be interpreted. For example, the <a href="http://www.htmlquick.com/reference/tags/a.html">HTML a tag</a>
+ inserts a link in an HTML document (a way to go from the actual 
+document to another resource, usually with a click), but the rel 
+attribute establish which is the relationship between the actual 
+document and the destination resource.</p>
+<p>Even when many attributes are shared by many elements, each element 
+has a default set of attributes according to the standard that's being 
+used. To se the attributes that an element accepts, check the 
+description for that element in our list of <a href="http://www.htmlquick.com/reference/tags.html">HTML tags</a></p>
+<p>As we saw in the generic example every attribute must have a value 
+and must be defined in the start tag. In this example we insert a full 
+definition (with content and closing tag) of an <a href="http://www.htmlquick.com/reference/tags/a.html">HTML a tag</a> with two attributes: "href" and "rel".</p>
+<div class="ccontainer">
+<div class="ct"><div class="cb"><div class="cl"><div class="cr">
+<div class="ctl"><div class="ctr"><div class="cbl"><div class="cbr">
+<div class="ccontent"><span class="waihide">Code begin</span>&lt;a href="anotherdoc.html" rel="help"&gt;Another document providing help&lt;/a&gt;<br><span class="waihide">Code end</span></div>&nbsp;</div></div></div></div>
+</div></div></div></div>
+</div>
+<p>See how the attribute's name is followed by an equal sign and the 
+value enclosed by quotes. This is how every attribute must be defined to
+ be <a href="http://www.htmlquick.com/tutorials/xhtml.html">XHTML code</a> compatible.</p>
+<p>There also exist a type of attribute which value is boolean (True or 
+False). This means that you can define this attribute by only writing 
+it's name (not the equal sign nor the value), but as we are writing <a href="http://www.htmlquick.com/tutorials/xhtml.html">XHTML code</a>, the correct way to define a boolean attribute is defining it's own name as the attribute's value.</p>
+<p>In the next example we show an <a href="http://www.htmlquick.com/reference/tags/button.html">HTML button tag</a> definition, compatible with <a href="http://www.htmlquick.com/tutorials/xhtml.html">XHTML code</a>, with the attributes: "id", "disabled" (boolean) and "tabindex".</p><div class="ccontainer">
+<div class="ct"><div class="cb"><div class="cl"><div class="cr">
+<div class="ctl"><div class="ctr"><div class="cbl"><div class="cbr">
+<div class="ccontent"><span class="waihide">Code begin</span>&lt;button id="okbutton" disabled="disabled" tabindex="4"&gt;Ok&lt;/button&gt;<br><span class="waihide">Code end</span></div>&nbsp;
+</div></div></div></div></div></div></div></div>
+</div>
+<h2 class="title"><a id="events" name="events">Events</a></h2>
+<p>Events are widely used in HTML documents as a way to associate HTML 
+tags to scripts. In a simple way, scripts are client-side programs that 
+perform some action and events are the things that occur that trigger 
+scripts (e.g., the mouse pointer going over an element, the page ending 
+it's loading, etc.). Read more about <a href="http://www.htmlquick.com/reference/events.html">HTML events</a>.</p>
+<p>The syntax used to define an event is very similar to the attribute's syntax. In this example we show the <a href="http://www.htmlquick.com/reference/tags/a.html">HTML a tag</a>, with the "href" attribute and the "onmouseover" and "onmouseout" events.</p>
+<div class="ccontainer">
+<div class="ct"><div class="cb"><div class="cl"><div class="cr">
+<div class="ctl"><div class="ctr"><div class="cbl"><div class="cbr">
+<div class="ccontent"><span class="waihide">Code begin</span>&lt;a 
+href="reference.html" onmouseover="start_funny_function()" 
+onmouseout="stop_funny_function()"&gt;Go to the reference&lt;/a&gt;<br><span class="waihide">Code end</span></div>&nbsp;</div></div></div></div>
+</div></div></div></div>
+</div>
+<p>Note that the functions "start_funny_function()" and 
+"stop_funny_function()" must be written in some client-side language, 
+which will not be treated in our site. To read more about client-side 
+scripts refer to this document about the <a href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a> language.</p>
+<p>The events availability depends on the tag used, which means that not
+ all events can be used in every tag. To see which events are available 
+for a specific tag see the description page of the tag from this <a href="http://www.htmlquick.com/reference/tags.html">HTML tags</a> list. To see a complete list of all events in HTML see the <a href="http://www.htmlquick.com/reference/events.html">HTML events</a> document.</p>
+<h2 class="title"><a id="content" name="content">Content</a></h2><p>The 
+content of a tag is in most of the cases the piece of content affected 
+by the tag's effect (e.g., the text rendered in bold style for the <a href="http://www.htmlquick.com/reference/tags/b.html">HTML b tag</a>), and goes in between the start and end tags.</p>
+<p>Because of their nature and functionality, not all the tags have content (e.g., the <a href="http://www.htmlquick.com/reference/tags/img.html">HTML img tag</a>). These empty tags must be properly closed to make the document compatible with the <a href="http://www.htmlquick.com/tutorials/xhtml.html">XHTML code</a>
+ standard. There are two ways to close an empty tag: the first is by 
+using a normal closing tag (&lt;/tag_name&gt;) and the other is using a 
+slash at the end of the start tag. See the examples:</p>
+<div class="ccontainer">
+<div class="ct"><div class="cb"><div class="cl"><div class="cr">
+<div class="ctl"><div class="ctr"><div class="cbl"><div class="cbr">
+<div class="ccontent"><span class="waihide">Code begin</span>&lt;img src="logo.jpg" onmouseover="start_funny_function()"&gt;&lt;/img&gt;<br>&lt;img src="logo.jpg" onmouseover="start_funny_function()" /&gt;<br><span class="waihide">Code end</span></div>&nbsp;</div></div></div></div>
+</div></div></div></div>
+</div>
+<p>Note that in the second case, the last slash is considered by older 
+browsers as an unknown attribute for which it's ignored. This is why a 
+space must always separate the last attribute from the slash.</p>
+<p>The content of a tag may also be other tags or even pieces of HTML 
+documents, although not all tags can contain other tags and some of them
+ can contain only certain tags. As a general rule, inline elements 
+cannot contain block level elements, block level element can contain 
+inline elements, and block level elements can contain block level 
+elements. This is a very general rule that have many exeptions but is ok
+ to get a general idea. The acceptance of tags that can be contained 
+varies from tag to tag. Take a look at this example:</p>
+<div class="ccontainer"><div class="tt"><div class="cb"><div class="cl"><div class="cr">
+<div class="ttl"><div class="ttr"><div class="cbl"><div class="cbr">
+<table class="eg">
+<tbody><tr>
+<th class="eg ttl">Code</th>
+<th class="eg ttr">View</th>
+</tr>
+<tr>
+<td class="eg">
+&lt;p&gt;This tag contains an &lt;b&gt;inline tag&lt;/b&gt;.&lt;/p&gt;<br>&lt;div&gt;<br>&lt;div&gt;Here
+ we have a block level element containing another block level 
+&lt;span&gt;element that is containing other &lt;i&gt;inline 
+elements&lt;/i&gt;&lt;/span&gt;.&lt;/div&gt;<br>&lt;/div&gt;<br></td>
+<td class="eg div">
+<p>This tag contains an <b>inline tag</b>.</p>
+<div>
+<div>Here we have a block level element containing another block level <span>element that is containing other <i>inline elements</i></span>.</div>
+</div></td>
+</tr>
+</tbody></table>
+</div></div></div></div>
+</div></div></div></div>
+</div>
+<p>Remember that to make your code <a href="http://www.htmlquick.com/tutorials/xhtml.html">XHTML code</a>
+ compatible you should respect the order in which the tags are opened 
+and closed (i.e., the first tag opened is the last one closed).</p>
+<p>As you continue with the tutorials you'll see which tags can be 
+contained by others and which of them are inline and which block level.</p>
+<h2 class="title"><a id="examples" name="examples">Examples</a></h2>
+<p>Finally, we'll show some examples using simple tags. First we'll make a link to other page (<a href="http://www.htmlquick.com/reference/tags/a.html">HTML a tag</a>), we'll render text in different styles (<a href="http://www.htmlquick.com/reference/tags/b.html">HTML b tag</a> and <a href="http://www.htmlquick.com/reference/tags/i.html">HTML i tag</a>), we'll insert an image (<a href="http://www.htmlquick.com/reference/tags/img.html">HTML img tag</a>) and separate all the examples with line breaks (<a href="http://www.htmlquick.com/reference/tags/br.html">HTML br tag</a>)</p><div class="ccontainer"><div class="tt"><div class="cb"><div class="cl"><div class="cr">
+<div class="ttl"><div class="ttr"><div class="cbl"><div class="cbr">
+<table class="eg">
+<tbody><tr>
+<th class="eg ttl">Code</th>
+<th class="eg ttr">View</th>
+</tr>
+<tr>
+<td class="eg">
+Read more about the &lt;a 
+href="http://www.htmlquick.com/reference/tags/br.html"&gt;HTML br 
+tag&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;<br>This page is intended to introduce the &lt;b&gt;HTML tags and attributes&lt;/b&gt;.&lt;br /&gt;&lt;br /&gt;<br>You should learn how to write &lt;i&gt;XHTML code&lt;/i&gt; too.&lt;br /&gt;&lt;br /&gt;<br>&lt;img src="http://www.htmlquick.com/img/links/button.jpg" width="88" height="31" alt="HTMLQuick.com logo" /&gt;<br></td>
+<td class="eg div">
+Read more about the <a href="http://www.htmlquick.com/reference/tags/br.html">HTML br tag</a>.<br><br>
+This page is intended to introduce the <b>HTML tags and attributes</b>.<br><br>
+You should learn how to write <i>XHTML code</i> too.<br><br>
+<img src="tags-attributes_files/button.jpg" alt="HTMLQuick.com logo" height="31" width="88"></td>
+</tr>
+</tbody></table>
+</div></div></div></div>
+</div></div></div></div>
+</div>
+<h2><a id="practice" name="practice">Practice</a></h2>
+<p>We're going to build a nice paragraph with a link inside of it, so later we can change their properties.</p>
+<p>The first step is to build the paragraph with its content. Paragraphs are inserted in HTML documents through the <a href="http://www.htmlquick.com/reference/tags/p.html">HTML p tag</a>. We can do it as follows:</p>
+<div class="ccontainer"><div class="tt"><div class="cb"><div class="cl"><div class="cr">
+<div class="ttl"><div class="ttr"><div class="cbl"><div class="cbr">
+<table class="eg">
+<tbody><tr>
+<th class="eg ttl">Code</th>
+<th class="eg ttr">View</th>
+</tr>
+<tr>
+<td class="eg">
+&lt;p&gt;This is a nice paragraph.&lt;/p&gt;
+</td>
+<td class="eg div">
+<p>This is a nice paragraph.</p>
+</td>
+</tr>
+</tbody></table>
+</div></div></div></div>
+</div></div></div></div>
+</div>
+<p>Now let's put the link inside of it, through the insertion of the <a href="http://www.htmlquick.com/reference/tags/a.html">HTML a tag</a>. At the begining, we'll just place the tag with its content ("nice link") and no attributes or events:</p>
+<div class="ccontainer"><div class="tt"><div class="cb"><div class="cl"><div class="cr">
+<div class="ttl"><div class="ttr"><div class="cbl"><div class="cbr">
+<table class="eg">
+<tbody><tr>
+<th class="eg ttl">Code</th>
+<th class="eg ttr">View</th>
+</tr>
+<tr>
+<td class="eg">
+&lt;p&gt;This is a nice paragraph with a &lt;a&gt;nice link&lt;/a&gt; in the middle.&lt;/p&gt;
+</td>
+<td class="eg div">
+<p>This is a nice paragraph with a <a>nice link</a> in the middle.</p>
+</td>
+</tr>
+</tbody></table>
+</div></div></div></div>
+</div></div></div></div>
+</div>
+<p>As you may see, there is no link yet, so we should consider that adding an <a href="http://www.htmlquick.com/reference/tags/a.html">HTML a tag</a>
+ doesn't mean a link has been stablished (the "href" attribute does). 
+We'll keep calling it like that because we know it will become a link 
+soon or later.</p>
+<p>This is the time where we start using attributes. The first attribute
+ we're adding is "lang". With this particular attribute we're telling 
+the procesing agent (browser, search engine robot, etc.) which language 
+is this paragraph written in. The value for this attribute can be 
+obtained from the list of <a href="http://www.htmlquick.com/reference/language-codes.html">Language codes</a>.</p>
+<div class="ccontainer"><div class="tt"><div class="cb"><div class="cl"><div class="cr">
+<div class="ttl"><div class="ttr"><div class="cbl"><div class="cbr">
+<table class="eg">
+<tbody><tr>
+<th class="eg ttl">Code</th>
+<th class="eg ttr">View</th>
+</tr>
+<tr>
+<td class="eg">
+&lt;p lang="en"&gt;This is a nice paragraph with a &lt;a&gt;nice link&lt;/a&gt; in the middle.&lt;/p&gt;
+</td>
+<td class="eg div">
+<p lang="en">This is a nice paragraph with a <a>nice link</a> in the middle.</p>
+</td>
+</tr>
+</tbody></table>
+</div></div></div></div>
+</div></div></div></div>
+</div>
+<p>There we go. We are now showing a piece of text and giving an extra 
+hint about it. This type of attributes are most of the times hidden 
+attributes, because we are not able to see them in traditional web 
+browsers. However, many user agents use this information at some level 
+(e.g. spoken browsers, commonly used by blind people, speak this text in
+ english instead of the language of the document, for example, spanish).</p>
+<p>Other attributes, like the one we're using next, are clearly visible. The "href" attribute works only in the <a href="http://www.htmlquick.com/reference/tags/a.html">HTML a tag</a>
+ and specifies a resource to which this document is making a reference 
+to. It's value must be the address of the referenced resource, in this 
+case, the <a href="http://www.htmlquick.com/reference/tags/a.html">HTML a tag</a>'s URL.</p>
+<div class="ccontainer"><div class="tt"><div class="cb"><div class="cl"><div class="cr">
+<div class="ttl"><div class="ttr"><div class="cbl"><div class="cbr">
+<table class="eg">
+<tbody><tr>
+<th class="eg ttl">Code</th>
+<th class="eg ttr">View</th>
+</tr>
+<tr>
+<td class="eg">
+&lt;p lang="en"&gt;This is a nice paragraph with a &lt;a 
+href="http://www.htmlquick.com/reference/tags/a.html"&gt;nice 
+link&lt;/a&gt; in the middle.&lt;/p&gt;
+</td>
+<td class="eg div">
+<p lang="en">This is a nice paragraph with a <a href="http://www.htmlquick.com/reference/tags/a.html">nice link</a> in the middle.</p>
+</td>
+</tr>
+</tbody></table>
+</div></div></div></div>
+</div></div></div></div>
+</div>
+<p>So far, we've learned to use tags and attributes in HTML documents. To end with this practice, we're adding an <a href="http://www.htmlquick.com/reference/events.html">event</a>.</p>
+<p>Events are a jump <a href="http://www.htmlquick.com/beyond-html.html">beyond HTML</a>,
+ given that they're useless without a client-side language. Basicly, 
+what an event does, is to trigger a program written in a client-side 
+language. So, as this is an HTML tutorial, we'll limit to show how to 
+trigger the script, not to build it.</p>
+<p>In this example, we'll trigger two scripts named 
+"do_something_click()" and "do_something_mouse_over()", in the same 
+paragraph we've been using. The argument "this" will tell the script, 
+which element it should affect.</p>
+<p>The events we've picked up are "onclick" and "onmouseover". These 
+events are triggered when the visitor clicks or passes the mouse over 
+the content of the element. To check what other accions can trigger 
+events, see this list of <a href="http://www.htmlquick.com/reference/events.html">HTML events</a>.</p>
+<p> As we'll use this events in the paragraph, they will trigger the 
+scripts when the visitor clicks or passes the mouse over the paragraph. 
+To make it visible, we're using basic scripts to change the color of the
+ text: red when the mouse passes over the text and green when it's 
+clicked.</p>
+<div class="ccontainer"><div class="tt"><div class="cb"><div class="cl"><div class="cr">
+<div class="ttl"><div class="ttr"><div class="cbl"><div class="cbr">
+<table class="eg">
+<tbody><tr>
+<th class="eg ttl">Code</th>
+<th class="eg ttr">View</th>
+</tr>
+<tr>
+<td class="eg">
+&lt;p lang="en" onclick="do_something_click(this)" 
+onmouseover="do_something_mouse_over(this)"&gt;This is a nice paragraph 
+with a &lt;a 
+href="http://www.htmlquick.com/reference/tags/a.html"&gt;nice 
+link&lt;/a&gt; in the middle.&lt;/p&gt;
+</td>
+<td class="eg div">
+<p onclick="do_something_click(this)" onmouseover="do_something_mouse_over(this)" lang="en">This is a nice paragraph with a <a href="http://www.htmlquick.com/reference/tags/a.html">nice link</a> in the middle.</p>
+</td>
+</tr>
+</tbody></table>
+</div></div></div></div>
+</div></div></div></div>
+</div>
+<p>Congratulations! the practice is done. Get ready to take the next tutorial.</p>
+<div class="adscenter"><br>
+<script type="text/javascript"><!--
+google_ad_client = "pub-3474820532303962";
+google_ad_slot = "3027137884";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="tags-attributes_files/show_ads.js">
+</script><script>google_protectAndRun("ads_core.google_render_ad", google_handleError, google_render_ad);</script><ins style="display: inline-table; border: medium none; height: 90px; margin: 0pt; padding: 0pt; position: relative; visibility: visible; width: 728px;"><ins id="google_ads_frame3_anchor" style="display: block; border: medium none; height: 90px; margin: 0pt; padding: 0pt; position: relative; visibility: visible; width: 728px;"><iframe allowtransparency="true" hspace="0" id="google_ads_frame3" marginheight="0" marginwidth="0" name="google_ads_frame" src="tags-attributes_files/ads_003.htm" style="left: 0pt; position: absolute; top: 0pt;" vspace="0" scrolling="no" frameborder="0" height="90" width="728"></iframe></ins></ins>
+
+</div>
+<br><div class="nexttutorial"><a href="http://www.htmlquick.com/tutorials/document-structure.html">Next tutorial: An HTML document structure &gt;&gt;</a></div><map id="footopt" class="navbar" title="Footer options for distribution">
+<div class="footoptions">
+<span class="waihide"><a href="#w3cdeclarations">Bypass footer options</a></span>
+<script type="text/javascript">showFavorites('http://www.htmlquick.com/tutorials/tags-attributes.html', 'HTML Tags and attributes');</script>CTRL+D to bookmark this page&nbsp;&nbsp;|&nbsp;&nbsp;
+<a href="http://www.htmlquick.com/sendtoafriend.php" accesskey="S"><img class="icon" src="tags-attributes_files/sendtoafriend.gif" alt="Send to a friend" height="14" width="14"> Send to a friend</a>
+</div>
+</map>
+</div>
+<map id="w3cdeclarations" name="w3cdeclarations" title="Compliance declarations with the W3C standards">
+<div class="w3cimages">
+<span class="waihide"><a href="#footnavbar">Bypass W3C declarations</a></span>
+<a href="http://validator.w3.org/check?uri=referer" accesskey="X" title="Valid XHTML 1.0 Strict">
+<img class="imgvalid" src="tags-attributes_files/w3c-xhtml.jpg" alt="Valid XHTML 1.0 Strict">
+</a>
+<a href="http://jigsaw.w3.org/css-validator/check/referer" accesskey="C" title="Valid CSS">
+<img class="imgvalid" src="tags-attributes_files/w3c-css.jpg" alt="Valid CSS">
+</a>
+<a href="http://www.w3.org/WAI/WCAG1AAA-Conformance" title="Explanation of the Level Triple-A Conformance">
+<img class="imgvalid" src="tags-attributes_files/w3c-wai.jpg" alt="Level Triple-A conformance icon, W3C-WAI Web Content Accessibility Guidelines 1.0.">
+</a>
+</div>
+</map>
+</div>
+</div>
+<div id="mainfoot">
+<map id="footnavbar" name="footnavbar" title="Foot navigation bar">
+<div id="mainfootnav">
+<a href="http://www.htmlquick.com/linktous.html" class="foot" accesskey="U">Link to us</a>|<a href="http://www.htmlquick.com/contactus.php" class="foot" accesskey="N">Contact us</a>|<a href="http://www.htmlquick.com/beyond-html.html" class="foot" accesskey="B">Beyond HTML</a>|<a href="http://www.htmlquick.com/tools-resources.html" class="foot" accesskey="B">Tools and resources</a>|<a href="http://www.htmlquick.com/sitemap.html" class="foot" accesskey="S">Sitemap</a>|<a href="http://www.htmlquick.com/webmaster.html" class="foot" accesskey="W">Webmaster</a>
+</div>
+</map>
+</div>
+<script src="tags-attributes_files/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-420622-2";
+urchinTracker();
+</script>
+</body></html>
