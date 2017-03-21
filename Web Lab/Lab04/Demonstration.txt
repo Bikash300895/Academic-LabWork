@@ -1,0 +1,42 @@
+1. db_create.php
+-----------------
+
+This file will create the database called my_db and a table named Persons that has 3 fields- FirstName, LastName and Age
+
+2. Insert_form.html
+--------------------
+
+This form has 3 fields- First Name, Last Name and Age whose values will be passed to insert.php file as firstname, lastname and age.
+
+3. insert.php
+--------------
+
+Holds the value from Insert_form.html and inserts them into Persons table.
+
+4. select.php
+--------------
+
+This file shows every row and every column in Persons table.
+
+5. delete_form.html:
+---------------------
+
+This file shows the First Name text field that is to be deleted. The value in the field is passed to delete.php file with the value firstname.
+
+6. delete.php
+--------------
+
+This file catches the value from delete_form.html and deletes the related data from the Persons table.
+
+7. update_form.html
+-------------------
+
+This file pops up First Name and Corrected Age. The values in the fields are passed to update.php file with firstname and age.
+
+8. update.php
+--------------
+This file catches the value of firstname and age from update_form.html and updates the age in Persons table for the corresponding firstname.
+
+9. db_drop.php
+--------------
+This file drops the database you created with db_create.php script
