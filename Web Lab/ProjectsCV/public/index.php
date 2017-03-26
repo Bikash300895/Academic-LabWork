@@ -84,7 +84,7 @@ if (isset($_POST['Username']) && isset($_POST['Password'])) {
 $sql = "select * from user";
 global $database;
 
-$users = $database->query($sql);
+$users = DataBaseObject::find_by_sql($sql);
 echo $users;
 
 ?>

@@ -36,7 +36,6 @@ class MySQLDatabase{
     }
 
     public function query($sql=""){
-        echo $sql;
         $result = mysqli_query($this->connection, $sql);
 
         if(!$result){
@@ -44,6 +43,10 @@ class MySQLDatabase{
         }
 
         return $result;
+    }
+
+    public function fetch_array($result_set){
+        return mysqli_fetch_array($result_set);
     }
 }
 
