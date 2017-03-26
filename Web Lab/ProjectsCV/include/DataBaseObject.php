@@ -10,12 +10,21 @@ require_once ('include.php');
 
 class DataBaseObject
 {
+    public static function find_all(){
+        $sql = "select * from user";
+        return self::find_by_sql($sql);
+    }
+
     public static function find_by_sql($sql=""){
         global $database;
-        $result = $database->query($sql);
-        $result_set = $database->fetch_array($result);
+        $result_set = $database->query($sql);
+        $object_array = array();
 
-        return $result_set;
+        while ($row = $database->fetch_array($result_set)){
+            $object_array[] = $row;
+        }
+
+        return $object_array;
 
     }
 }
