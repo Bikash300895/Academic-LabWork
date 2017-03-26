@@ -91,10 +91,10 @@ if (isset($_POST['Username']) && isset($_POST['Password'])) {
 
 }
 
-//
+
 //global $database;
-//$users = DataBaseObject::find_all();
-//echo $users[0]->user_name;
+//$users = DataBaseObject::find_by_id(2);
+//echo $users->user_name;
 
 ?>
 

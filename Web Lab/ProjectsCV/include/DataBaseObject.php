@@ -15,6 +15,12 @@ class DataBaseObject
         return self::find_by_sql($sql);
     }
 
+    public static function find_by_id($id){
+        global $database;
+        $sql = "select * from user WHERE id='".$id."'";
+        return self::find_by_sql($sql)[0];
+    }
+
     public static function find_by_sql($sql=""){
         global $database;
         $result_set = $database->query($sql);
