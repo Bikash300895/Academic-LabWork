@@ -7,7 +7,7 @@
 <body>
 
 <?php
-
+require_once ('../include/include.php');
 
 if (isset($_POST['Username']) && isset($_POST['Password'])) {
     $username = $_POST['Username'];

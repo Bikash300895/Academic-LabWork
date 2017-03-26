@@ -13,6 +13,8 @@ class MySQLDatabase{
 
     function __construct()
     {
+//        echo "database connection call";
+        $this->open_connection();
     }
 
     public function open_connection(){
@@ -25,3 +27,8 @@ class MySQLDatabase{
         }
     }
 }
+
+$database = new MySQLDatabase();
+$db = & $database;
+
+?>
