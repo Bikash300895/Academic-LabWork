@@ -66,7 +66,27 @@ if (isset($_POST['Username']) && isset($_POST['Password'])) {
         <?php
 
     } else {
-        echo "Username or password is incorrect";
+
+        ?>
+        <div class="container">
+            <div class="wrapper">
+                <form action="index.php" method="post" name="Login_Form" class="form-signin">
+                    <h3 style="text-align: center;" class="form-signin-heading">Welcome Back! Please Sign In</h3>
+                    <hr class="colorgraph">
+                    <p style="color: red">Username or password is incorrect</p>
+                    <br>
+
+                    <input type="text" class="form-control" name="Username" placeholder="Username" required=""
+                           autofocus=""/>
+                    <input type="password" class="form-control" name="Password" placeholder="Password" required=""/>
+
+                    <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit">Login
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <?php
     }
 } else {
     ?>
