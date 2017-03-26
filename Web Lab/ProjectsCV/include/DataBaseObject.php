@@ -21,7 +21,11 @@ class DataBaseObject
         $object_array = array();
 
         while ($row = $database->fetch_array($result_set)){
-            $object_array[] = $row;
+            $user = new User();
+            $user->id = $row[0];
+            $user->user_name= $row[1];
+            $user->password = $row[2];
+            $object_array[] = $user;
         }
 
         return $object_array;

@@ -13,7 +13,17 @@ if (isset($_POST['Username']) && isset($_POST['Password'])) {
     $username = $_POST['Username'];
     $password = $_POST['Password'];
 
-    if ($username == "bikash" && $password == "pass") {
+    global $database;
+    $users = DataBaseObject::find_all();
+    $ok = false;
+
+    foreach ($users as $user){
+        if($user->user_name==$username && $user->password==$password){
+            $ok=true;
+        }
+    }
+
+    if ($ok) {
         ?>
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -81,10 +91,10 @@ if (isset($_POST['Username']) && isset($_POST['Password'])) {
 
 }
 
-
-global $database;
-$users = DataBaseObject::find_all();
-echo $users[0][2];
+//
+//global $database;
+//$users = DataBaseObject::find_all();
+//echo $users[0]->user_name;
 
 ?>
 
