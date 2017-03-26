@@ -80,6 +80,13 @@ if (isset($_POST['Username']) && isset($_POST['Password'])) {
     <?php
 
 }
+
+$sql = "select * from user";
+global $database;
+
+$users = $database->query($sql);
+echo $users;
+
 ?>
 
 </body>

@@ -26,6 +26,25 @@ class MySQLDatabase{
             );
         }
     }
+
+    public function close_connection()
+    {
+        if(isset($this->connection)){
+            mysqli_close($this->connection);
+            unset($this->connection);
+        }
+    }
+
+    public function query($sql=""){
+        echo $sql;
+        $result = mysqli_query($this->connection, $sql);
+
+        if(!$result){
+            die("Database connection failed");
+        }
+
+        return $result;
+    }
 }
 
 $database = new MySQLDatabase();
