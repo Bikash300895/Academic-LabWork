@@ -1,0 +1,3 @@
+CREATE USER books_admin IDENTIFIED BY MyPassword;
+
+GRANT CONNECT, RESOURCE, DBA TO books_admin;
