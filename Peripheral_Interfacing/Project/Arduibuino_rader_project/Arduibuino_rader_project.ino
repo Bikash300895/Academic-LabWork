@@ -18,7 +18,7 @@ void loop() {
   // rotates the servo motor from 15 to 165 degrees
   for(int i=15;i<=165;i++){  
   myServo.write(i);
-  delay(1000);
+  delay(30);
   distance = calculateDistance();// Calls a function for calculating the distance measured by the Ultrasonic sensor for each degree
   
   Serial.print(i); // Sends the current degree into the Serial Port
@@ -29,7 +29,7 @@ void loop() {
   // Repeats the previous lines from 165 to 15 degrees
   for(int i=165;i>15;i--){  
   myServo.write(i);
-  delay(1000);
+  delay(30);
   distance = calculateDistance();
   Serial.print(i);
   Serial.print(",");
