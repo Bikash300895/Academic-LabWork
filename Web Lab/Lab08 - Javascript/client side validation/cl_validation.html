@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript">
+function chk_frm_s(frm)
+{
+  var c=0;
+     
+  document.getElementById("chk_roll_no").innerHTML="";
+  if (frm.roll_no.value.length==0)
+  {
+  	document.getElementById("chk_roll_no").innerHTML="Enter Roll No!";
+  	c=1;
+  }
+  if(frm.roll_no.value.length>0)	
+  {
+	   var strValidChars = "0123456789০১২৩৪৫৬৭৮৯";
+	   var strChar;
+	   var strString = frm.roll_no.value;	
+	   //  test strString consists of valid characters listed above
+	   for (i = 0; i < strString.length ; i++)
+		  {
+		  strChar = strString.charAt(i);
+		  if (strValidChars.indexOf(strChar) == -1)
+			 {
+			 	document.getElementById("chk_roll_no").innerHTML="Correct Roll No";
+  				c=1;
+			 	break;
+			 }
+		  }
+   }
+   
+   document.getElementById("chk_session").innerHTML="";
+  if (frm.session.value.length==0)
+  {
+  	document.getElementById("chk_session").innerHTML="Select Session!";
+  	c=1;
+  }
+   
+   
+   document.getElementById("chk_name").innerHTML="";
+  if (frm.name.value.length==0)
+  {
+  	document.getElementById("chk_name").innerHTML="<br/>Enter Name!";
+  	c=1;
+  }
+  
+  //  check for valid numeric strings
+  document.getElementById("chk_mobile_no").innerHTML="";
+  if(frm.mobile_no.value.length>0)	
+  {
+	   var strValidChars = "0123456789০১২৩৪৫৬৭৮৯";
+	   var strChar;
+	   var strString = frm.mobile_no.value;	
+	   //  test strString consists of valid characters listed above
+	   for (i = 0; i < strString.length ; i++)
+		  {
+		  strChar = strString.charAt(i);
+		  if (strValidChars.indexOf(strChar) == -1)
+			 {
+			 	document.getElementById("chk_mobile_no").innerHTML="Correct Mobile No";
+  				c=1;
+			 	break;
+			 }
+		  }
+   }
+   
+  document.getElementById("valid_msg").innerHTML="";
+  if(c==1)
+  {
+  	return false;
+  }
+
+ 
+}
+
+</script>
+</head>
+
+<body>
+
+ 
+		<form action="cl_validation.html" method="post"  ENCTYPE="multipart/form-data" name="frm_ins_stu"  id="frm_ins_stu" onSubmit="return chk_frm_s(this)">
+								
+	
+      <table width="445" border="1" cellspacing="10" cellpadding="0" bgcolor="#999999">
+	  <caption>Enter Information to Add Student</caption>
+        <tr>
+          <td align="right">Roll no:</td>
+          <td><input name="roll_no" type="text" id="roll_no"/><font color="#FF0000" size="2"><label id="chk_roll_no">*</label></font></td>
+        </tr>
+        <tr>
+          <td align="right">Year:</td>
+          <td><select name="year" size="1" id="year">
+          <option value="1st">1st Year</option>
+          <option value="2nd">2nd Year</option>
+        </select></td>
+        </tr>
+		<tr>
+          <td align="right">Group:</td>
+          <td><select name="grp" size="1" id="grp" >
+		  <option value="Science">SCIENCE</option>
+          <option value="Commerce">COMMERCE</option>
+		  <option value="Arts">ARTS</option>
+        </select></td>
+		</tr>
+		<tr>
+          <td align="right">Session:</td>
+          <td><select name="session" size="1" id="session">
+		  <option value="">Select Session</option>
+		  <option value="2009-2010">2009-2010</option>
+		  <option value="2010-2011">2010-2011</option>
+		  <option value="2011-2012">2011-2012</option>
+		  </select><font color="#FF0000" size="2"><label id="chk_session">*</label></font></td>
+        </tr>
+        <tr>
+          <td align="right">Name:</td>
+          <td><input name="name" type="text" id="name" size="40" maxlength="50"/><font color="#FF0000" size="2"><label id="chk_name">*</label></font></td>
+        </tr>
+        <tr>
+          <td align="right">Father Name:</td>
+          <td><input name="f_name" type="text" id="f_name" size="40" maxlength="50"/></td>
+        </tr>
+        <tr>
+          <td align="right">Village:</td>
+          <td><input name="village" type="text" id="village" size="40" maxlength="50"/></td>
+        </tr>
+		<tr>
+          <td align="right">Thana:</td>
+          <td><input name="thana" type="text" id="thana" size="40" maxlength="50"/></td>
+        </tr>
+        <tr>
+          <td align="right">Mobile No:</td>
+          <td><input name="mobile_no" type="text" id="mobile_no" /><font color="#FF0000" size="2"><label id="chk_mobile_no"></label></font></td>
+        </tr>
+        <tr>
+          <td align="right"><label>
+            <input name="btn_reset" type="reset" id="btn_reset" value="Reset Data" />
+          </label></td>
+          <td align="center"><input name="btn_ins_student" type="submit" id="btn_ins_student" value="Insert Student" /></td>
+        </tr>
+      </table>
+	  <label id="valid_msg"></label>
+</form>
+
+</body>
+</html>
