@@ -6,9 +6,27 @@
 
 <h2>Index</h2>
 
+
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<span> <b>Search By Student name : </b></span>
+
+<div id="dd" class="dropdown">
+    <input id="src" type="text" class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onkeyup="search(this.value)" />
+    @*<a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Dropdown link
+    </a>*@
+
+    <div id="dd_content" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        @*<a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>*@
+    </div>
+</div>
+
+<br/>
 <table class="table">
     <thead>
         <tr>
