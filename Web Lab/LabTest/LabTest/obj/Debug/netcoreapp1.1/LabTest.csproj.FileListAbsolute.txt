@@ -1,0 +1,10 @@
+C:\Projects\Academic-LabWork\Web Lab\LabTest\LabTest\bin\Debug\netcoreapp1.1\LabTest.deps.json
+C:\Projects\Academic-LabWork\Web Lab\LabTest\LabTest\bin\Debug\netcoreapp1.1\LabTest.runtimeconfig.json
+C:\Projects\Academic-LabWork\Web Lab\LabTest\LabTest\bin\Debug\netcoreapp1.1\LabTest.runtimeconfig.dev.json
+C:\Projects\Academic-LabWork\Web Lab\LabTest\LabTest\bin\Debug\netcoreapp1.1\LabTest.dll
+C:\Projects\Academic-LabWork\Web Lab\LabTest\LabTest\bin\Debug\netcoreapp1.1\LabTest.pdb
+C:\Projects\Academic-LabWork\Web Lab\LabTest\LabTest\obj\Debug\netcoreapp1.1\LabTest.csprojResolveAssemblyReference.cache
+C:\Projects\Academic-LabWork\Web Lab\LabTest\LabTest\obj\Debug\netcoreapp1.1\UserSecretsAssemblyInfo.cs
+C:\Projects\Academic-LabWork\Web Lab\LabTest\LabTest\obj\Debug\netcoreapp1.1\LabTest.AssemblyInfo.cs
+C:\Projects\Academic-LabWork\Web Lab\LabTest\LabTest\obj\Debug\netcoreapp1.1\LabTest.dll
+C:\Projects\Academic-LabWork\Web Lab\LabTest\LabTest\obj\Debug\netcoreapp1.1\LabTest.pdb
