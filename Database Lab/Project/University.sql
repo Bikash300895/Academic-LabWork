@@ -142,6 +142,10 @@ end;
 /
 
 
+
+-- Procedures
+
+
 create or replace procedure INSEERTSTUDENT (id IN NUMBER, name IN VARCHAR2, cgpa IN number) is
 	begin
 		insert into student values(id, name, cgpa);   
@@ -155,9 +159,31 @@ begin
 	INSEERTSTUDENT(1407005,'Mehedi hasan',3.16);
 end;
 /
-
-
 select * from student;
+
+
+-- Functions
+-- Function for getting the avegare cgpa
+create or replace function avg_cgpa return number is
+	avg_cg student.cgpa%type;
+
+	begin
+
+		select avg(cgpa) into avg_cg
+		from student;
+
+		return avg_cg;
+	end;
+	/
+
+
+begin
+	dbms_output.put_line('Average cgpa : ' || avg_cgpa);
+end;
+/
+
+
+
 
 -- Cleaning database
 drop table course_teacher;
