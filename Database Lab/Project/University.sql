@@ -142,6 +142,22 @@ end;
 /
 
 
+create or replace procedure INSEERTSTUDENT (id IN NUMBER, name IN VARCHAR2, cgpa IN number) is
+	begin
+		insert into student values(id, name, cgpa);   
+	end;
+	/
+
+begin
+	INSEERTSTUDENT(1407002,'Tushar Pranto',3.10);
+	INSEERTSTUDENT(1407003,'Hasib iqbal',3.15);
+	INSEERTSTUDENT(1407004,'Tawhid jwarder',3.22);
+	INSEERTSTUDENT(1407005,'Mehedi hasan',3.16);
+end;
+/
+
+
+select * from student;
 
 -- Cleaning database
 drop table course_teacher;
