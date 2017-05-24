@@ -232,6 +232,7 @@ end;
 
 
 insert into course values('CSE3110', 'name', 1.5, 'CSE');
+insert into course values('CSE3111', 'name', 1.5, 'CSE');
 select * from course;
 
 
