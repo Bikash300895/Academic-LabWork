@@ -52,10 +52,17 @@ create table course_teacher(
 
 -- Inserting data
 insert into student values(1407001, 'bikash', 3.27);
+
 insert into department values('CSE', 'Computer science and engineering', 'Mr. X');
+
 insert into course values('CSE3120', 'Database', '1.5', 'CSE');
-insert into enrollment values(1407001, 'CSE3120', 0.00);
+insert into course values('CSE3100', 'Web Promgramming', '1.5', 'CSE');
+
+insert into enrollment values(1407001, 'CSE3120', 3.75);
+insert into enrollment values(1407001, 'CSE3100', 4.00);
+
 insert into teacher values(555, 'MR Y', 'CSE');
+
 insert into course_teacher values ('CSE3120', 555);
 
 
@@ -66,6 +73,73 @@ select * from enrollment;
 select * from department;
 select * from teacher;
 select * from course_teacher;
+
+
+
+-- PL/SQL
+
+-- Get max cgpa among the students
+set serveroutput on
+declare
+	max_cgpa student.cgpa%type;
+
+begin
+	select max(cgpa) into max_cgpa
+	from student;
+	dbms_output.put_line('Max cgpa : ' || max_cgpa);
+
+end;
+/
+
+
+-- Show the grade according to (IF condition)
+
+set serveroutput on
+declare
+	gpa enrollment.grade%type;
+
+begin
+	select grade into gpa
+	from enrollment
+	where student_id = 1407001 and course_id='CSE3120';
+
+	if(gpa = 4) then
+		dbms_output.put_line('A+');
+
+	elsif(gpa = 3.75) then
+		dbms_output.put_line('A');
+	else
+		dbms_output.put_line('A-');
+
+	end if;
+
+end;
+/
+
+-- Show grade of all subject with loop
+
+set serveroutput on
+declare
+	cursor enroll_cursor is select student_id, grade from enrollment;
+	student_record enroll_cursor%rowtype;
+	i number := 1;
+
+begin
+	open enroll_cursor;
+
+		loop
+
+			fetch enroll_cursor into student_record;
+			exit when i > 2;
+
+			dbms_output.put_line(student_record.student_id|| ' ' || student_record.grade);
+			i := i+1;
+
+		end loop;
+
+	close enroll_cursor;
+end;
+/
 
 
 
