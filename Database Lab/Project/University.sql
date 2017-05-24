@@ -183,6 +183,58 @@ end;
 /
 
 
+-- create or replace procedure TAKE_COURSE_INPUT is
+-- 	id varchar2(10);
+-- 	name varchar2(50);
+-- 	credits number;
+-- 	department varchar(3);
+-- 	i number := 1;
+-- 	begin
+-- 		dbms_output.put_line('Course data input procedure started......');
+
+-- 		loop
+-- 			exit when i >1;
+-- 			id := '&Course_id';
+-- 			name := '&Name';
+-- 			credits := '&Credits';
+-- 			department := '&department';
+
+-- 			insert into course values(id, name, credits, department);
+-- 			i := i+1;
+-- 		end loop;
+-- 	end;
+-- 	/
+
+-- declare
+-- 	i number:= 1;
+-- begin 
+-- 	loop
+-- 		exit when i>1;
+-- 		TAKE_COURSE_INPUT;
+-- 		i := i+1;
+-- 	end loop;
+-- end;
+-- /
+
+
+
+create or replace trigger course_input before insert or update on course
+for each row
+begin
+	:new.title := 'new';
+	dbms_output.put_line(:new.title);
+end;
+/
+
+
+
+
+
+
+insert into course values('CSE3110', 'name', 1.5, 'CSE');
+select * from course;
+
+
 
 
 -- Cleaning database
