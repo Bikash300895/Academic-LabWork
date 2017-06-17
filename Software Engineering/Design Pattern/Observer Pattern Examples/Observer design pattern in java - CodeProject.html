@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<!-- saved from url=(0074)http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java -->
+<html style="height: 100%;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Observer design pattern in java - CodeProject</title> 
+	<link type="text/css" rel="stylesheet" href="./Observer design pattern in java - CodeProject_files/Main.min.css">
+
+	
+
+<meta name="Description" content="It provides observer design pattern in detail with example and explains Java Ap; Author: Arpit Mandliya; Updated: 22 Mar 2013; Section: Design and Architecture; Chapter: Development Lifecycle; Updated: 22 Mar 2013">
+<meta name="Keywords" content="Java, Design, Intermediate,Design and Architecture,Development Lifecycle,Free source code, tutorials">
+<meta name="Author" content="Arpit Mandliya">
+<meta name="Rating" content="General">
+<meta name="Revisit-After" content="1 days">
+<meta name="application-name" content="CodeProject">
+<meta name="google-translate-customization" content="d908bb7ce7aff658-4c2f3a504525c916-g629383f736781a8a-13">
+
+<link rel="dns-prefetch" href="http://ajax.googleapis.com/"> 
+
+<meta name="syndication-source" content="http://javapostsforlearning.blogspot.in/2013/02/observer-design-pattern-in-java.html">
+
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All Topics" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=1">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Android" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=22">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - iOS" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=25">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C++" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=2">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=3">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Web" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=23">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx">
+<meta name="robots" content="index, follow">
+<link rel="search" type="application/opensearchdescription+xml" title="CodeProject" href="http://www.codeproject.com/info/OpenSearch.xml">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--<base target="_top">--><base href="." target="_top">
+	<link rel="icon" href="http://www.codeproject.com/favicon.ico" type="image/ico">
+<link rel="shortcut icon" href="http://www.codeproject.com/favicon.ico" type="image/ico">
+<link rel="apple-touch-icon" href="http://www.codeproject.com/images/FavIcon-Apple.png" type="image/png">
+<script type="text/javascript" language="Javascript">//<![CDATA[
+function defrm () { /* thanks twitter */ document.write = ''; window.top.location = window.self.location;  setTimeout(function() { document.body.innerHTML = ''; }, 0);  window.self.onload = function(evt) { document.body.innerHTML = ''; }; }if (window.top !== window.self) {  try {  if (window.top.location.host) { /* will throw */ } else { defrm(); /* chrome */ }  } catch (ex) { defrm(); /* everyone else */ } }if (typeof(DemoUrl)!='undefined')   document.write(unescape('%3Cme')+'ta http'+'-equiv="re'+'fresh"                  con'+'tent="1;url='+DemoUrl+unescape('"%3CE'));
+(function() { 
+	var _dma = document.createElement('script');
+        _dma.type = 'text/javascript';
+        _dma.async = true;
+        _dma.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn2.developermedia.com/a.min.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(_dma);
+})();
+
+//]]>
+</script><script type="text/javascript" async="" src="./Observer design pattern in java - CodeProject_files/a.min.js"></script>
+
+	
+
+
+
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-1735123-1']);
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_setDomainName', 'www.codeproject.com']);
+	_gaq.push(['_setSessionTimeout', '1200']); 
+
+	(function () {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})(); 
+</script><script type="text/javascript" async="" src="./Observer design pattern in java - CodeProject_files/ga.js"></script>
+
+
+<link type="text/css" rel="stylesheet" charset="UTF-8" href="./Observer design pattern in java - CodeProject_files/translateelement.css"><script type="text/javascript" charset="UTF-8" src="./Observer design pattern in java - CodeProject_files/main.js"></script><script type="text/javascript" charset="UTF-8" src="./Observer design pattern in java - CodeProject_files/element_main.js"></script></head>	
+
+<body class="chrome chrome44" style="position: relative; min-height: 100%; top: 0px;">
+
+<a class="access-link" href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java#Main"><img alt="Click here to Skip to main content" src="./Observer design pattern in java - CodeProject_files/t.gif"></a>
+
+
+
+
+
+<div class="page-background">
+
+	
+	
+
+	
+
+	
+    <div id="ctl00_STM" class="site-top-menu fixed">
+        <div class="main-content">
+            
+
+<div class="container memberbar clearfix">
+
+	<div id="ctl00_MemberMenu_GenInfo" class="float-left">11,644,284 members (70,728 online)</div>
+
+	<div class="float-left">
+		
+	</div>
+
+	<div class="float-right">
+
+		
+
+		
+
+		
+
+			<script type="text/javascript">//<!--
+			function doSubmit(secure)
+			{
+				if (secure)
+					document.subForm.action = "https://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fArticles%2f565642%2fObserver-design-pattern-in-java"
+				else
+					document.subForm.action = "https://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fArticles%2f565642%2fObserver-design-pattern-in-java"
+				document.subForm.submit();
+				return true;
+			}//-->
+			</script>
+
+			<a name="SignUp"></a>
+			<span class="member-signin tooltip">
+				<span><a href="https://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fArticles%2f565642%2fObserver-design-pattern-in-java">Sign in</a></span>
+
+				<div class="tooltip-flyout">
+					<form name="subForm" id="subForm" action="https://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fArticles%2f565642%2fObserver-design-pattern-in-java" method="post" class="tight">
+
+						
+						<input id="FormName" name="FormName" value="MenuBarForm" type="hidden">
+
+						<div>Email</div>
+						<div><input class="small-text" type="email" name="Email" id="Email"></div>
+						<div>Password</div>
+						<div><input class="small-text" type="password" name="Password" id="Password"></div>
+						<div class="action">
+							
+<script type="text/javascript">
+function Join(){
+ var url = 'http://www.codeproject.com/script/Membership/Modify.aspx?meml=' + document.subForm.Email.value;
+ document.location.href=url;return false;
+}
+document.write('<input type="button" class="create" onclick="return Join();" value="Join"');
+document.write('<input type="hidden" name="fld_quicksign" value="true" />');
+</script><input type="button" class="create" onclick="return Join();" value="Join" <input="" name="fld_quicksign">
+							<input type="submit" value="Sign in" class="signin" onclick="return doSubmit(false);">
+						</div>
+
+						<div class="container">
+							
+							&nbsp;
+							<a id="ctl00_MemberMenu_SendPassword" class="forgot float-right" href="http://www.codeproject.com/script/Membership/SendPassword.aspx?rp=%2fArticles%2f565642%2fObserver-design-pattern-in-java">Forgot your password?</a>
+						</div>
+					</form>
+
+					<hr class="divider-dark">
+
+					Sign in using <a class="oauth" title="Sign in using Facebook" href="http://www.codeproject.com/script/Membership/OAuthLogOn.aspx?auth=Facebook"><img src="./Observer design pattern in java - CodeProject_files/facebook.png" style="vertical-align:middle;padding-right:3px;border:0;"></a>
+<a class="oauth" title="Sign in using Google" href="http://www.codeproject.com/script/Membership/OAuthLogOn.aspx?auth=Google"><img src="./Observer design pattern in java - CodeProject_files/google-plus.png" style="vertical-align:middle;padding-right:3px;border:0;"></a>
+<a class="oauth" title="Sign in using Linkedin" href="http://www.codeproject.com/script/Membership/OAuthLogOn.aspx?auth=LinkedIn"><img src="./Observer design pattern in java - CodeProject_files/linkedin.png" style="vertical-align:middle;padding-right:3px;border:0;"></a>
+<a class="oauth" title="Sign in using Microsoft" href="http://www.codeproject.com/script/Membership/OAuthLogOn.aspx?auth=Microsoft"><img src="./Observer design pattern in java - CodeProject_files/microsoft.png" style="vertical-align:middle;padding-right:3px;border:0;"></a>
+
+				</div>
+            </span>
+		
+	</div>
+</div>
+        </div>
+    </div>
+
+	
+    <div id="ctl00_SH" class="site-header fixed">
+        <div class="main-content">
+            <div class="logo"><a href="http://www.codeproject.com/"><img id="ctl00_Logo" tabindex="1" title="CodeProject" src="./Observer design pattern in java - CodeProject_files/logo250x135.gif" alt="Home" style="height:135px;width:250px;border-width:0px;"></a></div>
+            <div class="promo"><div class="msg-728x90" data-format="728x90" data-type="ad" data-publisher="lqm.codeproject.site" data-zone="Development-Lifecycle/Design-and-Architecture/General" data-tags="Java, Design, Intermediate,rating4.5"><iframe id="dmad1" allowtransparency="false" style="z-index:10" width="728" height="90" marginwidth="0" marginheight="0" frameborder="0" scrolling="no"></iframe></div></div>
+        </div>
+    </div>
+
+	<a href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java#Main"><img alt="Click here to Skip to main content" class="access-link" src="./Observer design pattern in java - CodeProject_files/t.gif"></a>
+
+	
+	<div id="ctl00_TPR" class="sub-headerbar clearfix fixed">
+    <div class="float-right">
+		
+
+<div class="searchbar">
+
+<form method="get" action="http://www.codeproject.com/search.aspx?sbo=kw" name="Search" class="tight">
+
+
+<table border="0" cellspacing="0" cellpadding="0" class="search"><tbody><tr><td><input tabindex="2" class="search  subdue" id="sb_tb" value="" name="q"></td><td><input type="image" src="./Observer design pattern in java - CodeProject_files/search.gif"></td></tr></tbody></table>
+
+<div class="hover-container">
+	<div id="SearchFilter" class="search-advanced small-text align-left" style="display: none;">
+	<b>Search within:<br></b>
+		
+		<input type="radio" id="sb_kw" name="sbo" value="kw" checked="true"><label for="sb_kw">Articles</label><br>
+<input type="radio" id="sb_qa" name="sbo" value="qa"><label for="sb_qa">Quick Answers</label><br>
+<input type="radio" id="sb_fm" name="sbo" value="fm"><label for="sb_fm">Messages</label><br>
+
+
+		
+		
+
+		
+		
+	</div>
+</div>
+</form>
+
+</div>
+    </div>
+    <div class="float-left">
+		
+
+<div class="navbar clearfix">
+<ul class="navmenu openable">
+
+<li class="desktop-only"><a id="ctl00_TopNavBar_Home" href="http://www.codeproject.com/">home</a>
+
+
+</li><li class=""><a id="ctl00_TopNavBar_Art" class="down selected" href="http://www.codeproject.com/script/Articles/Latest.aspx">articles</a>
+
+	<ul>
+		<li class=""><a id="ctl00_TopNavBar_ArtTopicList" class="fly" onmouseover="navBarMenu.ShowMap(this, &#39;ctl00_TopNavBar_MapFlyout&#39;);" href="http://www.codeproject.com/script/Content/SiteMap.aspx">Chapters and Sections<span class="has-submenu">&gt;</span></a><ul id="ctl00_TopNavBar_MapFlyout">
+			<li>
+				<div id="siteMap">
+					<img src="./Observer design pattern in java - CodeProject_files/animated.gif" alt="loading" style="margin:150px;width:100px;height:100px;">
+				</div>
+			</li>
+			</ul>
+		</li>
+		<li><a id="ctl00_TopNavBar_ArtSearch" class="fly break" href="http://www.codeproject.com/search.aspx?sbo=kw">Search</a></li>
+		<li><a id="ctl00_TopNavBar_ArtLatestArts" class="fly" href="http://www.codeproject.com/script/Articles/Latest.aspx?at=1,3,7">Latest Articles</a></li>
+		<li><a id="ctl00_TopNavBar_ArtLatestTips" class="fly" href="http://www.codeproject.com/script/Articles/Latest.aspx?at=6">Latest Tips/Tricks</a></li>
+		<li><a id="ctl00_TopNavBar_ArtTop" class="fly" href="http://www.codeproject.com/script/Articles/TopArticles.aspx?ta_so=5">Top Articles</a></li>
+		<li><a id="ctl00_TopNavBar_ArtBeginner" class="fly" href="http://www.codeproject.com/search.aspx?sbo=kw?aidlst=152&sa_us=True">Beginner Articles</a></li>
+		<li><a id="ctl00_TopNavBar_ArtBlogArticles" class="fly break" href="http://www.codeproject.com/script/Articles/BlogArticleList.aspx">Technical Blogs</a></li>
+		<li><a id="ctl00_TopNavBar_ArtGuide" class="fly" href="http://www.codeproject.com/info/Submit.aspx">Posting/Update Guidelines</a></li>
+		<li><a id="ctl00_TopNavBar_ArtHelpForum" class="fly" href="http://www.codeproject.com/Forums/1641/Article-Writing.aspx">Article Help Forum</a></li>
+		<li><a id="ctl00_TopNavBar_ArtCompetition" class="fly break" href="http://www.codeproject.com/script/Awards/CurrentCompetitions.aspx?cmpTpId=1">Article Competition</a></li>
+		<li><a id="ctl00_TopNavBar_ArtPostArticle" class="fly highlight1" href="http://www.codeproject.com/script/Articles/Submit.aspx">
+			<img src="./Observer design pattern in java - CodeProject_files/write13.png" width="13px" height="13px"> Submit an article or tip
+			</a></li>
+		<li><a id="ctl00_TopNavBar_ArtPostBlog" class="fly highlight2" href="http://www.codeproject.com/script/Articles/BlogFeed.aspx">
+			<img src="./Observer design pattern in java - CodeProject_files/write13.png" width="13px" height="13px"> Post your Blog
+			</a></li>		<li class="last"></li>
+	</ul>
+
+</li>
+
+
+
+<li class="">
+<a id="ctl00_TopNavBar_Answers" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active">
+    <span class="desktop-only tablet-only">quick answers</span><span class="mobile-only">Q&amp;A</span>
+</a>
+	<ul>
+		<li id="ctl00_TopNavBar_AQL"><a id="ctl00_TopNavBar_ArticleQuestion" class="fly highlight1" href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java#_comments">
+			<img src="./Observer design pattern in java - CodeProject_files/write13.png" width="13px" height="13px"> Ask a Question about this 
+			article</a>
+		</li>
+
+		<li><a id="ctl00_TopNavBar_QAAsk" class="fly highlight2" href="http://www.codeproject.com/Questions/ask.aspx"><img src="./Observer design pattern in java - CodeProject_files/write13.png" width="13px" height="13px"> Ask a Question</a></li>
+
+		
+		<li><a id="ctl00_TopNavBar_QAUnanswered" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=unanswered">View Unanswered Questions</a></li>
+		<li><a id="ctl00_TopNavBar_QALatest" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active">View All Questions...</a></li>
+		
+				<li><a id="ctl00_TopNavBar_QATR_ctl00_Tag" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active&alltags=true&tags=120" style="padding-left:30px">Linux questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl01_Tag" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active&alltags=true&tags=81" style="padding-left:30px">C# questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl02_Tag" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active&alltags=true&tags=85" style="padding-left:30px">ASP.NET questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl03_Tag" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active&alltags=true&tags=1223" style="padding-left:30px">C#5 questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl04_Tag" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active&alltags=true&tags=93" style="padding-left:30px">SQL questions</a></li>
+			
+		<li class="last"></li>
+	</ul>
+
+</li>
+
+
+
+<li class=""><a id="ctl00_TopNavBar_Forums" href="http://www.codeproject.com/script/Forums/List.aspx">
+        <span class="desktop-only tablet-only">discussions</span><span class="mobile-only">forums</span>
+</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_MessageBoardsAll" class="fly" href="http://www.codeproject.com/script/Forums/List.aspx">All Message Boards...</a></li>
+		<li class=""><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1580997/Application-Lifecycle.aspx">Application Lifecycle<span class="has-submenu">&gt;</span></a>
+<ul class="openable"><li><a class="fly" href="http://www.codeproject.com/Forums/1533717/Running-a-Business.aspx">Running a Business</a></li>
+<li><a class="fly" href="http://www.codeproject.com/Forums/1533716/Sales-Marketing.aspx">Sales / Marketing</a></li>
+<li><a class="fly" href="http://www.codeproject.com/Forums/1651/Collaboration-Beta-Testing.aspx">Collaboration / Beta Testing</a></li>
+<li><a class="fly" href="http://www.codeproject.com/Forums/3304/Work-Issues.aspx">Work  Issues</a></li>
+</ul></li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/369270/Design-and-Architecture.aspx">Design and Architecture</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/12076/ASP-NET.aspx">ASP.NET</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1580226/JavaScript.aspx">JavaScript</a>
+</li>
+<li class=""><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1647/C-Cplusplus-MFC.aspx">C / C++ / MFC<span class="has-submenu">&gt;</span></a>
+<ul class="openable"><li><a class="fly" href="http://www.codeproject.com/Forums/4486/ATL-WTL-STL.aspx">ATL /  WTL / STL</a></li>
+<li><a class="fly" href="http://www.codeproject.com/Forums/3785/Managed-Cplusplus-CLI.aspx">Managed C++/CLI</a></li>
+</ul></li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1649/Csharp.aspx">C#</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1627782/Free-Tools.aspx">Free Tools</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1827460/Objective-C-and-Swift.aspx">Objective-C and Swift</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1725/Database.aspx">Database</a>
+</li>
+<li class=""><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/186301/Hardware-Devices.aspx">Hardware &amp; Devices<span class="has-submenu">&gt;</span></a>
+<ul class="openable"><li><a class="fly" href="http://www.codeproject.com/Forums/1644/System-Admin.aspx">System Admin</a></li>
+</ul></li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1606152/Hosting-and-Servers.aspx">Hosting and Servers</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1643/Java.aspx">Java</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1650/NET-Framework.aspx">.NET Framework</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1848626/Android.aspx">Android</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1876716/iOS.aspx">iOS</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/13695/Mobile.aspx">Mobile</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1540733/Sharepoint.aspx">Sharepoint</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1004257/Silverlight-WPF.aspx">Silverlight / WPF</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1646/Visual-Basic.aspx">Visual Basic</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1640/Web-Development.aspx">Web Development</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/suggestions.aspx">Site Bugs / Suggestions</a>
+</li>
+
+		<li class="last"></li>
+	</ul>
+
+</li>
+
+<li class="desktop-only"><a id="ctl00_TopNavBar_Features" href="http://www.codeproject.com/Feature/">features</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_Comps" class="fly" href="http://www.codeproject.com/script/Awards/CurrentCompetitions.aspx?cmpTpId=1&awsac=true">Competitions</a></li>
+		<li><a id="ctl00_TopNavBar_News" class="fly" href="http://www.codeproject.com/script/News/List.aspx">News</a></li>
+		<li><a id="ctl00_TopNavBar_Insider" class="fly" href="http://www.codeproject.com/Feature/Insider/">The Insider Newsletter</a></li>
+    	<li><a id="ctl00_TopNavBar_DailyBuild" class="fly" href="http://www.codeproject.com/Feature/DailyBuild">The Daily Build Newsletter</a></li>
+		<li><a id="ctl00_TopNavBar_Newsletters" class="fly" href="http://www.codeproject.com/script/Mailouts/Archive.aspx?mtpid=1">Newsletter archive</a></li>
+		<li><a id="ctl00_TopNavBar_Surveys" class="fly" href="http://www.codeproject.com/script/Surveys/List.aspx">Surveys</a></li>
+		<li><a id="ctl00_TopNavBar_Showcase" class="fly" href="http://www.codeproject.com/KB/showcase/">Product Showcase</a></li>
+		<li><a id="ctl00_TopNavBar_Research" class="fly" href="http://www.codeproject.com/script/ResearchLibrary/Index.aspx">Research Library</a></li>
+
+		<li><a id="ctl00_TopNavBar_Stuff" class="fly" href="http://www.codeproject.com/Info/Stuff.aspx">CodeProject Stuff</a></li>
+		<li class="last"></li>
+	</ul>
+
+</li>
+
+
+<li class=""><a id="ctl00_TopNavBar_Lounge" href="http://www.codeproject.com/Lounge.aspx">
+            <span class="desktop-only tablet-only">community</span><span class="mobile-only">lounge</span>
+</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_WhosWho" class="fly" href="http://www.codeproject.com/script/Membership/Profiles.aspx">Who's Who</a></li>
+		<li><a id="ctl00_TopNavBar_MVPs" class="fly break" href="http://www.codeproject.com/script/Awards/MVPWinners.aspx">Most Valuable Professionals</a></li>
+		
+
+		<li><a id="ctl00_TopNavBar_LoungeLnk" class="fly highlight2" href="http://www.codeproject.com/Lounge.aspx">The Lounge &nbsp;</a></li>
+		<li><a id="ctl00_TopNavBar_InsiderLnk" class="fly" href="http://www.codeproject.com/Insider.aspx">The Insider News</a></li>
+		<li><a id="ctl00_TopNavBar_WeirdWonderful" class="fly" href="http://www.codeproject.com/Feature/WeirdAndWonderful.aspx">The Weird &amp; The Wonderful</a></li>
+		<li><a id="ctl00_TopNavBar_SoapBoxLnk" class="fly" href="http://www.codeproject.com/Forums/1536756/The-Soapbox.aspx">The Soapbox</a></li>
+		<li><a id="ctl00_TopNavBar_PRLnk" class="fly break" href="http://www.codeproject.com/Forums/1738007/Press-Releases.aspx">Press Releases</a></li>
+
+		
+		<li class=""><a class="fly" href="http://www.codeproject.com/Forums/1580229/Hindi.aspx">Non-English Language
+			<span class="has-submenu">&gt;</span></a>
+		<ul>
+		<li><a class="fly" href="http://www.codeproject.com/Forums/1580229/Hindi.aspx">General Indian Topics</a></li>
+		<li><a class="fly" href="http://www.codeproject.com/Forums/1580230/Chinese.aspx">General Chinese Topics</a></li>
+		</ul>
+		</li><li class="last"></li>
+		
+	</ul>
+
+</li>
+
+
+<li class="desktop-only tablet-only" style="margin-left:20px"><a id="ctl00_TopNavBar_Help" href="http://www.codeproject.com/KB/FAQs/">help</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_HelpWhatIs" class="fly" href="http://www.codeproject.com/info/guide.aspx">What is 'CodeProject'?</a></li>
+		<li><a id="ctl00_TopNavBar_HelpGeneral" class="fly break" href="http://www.codeproject.com/KB/FAQs/">General FAQ</a></li>
+		<li><a id="ctl00_TopNavBar_HelpPostQuestion" class="fly break highlight2" href="http://www.codeproject.com/Questions/ask.aspx">Ask a Question</a></li>
+		<li><a id="ctl00_TopNavBar_HelpBugs" class="fly" href="http://www.codeproject.com/suggestions.aspx">Bugs and Suggestions</a></li>
+		<li><a id="ctl00_TopNavBar_HelpArticles" class="fly" href="http://www.codeproject.com/Forums/1641/Article-Writing.aspx">Article Help Forum</a></li>
+		<li><a id="ctl00_TopNavBar_HelpSiteMap" class="fly" href="http://www.codeproject.com/script/Content/SiteMap.aspx">Site Map</a></li>
+		<li><a id="ctl00_TopNavBar_HelpAdvertise" class="fly" href="http://developermedia.com/">Advertise with us</a></li>
+		<li><a id="ctl00_TopNavBar_HelpJobs" class="fly" href="http://www.codeproject.com/info/Jobs/">Employment Opportunities</a></li>
+		<li><a id="ctl00_TopNavBar_HelpAboutUs" class="fly" href="http://www.codeproject.com/info/about.aspx">About Us</a></li>
+		<li class="last"></li>
+	</ul>
+
+</li>
+
+</ul>
+
+</div>
+    </div>
+	<div class="sub-headerbar-divider"></div>
+	</div>		
+	
+
+	<div id="A" class="container-content-wrap fixed"> 
+
+	<div itemscope="" itemtype="http://schema.org/Article" class="container-content"> 
+
+
+		<div class="clearfix">
+			<div class="container-breadcrumb float-left ">
+				<div><a href="http://www.codeproject.com/script/Content/SiteMap.aspx">Articles</a> » <a href="http://www.codeproject.com/Chapters/11/Development-Lifecycle.aspx">Development Lifecycle</a> » <a href="http://www.codeproject.com/KB/architecture/"><span itemprop="articleSection">Design and Architecture</span></a> » <a href="http://www.codeproject.com/KB/architecture/#General">General</a></div>
+			</div>
+
+			<div class="float-left">
+				
+			</div>
+
+			<div class="edit-links float-right">
+				
+
+
+ 
+&nbsp;
+
+
+
+
+
+
+
+
+
+
+			</div>
+
+			<div class="article-nav float-right">
+					
+		        
+		        
+					
+
+                
+				
+
+<a id="ctl00_ActionLinks_BookmarkMd_ImgBt" title="Bookmark" alternatetext="Bookmark" name="bm_565642_2" onclick="return bookmarkMe(565642,2,&#39;/script/Bookmarks/Ajax/Add.aspx?obid=565642&amp;obtid=2&amp;action=AddBookmark&amp;bio=true&amp;bis=medium&#39;,&#39;medium&#39;);" href="http://www.codeproject.com/script/Bookmarks/Add.aspx?obid=565642&obtid=2&action=AddBookmark&bio=true&bis=medium" style="display:inline-block;height:24px;width:24px;"><img title="Bookmark" src="./Observer design pattern in java - CodeProject_files/bookmark24.png" alt="" style="border-width:0px;"></a>
+
+
+<span id="ctl00_ActionLinks_BookmarkMd_StatusMsg" class="tiny-text" style="display:none" name="bm_565642_2"></span>
+<a id="ctl00_ActionLinks_PrintMd" href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java?display=Print">
+	<img src="./Observer design pattern in java - CodeProject_files/print24.png" title="Print" width="24px" height="24px" style="border:0">
+</a>
+			</div>
+		</div>
+
+		<table class="extended container-article-parts" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="top">
+		<td width="117px" class="article-wing-left">
+
+			<div id="ctl00_Nav" class="container-article-tabs stuck" style="position: fixed; top: 10px; left: 155.5px;">
+				<div class="tabs">
+					
+
+<div class="">
+	<div class="selected">Article</div><div class="unselected"><a href="http://www.codeproject.com/script/Articles/ViewDownloads.aspx?aid=565642">Browse Code</a></div><div class="unselected"><a href="http://www.codeproject.com/script/Articles/Statistics.aspx?aid=565642">Stats</a></div><div class="unselected"><a href="http://www.codeproject.com/script/Articles/ListVersions.aspx?aid=565642">Revisions (4)</a></div><div class="unselected"><a href="http://www.codeproject.com/script/Articles/ListAlternatives.aspx?aid=565642">Alternatives</a></div>
+
+	<div class="unselected"><a href="http://www.codeproject.com/Articles/565642/WebControls/#_comments" id="ctl00_ArticleTabs_CommentLink" class="anchorLink">Comments 
+        <span id="ctl00_ArticleTabs_CmtCnt">(8)</span></a>
+	</div>
+</div>	
+
+				</div>
+
+				
+
+			    <div class="tags"> 
+                    <h4>Tagged as</h4>
+			        <span id="ctl00_TagsList_TagWrp" class="tags">
+	
+	
+	
+	<span id="ctl00_TagsList_VisibleTags"><div class="t"><a rel="tag" href="http://www.codeproject.com/Tags/Java">Java</a></div><div class="t"><a rel="tag" href="http://www.codeproject.com/Tags/Design">Design</a></div><div class="t"><a rel="tag" href="http://www.codeproject.com/Tags/Intermediate">Intermediate</a></div></span> 
+
+	
+	
+</span>
+
+			    </div>
+                
+			</div>
+
+		</td>
+		<td>
+			
+			<div id="AT" class="container-article  fixed"> 
+
+				<div class="article">
+
+					<form name="aspnetForm" method="post" action="./Observer design pattern in java - CodeProject_files/Observer design pattern in java - CodeProject.html" id="aspnetForm" style="margin:0;padding:0">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="4Qf6sTNzEkXIewt4SmL2PT2EjT1wbjz5zeIIr94PYVhQ85WxXVeNd43CC0/URpSlInL9ByioBgCarkZKheL478ivUFtux8kg6zaAk9cd58cfZWglqhV1/VKrjhSVxOuAA74ZQDx3MLVIpKDv526q+MtW7cIXStzXloj+0qObWKmB4/23ALE57Dlio591ymxvSmAWptqiTcElHssVKsE84JoFiPb2cDDPIDT2kkZjNsuCQfuDcH6r+5tXVlbbNY7PYRoxqoP93R/vGBe/va8jsHAWFHJchkpLaCcHskvQMZRJMV9oyv2xWWgIxcV6r/+DxZJRbjMZIMdeTia76EIfL70sw0SAFi+tg0sl32i0FaBzOFxR6xvvH8D2KeBgHV6SHXh9otHJbkpDoHwuN5Ci1rBnQV+eSHExjCi+SIC4rjWbmsVkJPDgT6+eys+OcRjhhJEQOfHtrr2I/6lNI+t4/arvC5uFt/FDai4NZebYsUgGL5YurqYQIeNhr1Ev9ACld38P+cIQxj7x6gGQE6LrEmGTG0RXPj8MeumJadWqRKR6eXDN9pqmbmdLJ1xGZIvJXrdY65JtADwz/UXNytXVHAo25wfrNqET6mXDljWiRC3KlXoQHJ6tdpqEKn6hFPcfI5wr6uKZdP8NvrafXTLPwEqYZyXyD8hvltq7xMQFoe+jRLVyvVkaJW0nphXFNvQxR/OwV5ugaRtLsx/vjTNc13fHZkbJo3yJHlqfcUe0AS3jXq3osoKpNSuJoNZ7Z0ser7bY9a8Iy67jQkWn/ggDE6S6STIElsIxMZmT20EMR8NAT6pWsvbJJKw2xjDtJqj6i+rcjqoqossza9X9gRWsgw8tyId+VoHK32rtwRzT+bxBtXivz4TNUz+NGYw0fV64sdqCC+yR4ry4RWSUnqQQoafJUwat/AN9cd++A6i5ltqtstxCPXUriln6Zx8/cOKA3/ThhSXjY0Gvl/5/D5m/BffMe3UW1mj8U+31HVJX3YxOSePtLhbtekeTMvm02o0O0WKDFrbdEXt/5tYIQpDvHoqOhnfj7Ro2K8iaoyfPRFRBEgjirjKzquwxGsjtYq5nl9JeB6xanIc+dnBoB2xkSxGqf3OUQMmXYWf7gtRBgZJDKvsOQXRuZI5v30cKs6wM+zz80hVl7k6ua6iGUdNXa+FU0NrgLDBlY1lu/NTjGDJwWm6POc99HEZtqHEfQgt5irV44WfwZeUpQ1NPMOOm9dOnVGTq4EKcayA4MH5VkuZdEBRIHihKH/rXE3Tx9S8y3E9MnUyu0kENHXCVWTtecTssszWF1y7fb6uqtEaxm5m93k0af/qtwFHE6F86L2baIhUCwAE/7gTV6H/2bPlINwUBaaaCtWdXmm1BYt0s2YsdoKQ4EX48voO/GI+ysRRJznPUn4ATfS58XjpobZHnz9G3R0ZvsIWD2Z6YZpiRE36FbB4u4hfcYSPAYBfiwhvgzMZzwziBD+kw1hI6oPNVy+qLF+KH1mkFin6cH1W8lbV1AM8KDKdhCugL1u61AL1U8Wlcu3D/FWWGy54UEeiMlUHpt9shZOmk3SJCq7f7AHmS/bxnem1GXrxoP+OEEAJsIRIVKcPxazgAiOsbT+SP+vGWuBfLHfQv5gYrNiVwQdT5LImSsX3+Un4kiswC15n8hLg14+GqhSE9B3L4XySJonvcarqYLlKHDTXAXK2LCdwNizwJNx4X9KYMTa0XIwLk7aMGCAsFMGBugjX6D8VwBvLFfSL71VX5H+6iglmUaUVSyeckd/2PKaYWo7VGJ7hIk8RKeCnlyn09N5ljEzRPnfvru0icnrzB/C16yY4uWP1HJZQqFwj6V8WvJ01Kc4gT3V8hlLYO+x1dqNR9vPGl49jnFf2tCPaxE0UyOR854J12y5v3e+Xr2YulRI9xsGPl7RsZ6lFY8HOMcegFI5WwYuNfLEqqLfMAGut3lj935AxVI3RoMcg6zAqxzFtMFpxjpw+gb5Q2qcnHoevgbTJ5AjDgxjsNmI+1lbKZ7oEP+evjgZa18QwqR03mEg6FoKCFp8MonrGuhsZYqc7T9H4m+YDARTqhqHypZeL7cO78R85tBeYuiU1GxQl9wfRbaNsqKKtDOzBX9HFx5KDdNLRdP8triVW+X8DEah0wz5ZXkGilV0JpgLJleuMdhMe6Z8tVff6rAFbE/QBfbVutj24W9d0blJetj9A2AoQEEqWfT3GrSmAoMdYVSYyaNdiVzXRjY1eSLwXYhFZyvWgNIaGhtJI4k2I70lH//3RsF333V4s9lkXvH7xEuM2L+aZkUVKz0th6z9R2fmKxIc5EYK2eHOrXD6noD/T5/ozDJ6huPyKkQ9YjIU9mGOqgQVdE+BHC4XjbhlcGObtsRLiXYvvh1VKbyeV6P8WhWIpAKvXXKX4+SmOa">
+</div>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="10C1FD69">
+</div>
+
+					
+					 
+					<div class="header">
+					    <a name="Main"></a>
+
+					    
+					    <a name="_articleTop" id="_articleTop"></a>
+					    <div class="title">
+					        
+					        <h1 id="ctl00_ArticleTitle" itemprop="name">Observer design pattern in java</h1> 
+					    </div>
+
+                        <div style="height:34px">
+					        
+					        <div class="entry float-left">
+                                <img src="./Observer design pattern in java - CodeProject_files/{9f8ddae5-f1a9-404f-bfe7-faad942fb8d1}.gif" id="ctl00_avatar" class="float-left avatar">
+                                <div class="float-left">
+
+						            <span class="author"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=8092538" rel="author"><span itemprop="author" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">Arpit Mandliya</span></span></a></span>, 
+						            <span class="date" itemprop="dateModified" content="2013-03-22 19:21:00">
+							            22 Mar 2013</span>
+			
+                                    <a id="ctl00_LicenseLink" title="The Code Project Open License (CPOL)" class="license" href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a><span id="ctl00_ArtStats" class="stats"><img title="views" src="./Observer design pattern in java - CodeProject_files/read32.png" style="width:16px;height:16px;"> 39.1K<img title="bookmarks" src="./Observer design pattern in java - CodeProject_files/bookmark32.png" style="width:16px;height:16px;"> 15</span><div id="ctl00_CurRat" class="tooltip anchorLink" style="cursor:pointer;margin-top: 5px" name="CurRat_565642">
+				
+							            
+
+<table cellpadding="0" cellspacing="0" class="small-text" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating"> 
+<tbody><tr>
+	
+	<td class="nowrap">
+
+		
+			<meta itemprop="bestRating" content="5"> 
+			<meta itemprop="worstRating" content="1">
+		
+
+		<span id="ctl00_ArticleRating_VI">
+		<div class="nowrap rating-stars-large" style="height:21px;width:119px;position:relative;">
+	<div class="clipped align-left float-left" style="height:19px;width:116px;">
+		<img src="./Observer design pattern in java - CodeProject_files/stars-fill-lg.png" style="border-width:0px;">
+	</div><div class="clipped" style="height:19px;width:3px;position:relative;">
+		<img src="./Observer design pattern in java - CodeProject_files/stars-empty-lg.png" style="border-width:0px;position:absolute;top:0;right:0;">
+	</div>
+</div>
+		</span>
+
+		
+	</td>
+	
+	<td id="ctl00_ArticleRating_VR" class="nowrap">
+		&nbsp;
+		<span id="ctl00_ArticleRating_VotesR">&nbsp;<span itemprop="ratingValue" class="rating">4.86</span> (<span itemprop="ratingCount" class="count">8</span> votes)</span>
+		
+	</td>
+
+</tr>
+
+</tbody></table>
+
+
+							            <div id="ctl00_RB" class="speech-bubble-container-up">
+								            <div class="speech-bubble-up" style="width:150px !important">
+									                        
+<div>
+<table class="feature" width="100%" height="50px" title="Voting Distribution. Recent data only" cellpadding="0" cellspacing="0"><tbody><tr class="chart-row"><td class="chart-column"><span title="0 votes">1</span></td>
+<td class="chart-column"><span title="0 votes">2</span></td>
+<td class="chart-column"><span title="0 votes">3</span></td>
+<td class="chart-column"><div><img src="./Observer design pattern in java - CodeProject_files/pollcol.gif" width="20pxpx" height="7px" border="0px" alt="1 vote, 12.5%" title="1 vote, 12.5%"></div><span title="1 vote">4</span></td>
+<td class="chart-column"><div><img src="./Observer design pattern in java - CodeProject_files/pollcol.gif" width="20pxpx" height="50px" border="0px" alt="7 votes, 87.5%" title="7 votes, 87.5%"></div><span title="7 votes">5</span></td>
+</tr></tbody></table><div class="small-text align-center">4.86/5 - 8 votes</div><div class="small-text align-center subdue">μ 4.86, σ<sub>a</sub> 0.96 [<a href="http://www.codeproject.com/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</a>]</div>
+</div>
+								            </div>
+								            <div class="speech-bubble-pointer-up">
+									            <div class="speech-bubble-pointer-up-inner"></div>
+								            </div>
+							            </div>
+						            </div>
+                                </div>
+					        </div>
+
+                            
+						    <div id="ctl00_RateArticleRow" class="float-right align-right voting-bar">
+						        <div id="ctl00_RateArticle_RateItemWrapper" class="small-text" name="RateItem_565642">
+
+	<table width="100%" cellpadding="0" cellspacing="0" class="small-text">
+	<tbody><tr>
+		<td id="ctl00_RateArticle_VoteResultDiv" class="rating-result align-right">
+			<span class="align-right"></span>
+			<img class="loaderImg" width="16px" alt="loading..." height="16px" src="./Observer design pattern in java - CodeProject_files/animated_loading_blue.gif" style="display:none;"> 
+		</td>
+
+	
+		<td class="voteTbl" style="white-space:nowrap" align="right">
+			<table class="small-text">
+			<tbody><tr>
+				<td id="ctl00_RateArticle_RateText" class="rating-prompt">
+					Rate this:
+				</td>
+
+				
+				<td id="ctl00_RateArticle_VoteFormDiv" class="nowrap rating-stars-voter-large">
+					
+
+					<span id="ctl00_RateArticle_RB" class="tooltip ajaxHist radio voting">
+						<span id="ctl00_RateArticle_VoteRBL"><input id="ctl00_RateArticle_VoteRBL_0" type="radio" name="ctl00$RateArticle$VoteRBL" value="1" style="display: none;"><input id="ctl00_RateArticle_VoteRBL_1" type="radio" name="ctl00$RateArticle$VoteRBL" value="2" style="display: none;"><input id="ctl00_RateArticle_VoteRBL_2" type="radio" name="ctl00$RateArticle$VoteRBL" value="3" style="display: none;"><input id="ctl00_RateArticle_VoteRBL_3" type="radio" name="ctl00$RateArticle$VoteRBL" value="4" style="display: none;"><input id="ctl00_RateArticle_VoteRBL_4" type="radio" name="ctl00$RateArticle$VoteRBL" value="5" style="display: none;"></span> 
+
+						
+					<div class="rating-star-block"><a href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java#" rating="1" class="star outline" title="vote 1">vote 1</a><a href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java#" rating="2" class="star outline" title="vote 2">vote 2</a><a href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java#" rating="3" class="star outline" title="vote 3">vote 3</a><a href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java#" rating="4" class="star outline" title="vote 4">vote 4</a><a href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java#" rating="5" class="star outline" title="vote 5">vote 5</a></div></span>
+
+				</td>
+
+				
+				<td style="padding-left:5px">	
+					<input type="submit" name="ctl00$RateArticle$SubmitRateBtn" value="Vote!" id="ctl00_RateArticle_SubmitRateBtn" class="button" style="display: none;">
+				</td>
+			</tr>
+			</tbody></table>
+			
+		</td>
+	</tr>
+	</tbody></table>
+	<div class="hover-container">
+		
+        <div id="ctl00_RateArticle_RSU" class="rating-comment align-left float-right">
+            <div class="padded">
+            Please <a id="ctl00_RateArticle_SignUp" href="https://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fArticles%2f565642%2fObserver-design-pattern-in-java">Sign up or sign in</a> to vote.
+            </div>
+        </div>
+	</div>
+</div>
+						    </div>
+						    	
+                        </div>
+
+   					    
+                        <div id="ctl00_description" class="summary" itemprop="headline">It provides observer design pattern in detail with example and explains Java Ap</div><span id="ctl00_thumbnailUrl" class="date" itemprop="image" content="http://codeproject.cachefly.net/script/Articles/Images/article100x80.png"></span>			
+
+                    </div>
+                    
+					
+					
+
+					
+
+					
+					
+					
+
+						
+					
+
+					
+
+						
+						<div id="contentdiv" class="text" itemprop="articleBody">
+						
+
+
+
+<p>As the name suggests it is used for observing some objects.Observer 
+watch for any change in state or property of subject.Suppose you are 
+interested in particular object and want to get notified when its state 
+changes then you observe that object and when any state or property 
+change happens to that object,it get notified to you.</p><p>As described by GoF:</p><p>"Define
+ a one-to-many dependency between objects so that when one object 
+changes state, all its dependents are notified and updated 
+automatically".</p><p>You can think of observer design pattern in two ways</p><ul style="text-align: left;"><li><strong>Subject-Observer relationship</strong>:Object which is being observed is refereed as Subject and classes which observe subject are called Observer&nbsp;</li><li><strong>Publisher-Subscriber relationship</strong>:A publisher is one who 
+publish data and notifies it to the list of subscribers who have 
+subscribed for the same to that publisher. A simple example is 
+Newspaper. Whenever a new edition is published by the publisher,it will 
+be circulated among subscribers whom have subscribed to publisher.</li></ul><p>The observers will not monitor every time whether there is any 
+change in state of subject or not, since they will be notified for every
+ state change of subject, until they stop observing subject. So it 
+follows <a href="http://en.wikipedia.org/wiki/Hollywood_principle">hollywood principle</a>-"Don't call us,we will call you".</p><h4 style="text-align: left;">
+Some real life examples:</h4><div style="text-align: left;"><p>You might
+ have surfed "Flipkart.com-Online megastore".So when you search for any 
+product and it is unavailable then there is option called "Notify me 
+when product is available".If you subscribe to that option then when 
+state of product changes i.e. it is available,you will get notification 
+mail "Product is available now you can buy it".In this case,Product is 
+subject and You are an observer.</p></div><div style="text-align: left;"><p>
+</p></div><div style="text-align: left;"><p>Lets
+ say,your permanent address is changed then you need to notify passport 
+authority and pan card authority.So here passport authority and pan card
+ authority are observers and You are a subject.</p><p>
+</p><p>On facebook also,If you subscribe someone then whenever new updates happen then you will be notified. </p></div><div style="text-align: left;"><h3>
+</h3></div><div style="text-align: left;"><h3>
+When to use it:</h3><ul style="text-align: left;"><li>When one object changes its state,then all other dependents object must automatically change their state to maintain consistency</li><li>When subject doesn't know about number of observers it has.</li><li>When an object should be able to notify other objects without knowing who objects are.</li></ul><h3 style="text-align: left;">
+&nbsp;UML diagram for observer design pattern:</h3><p class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-O70FSJp93IU/USum9bZD_0I/AAAAAAAAA08/3NpkHdyWOyQ/s1600/ObserverPatternGeneric.gif"><img border="0" width="640" height="494" src="./Observer design pattern in java - CodeProject_files/ObserverPatternGeneric.gif"></a></p><div style="text-align: left;"><h3 style="text-align: left;">
+Components:</h3><h4 style="text-align: left;">
+<strong>Subject</strong></h4><ul><li>
+Knows its observers</li><li>
+Has any number of observer</li><li>
+Provides an interface to attach and detaching observer object at run
+time</li></ul><p><strong>Observer</strong>
+</p><ul><li>
+Provides an update interface to receive signal from subject</li></ul><p><strong>ConcreteSubject</strong>
+</p><ul><li>Stores state of interest to ConcreteObserver objects.</li><li>
+Send notification to it's observer
+</li></ul><p><strong>ConcreteObserver</strong>
+</p><ul><li>
+Maintains reference to a ConcreteSubject object</li><li>
+Maintains observer state consistent with subjects.</li><li>
+Implements update operation</li></ul><h3 style="text-align: left;">
+Java in-built API for observer pattern: </h3><div style="text-align: left;"><p>The java API provides one class and one inteface for implementing observer pattern.</p></div><div style="text-align: left;"><p>1. java.util.Observable-class</p></div><div style="text-align: left;"><p>2. java.util.Observer-interface</p></div><h4 style="text-align: left;">
+ java.util.Observable: </h4><div style="text-align: left;"><p>For being 
+observed,class must extend this class. The subclass becomes observable 
+and override methods of&nbsp;  java.util.Observable and other objects can 
+"observe" changes in state of this object.</p></div><div class="MsoNormal"><p><strong data-blogger-escaped-style="mso-bidi-font-weight: normal;">Methods:</strong></p></div><div class="MsoNormal"><p><strong>addObserver(Observer o) :</strong>add Observer to the list of observers for this subject.</p></div><div class="MsoNormal"><p><strong>deleteObserver(Observer o) </strong>:delete Observers from the list of observers .</p></div><div class="MsoNormal"><div class="MsoNormal"><div class="MsoNormal"><p><strong>notifyObservers()</strong> : notify all the observers if object has changed.</p></div></div><div class="MsoNormal"><p><strong>hasChanged()</strong> :return true if object has changed.</p></div><div class="MsoNormal"><div class="MsoNormal"><p><strong>setChanged()</strong> :This method marks object has changed</p></div></div><div class="MsoNormal"><p><strong>clearChanged()</strong> :this method will indicate that subject has no changes or all the observers has been notified.</p></div><div class="MsoNormal"><h4 style="text-align: left;">
+</h4><h4 style="text-align: left;">
+java.util.Observer: </h4></div><div style="text-align: left;"><p>The class that performs the "observing" must implement the java.util.Observer interface. There is a single <strong>method: </strong></p><p><strong>public void update(Observable obj, Object arg)</strong>
+ :This method is called whenever the observed object is changed. An 
+application calls an Observable object's notifyObservers method for 
+notifying to all the observers of change.</p></div><h3 style="text-align: left;">
+Example: </h3><div style="text-align: left;"><p>You might have surfed "Flipkart.com-Online megastore".So when you search
+ for any product and it is unavailable then there is option called 
+"Notify me when product is available".If you subscribe to that option 
+then when state of product changes i.e. it is available,you will get 
+notification mail "Product is available now you can buy it".</p></div><div style="text-align: left;"><p>
+</p></div><p class="separator" style="clear: both; text-align: center;"><a href="./Observer design pattern in java - CodeProject_files/observerLogic.bmp"><img border="0" src="./Observer design pattern in java - CodeProject_files/observerLogic.bmp"></a></p><h4 style="text-align: left;">
+Java code:</h4><div style="text-align: left;"><p>Below interface is our 
+subject interface.It consists of method for adding or removing observers
+ and also in condition of state change,notify all observer. </p></div><h4 style="text-align: left;">
+1.Subject.java:</h4><div class="pre-action-link" id="premain511785" style="width:100%;display:block;"><span id="prehide511785" onclick="processCodeBlocks.togglePre(511785);">Hide</span>  &nbsp; <span onclick="return processCodeBlocks.copyCode(511785);">Copy Code</span></div><pre class="java" data-blogger-escaped-name="code" id="pre511785" style="margin-top: 0px;">package org.arpit.javapostsforlearning;
+
+<span class="code-keyword">public</span> <span class="code-keyword">interface</span> Subject {
+     <span class="code-keyword">public</span> <span class="code-keyword">void</span> registerObserver(Observer observer);
+     <span class="code-keyword">public</span> <span class="code-keyword">void</span> removeObserver(Observer observer);
+     <span class="code-keyword">public</span> <span class="code-keyword">void</span> notifyObservers();
+}</pre></div><div style="text-align: left;"><p>
+</p></div><div style="text-align: left;"><p>Below
+ class is our ConcreteSubject class.It implements subject interface thus
+ provide implementation of all above three methods.&nbsp; </p></div><h4 style="text-align: left;">
+2.Product.java:</h4><div class="pre-action-link" id="premain528257" style="width:100%;display:block;"><span id="prehide528257" onclick="processCodeBlocks.togglePre(528257);">Hide</span>  &nbsp; <span id="preShrink528257" onclick="processCodeBlocks.shrinkExpand(528257);">Shrink</span> <img id="preimg528257" src="./Observer design pattern in java - CodeProject_files/arrow-up-16.png" style="height:16px;width:16px" onclick="processCodeBlocks.shrinkExpand(528257);">  &nbsp; <span onclick="return processCodeBlocks.copyCode(528257);">Copy Code</span></div><pre class="java" data-blogger-escaped-name="code" id="pre528257" processed="true" style="margin-top: 0px;">package org.arpit.javapostsforlearning;
+
+import java.util.ArrayList;
+
+<span class="code-keyword">public</span> <span class="code-keyword">class</span> Product implements Subject{
+
+	<span class="code-keyword">private</span> ArrayList&lt;Observer&gt; observers = <span class="code-keyword">new</span> ArrayList&lt;Observer&gt;();
+    <span class="code-keyword">private</span> <span class="code-sdkkeyword">String</span> productName;
+    <span class="code-keyword">private</span> <span class="code-sdkkeyword">String</span> productType;
+    <span class="code-sdkkeyword">String</span> availability;
+    
+    
+	<span class="code-keyword">public</span> Product(<span class="code-sdkkeyword">String</span> productName, <span class="code-sdkkeyword">String</span> productType,<span class="code-sdkkeyword">String</span> availability) {
+		super();
+		<span class="code-keyword">this</span>.productName = productName;
+		<span class="code-keyword">this</span>.productType = productType;
+		<span class="code-keyword">this</span>.availability=availability;
+	}
+	
+	<span class="code-keyword">public</span> ArrayList&lt;Observer&gt; getObservers() {
+		<span class="code-keyword">return</span> observers;
+	}
+	<span class="code-keyword">public</span> <span class="code-keyword">void</span> setObservers(ArrayList&lt;Observer&gt; observers) {
+		<span class="code-keyword">this</span>.observers = observers;
+	}
+	<span class="code-keyword">public</span> <span class="code-sdkkeyword">String</span> getProductName() {
+		<span class="code-keyword">return</span> productName;
+	}
+	<span class="code-keyword">public</span> <span class="code-keyword">void</span> setProductName(<span class="code-sdkkeyword">String</span> productName) {
+		<span class="code-keyword">this</span>.productName = productName;
+	}
+	<span class="code-keyword">public</span> <span class="code-sdkkeyword">String</span> getProductType() {
+		<span class="code-keyword">return</span> productType;
+	}
+	<span class="code-keyword">public</span> <span class="code-keyword">void</span> setProductType(<span class="code-sdkkeyword">String</span> productType) {
+		<span class="code-keyword">this</span>.productType = productType;
+	}
+	
+	<span class="code-keyword">public</span> <span class="code-sdkkeyword">String</span> getAvailability() {
+		<span class="code-keyword">return</span> availability;
+	}
+
+	<span class="code-keyword">public</span> <span class="code-keyword">void</span> setAvailability(<span class="code-sdkkeyword">String</span> availability) {
+		<span class="code-keyword">this</span>.availability = availability;
+		notifyObservers();
+	}
+
+	<span class="code-keyword">public</span> <span class="code-keyword">void</span> notifyObservers() {
+		System.<span class="code-keyword">out</span>.println(<span class="code-string">"</span><span class="code-string">Notifying to all the subscribers when product became available"</span>);
+		 <span class="code-keyword">for</span> (Observer ob : observers) {
+             ob.update(<span class="code-keyword">this</span>.availability );
+      }
+
+	}
+
+	<span class="code-keyword">public</span> <span class="code-keyword">void</span> registerObserver(Observer observer) {
+		 observers.add(observer);
+		
+	}
+
+	<span class="code-keyword">public</span> <span class="code-keyword">void</span> removeObserver(Observer observer) {
+		 observers.remove(observer);
+		
+	}
+
+}</pre><div style="text-align: left;"><p>
+</p></div><div style="text-align: left;"><p>&nbsp;Below interface is our observer interface.It consists of single method called "update"</p></div><h4 style="text-align: left;">
+3.Observer.java:</h4><div class="pre-action-link" id="premain380460" style="width:100%;display:block;"><span id="prehide380460" onclick="processCodeBlocks.togglePre(380460);">Hide</span>  &nbsp; <span onclick="return processCodeBlocks.copyCode(380460);">Copy Code</span></div><pre class="java" data-blogger-escaped-name="code" id="pre380460" style="margin-top: 0px;">package org.arpit.javapostsforlearning;
+<span class="code-keyword">public</span> <span class="code-keyword">interface</span> Observer {
+	  <span class="code-keyword">public</span> <span class="code-keyword">void</span> update(<span class="code-sdkkeyword">String</span> availability);
+}</pre><div style="text-align: left;"><p>
+</p></div><div style="text-align: left;"><p>Below
+ class is our ConcreteObserver class.It implements observer interface 
+and provide implementation for update and other ConcreteObserver 
+specific methods.</p></div><h4 style="text-align: left;">
+4.Person.java:</h4><div class="pre-action-link" id="premain611730" style="width:100%;display:block;"><span id="prehide611730" onclick="processCodeBlocks.togglePre(611730);">Hide</span>  &nbsp; <span onclick="return processCodeBlocks.copyCode(611730);">Copy Code</span></div><pre class="java" data-blogger-escaped-name="code" id="pre611730" style="margin-top: 0px;">package org.arpit.javapostsforlearning;
+<span class="code-keyword">public</span> <span class="code-keyword">class</span> Person implements Observer{
+
+	<span class="code-sdkkeyword">String</span> personName;
+
+	<span class="code-keyword">public</span> Person(<span class="code-sdkkeyword">String</span> personName) {
+		<span class="code-keyword">this</span>.personName = personName;
+	}
+
+	<span class="code-keyword">public</span> <span class="code-sdkkeyword">String</span> getPersonName() {
+		<span class="code-keyword">return</span> personName;
+	}
+
+	<span class="code-keyword">public</span> <span class="code-keyword">void</span> setPersonName(<span class="code-sdkkeyword">String</span> personName) {
+		<span class="code-keyword">this</span>.personName = personName;
+	}
+
+	<span class="code-keyword">public</span> <span class="code-keyword">void</span> update(<span class="code-sdkkeyword">String</span> availabiliy) {
+		
+		System.<span class="code-keyword">out</span>.println(<span class="code-string">"</span><span class="code-string">Hello "</span>+personName+<span class="code-string">"</span><span class="code-string">, Product is now "</span>+availabiliy+<span class="code-string">"</span><span class="code-string"> on flipkart"</span>);
+	}
+}</pre><h4 style="text-align: left;">
+5.ObserverPatternMain.java:</h4><div class="pre-action-link" id="premain503777" style="width:100%;display:block;"><span id="prehide503777" onclick="processCodeBlocks.togglePre(503777);">Hide</span>  &nbsp; <span onclick="return processCodeBlocks.copyCode(503777);">Copy Code</span></div><pre class="java" data-blogger-escaped-name="code" id="pre503777" style="margin-top: 0px;">package org.arpit.javapostsforlearning;
+<span class="code-keyword">public</span> <span class="code-keyword">class</span> ObserverPatternMain {
+
+    <span class="code-comment">/*</span><span class="code-comment">*
+     * @Author arpit mandliya
+     */</span>
+    <span class="code-keyword">public</span> <span class="code-keyword">static</span> <span class="code-keyword">void</span> main(<span class="code-sdkkeyword">String</span>[] args) {
+        Person arpitPerson=new Person(<span class="code-string">"</span><span class="code-string">Arpit"</span>);
+        Person johnPerson=new Person(<span class="code-string">"</span><span class="code-string">John"</span>);
+        
+        Product samsungMobile=new Product(<span class="code-string">"</span><span class="code-string">Samsung"</span>, <span class="code-string">"</span><span class="code-string">Mobile"</span>, <span class="code-string">"</span><span class="code-string">Not available"</span>);
+        
+        <span class="code-comment">//</span><span class="code-comment">When you opt for option "Notify me when product is available".Below registerObserver method
+</span>        <span class="code-comment">//</span><span class="code-comment">get executed        
+</span>        samsungMobile.registerObserver(arpitPerson);
+        samsungMobile.registerObserver(johnPerson);
+        
+        <span class="code-comment">//</span><span class="code-comment">Now product is available
+</span>        samsungMobile.setAvailability(<span class="code-string">"</span><span class="code-string">Available"</span>);
+        
+    }
+}</pre><h4 style="text-align: left;">
+Run it:</h4><div class="pre-action-link" id="premain121934" style="width:100%;display:block;"><span id="prehide121934" onclick="processCodeBlocks.togglePre(121934);">Hide</span>  &nbsp; <span onclick="return processCodeBlocks.copyCode(121934);">Copy Code</span></div><pre class="java" data-blogger-escaped-name="code" id="pre121934" style="margin-top: 0px;">Notifying to all the subscribers when product became available
+Hello Arpit, Product is now Available on flipkart
+Hello John, Product is now Available on flipkart</pre><div class="java" data-blogger-escaped-name="code" style="text-align: left;"><p>Now in above program,when availability of samsung mobile changes,it get notified subscribers who has subscribed for it.</p></div><h3 class="java" data-blogger-escaped-name="code" style="text-align: left;">
+Using java inbuilt APIs: </h3><h4 style="text-align: left;">
+1.Product.java:</h4><div class="pre-action-link" id="premain590294" style="width:100%;display:block;"><span id="prehide590294" onclick="processCodeBlocks.togglePre(590294);">Hide</span>  &nbsp; <span id="preShrink590294" onclick="processCodeBlocks.shrinkExpand(590294);">Shrink</span> <img id="preimg590294" src="./Observer design pattern in java - CodeProject_files/arrow-up-16.png" style="height:16px;width:16px" onclick="processCodeBlocks.shrinkExpand(590294);">  &nbsp; <span onclick="return processCodeBlocks.copyCode(590294);">Copy Code</span></div><pre class="java" data-blogger-escaped-name="code" id="pre590294" processed="true" style="margin-top: 0px;">package org.arpit.javapostsforlearning;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+
+<span class="code-keyword">public</span> <span class="code-keyword">class</span> Product extends Observable{
+ 
+   <span class="code-keyword">private</span> ArrayList&lt;Observer&gt; observers = <span class="code-keyword">new</span> ArrayList&lt;Observer&gt;();
+    <span class="code-keyword">private</span> <span class="code-sdkkeyword">String</span> productName;
+    <span class="code-keyword">private</span> <span class="code-sdkkeyword">String</span> productType;
+    <span class="code-sdkkeyword">String</span> availability;
+    
+    
+	<span class="code-keyword">public</span> Product(<span class="code-sdkkeyword">String</span> productName, <span class="code-sdkkeyword">String</span> productType,<span class="code-sdkkeyword">String</span> availability) {
+		super();
+		<span class="code-keyword">this</span>.productName = productName;
+		<span class="code-keyword">this</span>.productType = productType;
+		<span class="code-keyword">this</span>.availability=availability;
+	}
+	
+	<span class="code-keyword">public</span> ArrayList&lt;Observer&gt; getObservers() {
+		<span class="code-keyword">return</span> observers;
+	}
+	<span class="code-keyword">public</span> <span class="code-keyword">void</span> setObservers(ArrayList&lt;Observer&gt; observers) {
+		<span class="code-keyword">this</span>.observers = observers;
+	}
+	<span class="code-keyword">public</span> <span class="code-sdkkeyword">String</span> getProductName() {
+		<span class="code-keyword">return</span> productName;
+	}
+	<span class="code-keyword">public</span> <span class="code-keyword">void</span> setProductName(<span class="code-sdkkeyword">String</span> productName) {
+		<span class="code-keyword">this</span>.productName = productName;
+	}
+	<span class="code-keyword">public</span> <span class="code-sdkkeyword">String</span> getProductType() {
+		<span class="code-keyword">return</span> productType;
+	}
+	<span class="code-keyword">public</span> <span class="code-keyword">void</span> setProductType(<span class="code-sdkkeyword">String</span> productType) {
+		<span class="code-keyword">this</span>.productType = productType;
+	}
+	
+	<span class="code-keyword">public</span> <span class="code-sdkkeyword">String</span> getAvailability() {
+		<span class="code-keyword">return</span> availability;
+	}
+
+	<span class="code-keyword">public</span> <span class="code-keyword">void</span> setAvailability(<span class="code-sdkkeyword">String</span> availability) {
+		<span class="code-keyword">if</span>(!(<span class="code-keyword">this</span>.availability.equalsIgnoreCase(availability)))
+		{
+			<span class="code-keyword">this</span>.availability = availability;
+			setChanged();
+			notifyObservers(<span class="code-keyword">this</span>,availability);
+		}
+	}
+
+	<span class="code-keyword">public</span> <span class="code-keyword">void</span> notifyObservers(Observable observable,<span class="code-sdkkeyword">String</span> availability) {
+		System.<span class="code-keyword">out</span>.println(<span class="code-string">"</span><span class="code-string">Notifying to all the subscribers when product became available"</span>);
+		 <span class="code-keyword">for</span> (Observer ob : observers) {
+             ob.update(observable,<span class="code-keyword">this</span>.availability);
+      }
+
+	}
+
+	<span class="code-keyword">public</span> <span class="code-keyword">void</span> registerObserver(Observer observer) {
+		 observers.add(observer);
+		
+	}
+
+	<span class="code-keyword">public</span> <span class="code-keyword">void</span> removeObserver(Observer observer) {
+		 observers.remove(observer);
+		
+	}
+}
+
+ </pre><div class="java" data-blogger-escaped-name="code" style="text-align: left;"><p><strong>2.Person.java </strong></p></div><div class="java" data-blogger-escaped-name="code" style="text-align: left;"><p>
+</p></div><div class="pre-action-link" id="premain894724" style="width:100%;display:block;"><span id="prehide894724" onclick="processCodeBlocks.togglePre(894724);">Hide</span>  &nbsp; <span id="preShrink894724" onclick="processCodeBlocks.shrinkExpand(894724);">Shrink</span> <img id="preimg894724" src="./Observer design pattern in java - CodeProject_files/arrow-up-16.png" style="height:16px;width:16px" onclick="processCodeBlocks.shrinkExpand(894724);">  &nbsp; <span onclick="return processCodeBlocks.copyCode(894724);">Copy Code</span></div><pre class="java" data-blogger-escaped-name="code" id="pre894724" processed="true" style="margin-top: 0px;">package org.arpit.javapostsforlearning;
+import java.util.Observable;
+import java.util.Observer;
+
+<span class="code-keyword">public</span> <span class="code-keyword">class</span> Person implements Observer{
+
+	<span class="code-sdkkeyword">String</span> personName;
+	
+	
+	<span class="code-keyword">public</span> Person(<span class="code-sdkkeyword">String</span> personName) {
+		<span class="code-keyword">this</span>.personName = personName;
+	}
+
+
+	<span class="code-keyword">public</span> <span class="code-sdkkeyword">String</span> getPersonName() {
+		<span class="code-keyword">return</span> personName;
+	}
+
+
+	<span class="code-keyword">public</span> <span class="code-keyword">void</span> setPersonName(<span class="code-sdkkeyword">String</span> personName) {
+		<span class="code-keyword">this</span>.personName = personName;
+	}
+
+	<span class="code-keyword">public</span> <span class="code-keyword">void</span> update(Observable arg0, <span class="code-sdkkeyword">Object</span> arg1) {
+		System.<span class="code-keyword">out</span>.println(<span class="code-string">"</span><span class="code-string">Hello "</span>+personName+<span class="code-string">"</span><span class="code-string">, Product is now "</span>+arg1+<span class="code-string">"</span><span class="code-string"> on flipkart"</span>);
+		
+	}
+
+}</pre><h4 style="text-align: left;">
+3.ObserverPatternMain.java:</h4><div class="pre-action-link" id="premain862220" style="width:100%;display:block;"><span id="prehide862220" onclick="processCodeBlocks.togglePre(862220);">Hide</span>  &nbsp; <span onclick="return processCodeBlocks.copyCode(862220);">Copy Code</span></div><pre class="java" data-blogger-escaped-name="code" id="pre862220" style="margin-top: 0px;">package org.arpit.javapostsforlearning;
+<span class="code-keyword">public</span> <span class="code-keyword">class</span> ObserverPatternMain {
+
+    <span class="code-comment">/*</span><span class="code-comment">*
+     * @Author arpit mandliya
+     */</span>
+    <span class="code-keyword">public</span> <span class="code-keyword">static</span> <span class="code-keyword">void</span> main(<span class="code-sdkkeyword">String</span>[] args) {
+        Person arpitPerson=new Person(<span class="code-string">"</span><span class="code-string">Arpit"</span>);
+        Person johnPerson=new Person(<span class="code-string">"</span><span class="code-string">John"</span>);
+        
+        Product samsungMobile=new Product(<span class="code-string">"</span><span class="code-string">Samsung"</span>, <span class="code-string">"</span><span class="code-string">Mobile"</span>, <span class="code-string">"</span><span class="code-string">Not available"</span>);
+        
+        <span class="code-comment">//</span><span class="code-comment">When you opt for option "Notify me when product is available".Below registerObserver method
+</span>        <span class="code-comment">//</span><span class="code-comment">get executed    
+</span>        samsungMobile.registerObserver(arpitPerson);
+        samsungMobile.registerObserver(johnPerson);
+        
+        <span class="code-comment">//</span><span class="code-comment">Now product is available
+</span>        samsungMobile.setAvailability(<span class="code-string">"</span><span class="code-string">Available"</span>);
+         
+    }
+}</pre><h4 style="text-align: left;">
+Run it:</h4><div class="pre-action-link" id="premain948974" style="width:100%;display:block;"><span id="prehide948974" onclick="processCodeBlocks.togglePre(948974);">Hide</span>  &nbsp; <span onclick="return processCodeBlocks.copyCode(948974);">Copy Code</span></div><pre class="java" data-blogger-escaped-name="code" id="pre948974" style="margin-top: 0px;">Notifying to all the subscribers when product became available 
+Hello Arpit, Product is now Available on flipkart
+Hello John, Product is now Available on flipkart</pre><h3 style="text-align: left;">
+Some important points about observer pattern:</h3><ul style="text-align: left;"><li><strong>Loose coupling between Subject and Observer:</strong>Only thing 
+subject know about its observers is that observer implements Observer 
+interface.You can register or delete any observer without affecting 
+subject. </li><li><strong>Support for broadcast communication</strong>:Notification about 
+subject state change does not need to specify its receiver.This 
+notification is broadcasted to all interested object that subscribed to 
+it.</li><li>The one of the problem with this pattern is that debugging become 
+very hard,if you have large number of subscribers because flow of 
+control is implicit between subject and observers.</li><li><strong>Spurious updates</strong>:If criteria for state change is not well defined then sometimes it lead to spurious updates.</li></ul></div></div>
+
+
+						</div>
+						
+
+						<div class="float-right" style="margin:20px 0 0 10px;border:1px solid #ccc">
+						<div class="msg-300x250" data-format="300x250" data-type="ad" data-publisher="lqm.codeproject.site" data-zone="Development-Lifecycle/Design-and-Architecture/General" data-loadonview="true" data-tags="Java, Design, Intermediate,rating4.5"><noscript>&lt;a href="http://ad.doubleclick.net/N6839/jump/lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/General;sz=300x250;ord=635742078548479610?"&gt;&lt;img src="http://ad.doubleclick.net/N6839/ad/lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/General;sz=300x250;ord=635742078548479610?"  width="300px" height="250px" /&gt;&lt;/a&gt;</noscript></div>
+						</div>
+                        
+                        
+						
+						<h2>License</h2>
+						<div id="LicenseTerms"><p>This article, along with any associated source code and files, is licensed under <a href="http://www.codeproject.com/info/cpol10.aspx" rel="license">The Code Project Open License (CPOL)</a></p></div>
+						
+
+                        
+						<h2>Share</h2>
+				        <div class="share-list">
+					        
+
+
+
+<!-- Buttons start here. Copy this ul to your document. -->
+<ul class="rrssb-buttons clearfix rrssb-1">
+    <li class="email" data-initwidth="16.666666666666668" data-size="34" style="width: calc(50% - 84px);">
+
+        <a href="mailto:?subject=Observer%20design%20pattern%20in%20java%20-%20CodeProject&body=Here%27s%20an%20interesting%20article%20on%20for%20you%20on%20codeproject.com%0a%0ahttp%3a%2f%2fwww.codeproject.com%2fArticles%2f565642%2fObserver-design-pattern-in-java%0a">
+            <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve"><g>
+                        <path d="M20.111 26.147c-2.336 1.051-4.361 1.401-7.125 1.401c-6.462 0-12.146-4.633-12.146-12.265 
+                            c0-7.94 5.762-14.833 14.561-14.833c6.853 0 11.8 4.7 11.8 11.252c0 5.684-3.194 9.265-7.399 
+                            9.3 c-1.829 0-3.153-0.934-3.347-2.997h-0.077c-1.208 1.986-2.96 2.997-5.023 2.997c-2.532 
+                            0-4.361-1.868-4.361-5.062 c0-4.749 3.504-9.071 9.111-9.071c1.713 0 3.7 0.4 4.6 0.973l-1.169 
+                            7.203c-0.388 2.298-0.116 3.3 1 3.4 c1.673 0 3.773-2.102 3.773-6.58c0-5.061-3.27-8.994-9.303-8.994c-5.957 
+                            0-11.175 4.673-11.175 12.1 c0 6.5 4.2 10.2 10 10.201c1.986 0 4.089-0.43 5.646-1.245L20.111 
+                            26.147z M16.646 10.1 c-0.311-0.078-0.701-0.155-1.207-0.155c-2.571 0-4.595 2.53-4.595 5.529c0 
+                            1.5 0.7 2.4 1.9 2.4 c1.441 0 2.959-1.828 3.311-4.087L16.646 10.068z"></path></g>
+                </svg>
+            </span>
+            <span class="text">email</span>
+        </a>
+    </li>
+    <li class="twitter" data-initwidth="16.666666666666668" data-size="47" style="width: calc(50% - 84px);">
+        <!-- Replace href with your Meta and URL information  -->
+        <a href="http://twitter.com/home?status=Observer+design+pattern+in+java+-+CodeProject+-+http%3a%2f%2fwww.codeproject.com%2fArticles%2f565642%2fObserver-design-pattern-in-java" class="popup">
+            <span class="icon">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
+                <path d="M24.253,8.756C24.689,17.08,18.297,24.182,9.97,24.62c-3.122,0.162-6.219-0.646-8.861-2.32
+                    c2.703,0.179,5.376-0.648,7.508-2.321c-2.072-0.247-3.818-1.661-4.489-3.638c0.801,0.128,1.62,0.076,2.399-0.155
+                    C4.045,15.72,2.215,13.6,2.115,11.077c0.688,0.275,1.426,0.407,2.168,0.386c-2.135-1.65-2.729-4.621-1.394-6.965
+                    C5.575,7.816,9.54,9.84,13.803,10.071c-0.842-2.739,0.694-5.64,3.434-6.482c2.018-0.623,4.212,0.044,5.546,1.683
+                    c1.186-0.213,2.318-0.662,3.329-1.317c-0.385,1.256-1.247,2.312-2.399,2.942c1.048-0.106,2.069-0.394,3.019-0.851
+                    C26.275,7.229,25.39,8.196,24.253,8.756z"></path>
+                </svg>
+            </span>
+            <span class="text">twitter</span>
+        </a>
+    </li>
+
+    <li class="facebook small" data-initwidth="16.666666666666668" data-size="58" style="width: 42px;">
+        <!-- Replace with your URL. For best results, make sure you page has the proper FB Open Graph tags in header: 
+        https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content/ -->
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.codeproject.com%2fArticles%2f565642%2fObserver-design-pattern-in-java" class="popup">
+            <span class="icon">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
+                    <path d="M27.825,4.783c0-2.427-2.182-4.608-4.608-4.608H4.783c-2.422,0-4.608,2.182-4.608,4.608v18.434
+                        c0,2.427,2.181,4.608,4.608,4.608H14V17.379h-3.379v-4.608H14v-1.795c0-3.089,2.335-5.885,5.192-5.885h3.718v4.608h-3.726
+                        c-0.408,0-0.884,0.492-0.884,1.236v1.836h4.609v4.608h-4.609v10.446h4.916c2.422,0,4.608-2.188,4.608-4.608V4.783z"></path>
+                </svg>
+            </span>
+            <span class="text">facebook</span>
+        </a>
+    </li>
+    
+    <li class="linkedin small" data-initwidth="16.666666666666668" data-size="52" style="width: 42px;">
+        <!-- Replace href with your meta and URL information -->
+        <a href="http://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fwww.codeproject.com%2fArticles%2f565642%2fObserver-design-pattern-in-java&title=Observer+design+pattern+in+java+-+CodeProject&summary=&source=codeproject.com" class="popup">
+            <span class="icon">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
+                    <path d="M25.424,15.887v8.447h-4.896v-7.882c0-1.979-0.709-3.331-2.48-3.331c-1.354,0-2.158,0.911-2.514,1.803
+                        c-0.129,0.315-0.162,0.753-0.162,1.194v8.216h-4.899c0,0,0.066-13.349,0-14.731h4.899v2.088c-0.01,0.016-0.023,0.032-0.033,0.048
+                        h0.033V11.69c0.65-1.002,1.812-2.435,4.414-2.435C23.008,9.254,25.424,11.361,25.424,15.887z M5.348,2.501
+                        c-1.676,0-2.772,1.092-2.772,2.539c0,1.421,1.066,2.538,2.717,2.546h0.032c1.709,0,2.771-1.132,2.771-2.546
+                        C8.054,3.593,7.019,2.501,5.343,2.501H5.348z M2.867,24.334h4.897V9.603H2.867V24.334z"></path>
+                </svg>
+            </span>
+            <span class="text">linkedin</span>
+        </a>
+    </li>
+    <li class="reddit small" data-initwidth="16.666666666666668" data-size="40" style="width: 42px;">
+        <a href="http://www.reddit.com/submit?url=http%3a%2f%2fwww.codeproject.com%2fArticles%2f565642%2fObserver-design-pattern-in-java&title=Observer+design+pattern+in+java+-+CodeProject">
+            <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve"><g>
+                <path d="M11.794 15.316c0-1.029-0.835-1.895-1.866-1.895c-1.03 0-1.893 0.865-1.893 1.895s0.863 1.9 1.9 1.9 C10.958 17.2 11.8 16.3 11.8 15.316z"></path>
+                <path d="M18.1 13.422c-1.029 0-1.895 0.864-1.895 1.895c0 1 0.9 1.9 1.9 1.865c1.031 0 1.869-0.836 1.869-1.865 C19.969 14.3 19.1 13.4 18.1 13.422z"></path>
+                <path d="M17.527 19.791c-0.678 0.678-1.826 1.006-3.514 1.006c-0.004 0-0.009 0-0.014 0c-0.004 0-0.01 0-0.015 0 
+                c-1.686 0-2.834-0.328-3.51-1.005c-0.264-0.265-0.693-0.265-0.958 0c-0.264 0.265-0.264 0.7 0 1 c0.943 0.9 2.4 1.4 
+                4.5 1.402c0.005 0 0 0 0 0c0.005 0 0 0 0 0c2.066 0 3.527-0.459 4.47-1.402 c0.265-0.264 0.265-0.693 0.002-0.958C18.221 
+                19.5 17.8 19.5 17.5 19.791z"></path><path d="M27.707 13.267c0-1.785-1.453-3.237-3.236-3.237c-0.793 0-1.518 0.287-2.082 
+                0.761c-2.039-1.295-4.646-2.069-7.438-2.219 l1.483-4.691l4.062 0.956c0.071 1.4 1.3 2.6 2.7 2.555c1.488 0 2.695-1.208 
+                2.695-2.695C25.881 3.2 24.7 2 23.2 2 c-1.059 0-1.979 0.616-2.42 1.508l-4.633-1.091c-0.344-0.081-0.693 0.118-0.803 
+                0.455l-1.793 5.7 C10.548 8.6 7.7 9.4 5.6 10.75C5.006 10.3 4.3 10 3.5 10.029c-1.785 0-3.237 1.452-3.237 3.2 c0 1.1 0.6 
+                2.1 1.4 2.69c-0.04 0.272-0.061 0.551-0.061 0.831c0 2.3 1.3 4.4 3.7 5.9 c2.299 1.5 5.3 2.3 8.6 2.325c3.228 0 6.271-0.825 
+                8.571-2.325c2.387-1.56 3.7-3.66 3.7-5.917 c0-0.26-0.016-0.514-0.051-0.768C27.088 15.5 27.7 14.4 27.7 13.267z M23.186 
+                3.355c0.74 0 1.3 0.6 1.3 1.3 c0 0.738-0.6 1.34-1.34 1.34s-1.342-0.602-1.342-1.34C21.844 4 22.4 3.4 23.2 3.355z M1.648 
+                13.3 c0-1.038 0.844-1.882 1.882-1.882c0.31 0 0.6 0.1 0.9 0.209c-1.049 0.868-1.813 1.861-2.26 2.9 C1.832 14.2 1.6 13.8 1.6 
+                13.267z M21.773 21.57c-2.082 1.357-4.863 2.105-7.831 2.105c-2.967 0-5.747-0.748-7.828-2.105 
+                c-1.991-1.301-3.088-3-3.088-4.782c0-1.784 1.097-3.484 3.088-4.784c2.081-1.358 4.861-2.106 7.828-2.106 c2.967 0 5.7 
+                0.7 7.8 2.106c1.99 1.3 3.1 3 3.1 4.784C24.859 18.6 23.8 20.3 21.8 21.57z M25.787 14.6 
+                c-0.432-1.084-1.191-2.095-2.244-2.977c0.273-0.156 0.59-0.245 0.928-0.245c1.035 0 1.9 0.8 1.9 1.9 
+                C26.354 13.8 26.1 14.3 25.8 14.605z"></path></g></svg>
+            </span>
+            <span class="text">reddit</span>
+        </a>
+    </li>
+    <li class="googleplus small" data-initwidth="16.666666666666668" data-size="52" style="width: 42px;">
+        <!-- Replace href with your meta and URL information.  -->
+        <a href="https://plus.google.com/share?url=http%3a%2f%2fwww.codeproject.com%2fArticles%2f565642%2fObserver-design-pattern-in-java" class="popup">
+            <span class="icon">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
+                    <g>
+                        <g>
+                            <path d="M14.703,15.854l-1.219-0.948c-0.372-0.308-0.88-0.715-0.88-1.459c0-0.748,0.508-1.223,0.95-1.663
+                                c1.42-1.119,2.839-2.309,2.839-4.817c0-2.58-1.621-3.937-2.399-4.581h2.097l2.202-1.383h-6.67c-1.83,0-4.467,0.433-6.398,2.027
+                                C3.768,4.287,3.059,6.018,3.059,7.576c0,2.634,2.022,5.328,5.604,5.328c0.339,0,0.71-0.033,1.083-0.068
+                                c-0.167,0.408-0.336,0.748-0.336,1.324c0,1.04,0.551,1.685,1.011,2.297c-1.524,0.104-4.37,0.273-6.467,1.562
+                                c-1.998,1.188-2.605,2.916-2.605,4.137c0,2.512,2.358,4.84,7.289,4.84c5.822,0,8.904-3.223,8.904-6.41
+                                c0.008-2.327-1.359-3.489-2.829-4.731H14.703z M10.269,11.951c-2.912,0-4.231-3.765-4.231-6.037c0-0.884,0.168-1.797,0.744-2.511
+                                c0.543-0.679,1.489-1.12,2.372-1.12c2.807,0,4.256,3.798,4.256,6.242c0,0.612-0.067,1.694-0.845,2.478
+                                c-0.537,0.55-1.438,0.948-2.295,0.951V11.951z M10.302,25.609c-3.621,0-5.957-1.732-5.957-4.142c0-2.408,2.165-3.223,2.911-3.492
+                                c1.421-0.479,3.25-0.545,3.555-0.545c0.338,0,0.52,0,0.766,0.034c2.574,1.838,3.706,2.757,3.706,4.479
+                                c-0.002,2.073-1.736,3.665-4.982,3.649L10.302,25.609z"></path>
+                            <polygon points="23.254,11.89 23.254,8.521 21.569,8.521 21.569,11.89 18.202,11.89 18.202,13.604 21.569,13.604 21.569,17.004
+                                23.254,17.004 23.254,13.604 26.653,13.604 26.653,11.89      "></polygon>
+                        </g>
+                    </g>
+                </svg>
+            </span>
+            <span class="text">google+</span>
+        </a>
+    </li>
+    
+</ul>
+<!-- Buttons end here -->
+
+				        </div> 
+    			        
+
+
+						
+						<h2 id="ctl00_AboutHeading">About the Author</h2>
+						    
+
+
+<div class="author-wrapper">
+
+    <div class="pic-wrapper"> 
+        <img id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberPhoto" class="profile-pic" src="./Observer design pattern in java - CodeProject_files/{9f8ddae5-f1a9-404f-bfe7-faad942fb8d1}.gif" style="border-width:0px;transform:rotate(-1deg);">
+
+    </div>
+
+    <div class="container-member">  
+        <b><a id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberProfileLink" class="author" href="http://www.codeproject.com/Members/arpitmandliya23">Arpit Mandliya</a></b>
+
+        <table class="extended">
+        <tbody><tr>
+            <td rowspan="2" nowrap="" valign="middle">
+            <div id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_FollowOn" class="follow">
+	            <a href="http://www.twitter.com/arpitmandliya"><img style="vertical-align:middle;border:0;height:24px;width:24px" alt="Twitter" src="./Observer design pattern in java - CodeProject_files/twitter32.png"></a> 
+	            <a href="https://plus.google.com/112401364255492376333"><img style="vertical-align:middle;border:0;height:24px;width246px" alt="Google+" src="./Observer design pattern in java - CodeProject_files/googleplus32.png"></a> 
+	            
+            </div>
+            </td>
+            <td width="100%">
+                <div class="company">
+                    <span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberJobTitle"></span>
+	                <span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberCompany"></span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberLocation">India <img src="./Observer design pattern in java - CodeProject_files/IN.gif" alt="India" width="16px" height="11px"></span>
+            </td>
+        </tr>
+        </tbody></table>
+    </div>
+
+    <div class="description">
+        I am a java developer and blogger.Love to connect with people interested in java,programming or blogging.You can visit my blog at http://java2blog.com/
+
+        
+    </div>
+
+</div><br>
+						
+						
+
+						<div class="clearfix"></div>
+
+						<div style="padding-top:8px">
+							
+						</div>
+
+					
+
+				    
+					</form>
+
+				</div>
+
+				
+				<div class="bottom-promo"> 
+				    <div class="msg-728x90" data-format="728x90" data-type="ad" data-publisher="lqm.codeproject.site" data-zone="Development-Lifecycle/Design-and-Architecture/General" data-loadonview="true" data-tags="Java, Design, Intermediate,rating4.5,pos_bottom"><noscript>&lt;a href="http://ad.doubleclick.net/N6839/jump/lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/General;sz=728x90;ord=635742078548479610?"&gt;&lt;img src="http://ad.doubleclick.net/N6839/ad/lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/General;sz=728x90;ord=635742078548479610?"  width="728px" height="90px" /&gt;&lt;/a&gt;</noscript></div>
+				</div>
+				
+
+                
+        <h2 id="ctl00_AlsoRead_RelatedResults_ctl00_Header" class="also-read">You may also be interested in...</h2>
+        <table class="spaced content-list also-read">
+    
+	    <tbody><tr>
+        <td class="content-list-item" width="50%" valign="top">
+            <div class="thumbnail"><a id="ctl00_AlsoRead_RelatedResults_ctl01_Thumbnail" href="http://www.codeproject.com/Articles/47948/The-Observer-Design-Pattern"><img src="./Observer design pattern in java - CodeProject_files/Thumb-47948.jpg" alt="" style="border-width:0px;"></a></div>
+            <div class="text">
+                <div class="title"><a id="ctl00_AlsoRead_RelatedResults_ctl01_Link" href="http://www.codeproject.com/Articles/47948/The-Observer-Design-Pattern">The Observer Design Pattern</a></div>
+                
+            </div>
+        </td>
+	
+        <td class="content-list-item" width="50%" valign="top">
+            <div class="thumbnail"><a id="ctl00_AlsoRead_RelatedResults_ctl02_Thumbnail" href="http://www.codeproject.com/ResearchLibrary/118/Synchronizing-Large-Engineering-Source-Code-Reposi"><img src="./Observer design pattern in java - CodeProject_files/LibraryItemThumbnail_118_100x130.png" alt="" style="border-width:0px;"></a></div>
+            <div class="text">
+                <div class="title"><a id="ctl00_AlsoRead_RelatedResults_ctl02_Link" href="http://www.codeproject.com/ResearchLibrary/118/Synchronizing-Large-Engineering-Source-Code-Reposi">Synchronizing Large Engineering Source Code Repositories</a></div>
+                
+            </div>
+        </td>
+	    </tr>
+	
+	    <tr>
+        <td class="content-list-item" width="50%" valign="top">
+            <div class="thumbnail"><a id="ctl00_AlsoRead_RelatedResults_ctl03_Thumbnail" href="http://www.codeproject.com/Articles/13914/Observer-Design-Pattern-Using-JavaScript"><img src="./Observer design pattern in java - CodeProject_files/Thumb-13914.gif" alt="" style="border-width:0px;"></a></div>
+            <div class="text">
+                <div class="title"><a id="ctl00_AlsoRead_RelatedResults_ctl03_Link" href="http://www.codeproject.com/Articles/13914/Observer-Design-Pattern-Using-JavaScript">Observer Design Pattern Using JavaScript</a></div>
+                
+            </div>
+        </td>
+	
+        <td class="content-list-item" width="50%" valign="top">
+            <div class="thumbnail"><a id="ctl00_AlsoRead_RelatedResults_ctl04_Thumbnail" href="http://www.codeproject.com/ResearchLibrary/106/Reduce-Your-Open-Source-Security-Risk-Strategies-T"><img src="./Observer design pattern in java - CodeProject_files/LibraryItemThumbnail_106_100x130.png" alt="" style="border-width:0px;"></a></div>
+            <div class="text">
+                <div class="title"><a id="ctl00_AlsoRead_RelatedResults_ctl04_Link" href="http://www.codeproject.com/ResearchLibrary/106/Reduce-Your-Open-Source-Security-Risk-Strategies-T">Reduce Your Open Source Security Risk: Strategies, Tactics, and Tools</a></div>
+                
+            </div>
+        </td>
+	    </tr>
+	
+	    <tr>
+        <td class="content-list-item" width="50%" valign="top">
+            <div class="thumbnail"><a id="ctl00_AlsoRead_RelatedResults_ctl05_Thumbnail" href="http://www.codeproject.com/Articles/28359/Design-pattern-FAQ-Part-Design-pattern-training"><img src="./Observer design pattern in java - CodeProject_files/Thumb-28359.JPG" alt="" style="border-width:0px;"></a></div>
+            <div class="text">
+                <div class="title"><a id="ctl00_AlsoRead_RelatedResults_ctl05_Link" href="http://www.codeproject.com/Articles/28359/Design-pattern-FAQ-Part-Design-pattern-training">Design pattern FAQ Part 2 (Design pattern training series)</a></div>
+                
+            </div>
+        </td>
+	
+        <td class="content-list-item" width="50%" valign="top">
+            <div class="thumbnail"><a id="ctl00_AlsoRead_RelatedResults_ctl06_Thumbnail" href="http://www.codeproject.com/ResearchLibrary/105/Open-Source-Software-Security-Risks-and-Best-Pract"><img src="./Observer design pattern in java - CodeProject_files/LibraryItemThumbnail_105_100x130.png" alt="" style="border-width:0px;"></a></div>
+            <div class="text">
+                <div class="title"><a id="ctl00_AlsoRead_RelatedResults_ctl06_Link" href="http://www.codeproject.com/ResearchLibrary/105/Open-Source-Software-Security-Risks-and-Best-Pract">Open Source Software: Security Risks and Best Practices</a></div>
+                
+            </div>
+        </td>
+	    </tr>
+	
+		</tbody></table>
+	
+
+
+
+				
+				
+
+					<h2>Comments and Discussions</h2>
+					<a class="float-left" name="_comments" id="_comments">&nbsp;</a><div id="_MessageBoardctl00_MessageBoard" onclick="return SwitchMessage(event, null)">
+<table id="ForumTable" class="forum relaxed" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td class="header1 callout"><b>You must <a href="https://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fArticles%2f565642%2fObserver-design-pattern-in-java%3ffid%3d1828704%26df%3d10000%26mpp%3d50%26noise%3d3%26prof%3dTrue%26sort%3dPosition%26view%3dNormal%26spc%3dRelaxed">Sign In</a> to use this message board.</b></td>
+</tr><tr>
+<td><table width="100%" border="0" cellpadding="3px" cellspacing="0">
+<tbody><tr class="header1">
+<td colspan="2" style="white-space:nowrap;"><div class="container">
+<div class="float-right">
+<form action="http://www.codeproject.com/Search.aspx?sbo=fm" method="get" class="searchbar">
+<input type="hidden" name="fid" value="1828704"><input type="hidden" name="sbo" value="fm"><b>Search Comments </b><input type="search" class="search" name="qf">&nbsp;<input type="submit" value="Go" class="button">
+</form>
+</div>
+</div></td>
+</tr><tr class="header2">
+<td></td><td style="width:100%;"><div style="text-align:right;">
+<form action="http://www.codeproject.com/script/Forums/SetOptions.aspx?floc=%2fArticles%2f565642%2fObserver-design-pattern-in-java&fid=1828704&df=10000&mpp=50&noise=3&prof=True&sort=Position&view=Normal&spc=Relaxed" method="get" style="margin:0;padding:0;">
+<input type="hidden" name="fid" value="1828704"><input type="hidden" name="currentQS" value="?floc=%2fArticles%2f565642%2fObserver-design-pattern-in-java&amp;fid=1828704&amp;df=10000&amp;mpp=50&amp;noise=3&amp;prof=True&amp;sort=Position&amp;view=Normal&amp;spc=Relaxed"><input type="hidden" name="floc" value="/Articles/565642/Observer-design-pattern-in-java"><input type="checkbox" checked="checked" name="prof" id="prof" style="vertical-align:middle;"><label for="prof">Profile popups</label>&nbsp;&nbsp;&nbsp;&nbsp;Spacing<select size="1" class="dropdown" name="spc">
+<option selected="" value="Relaxed">Relaxed</option><option value="Compact">Compact</option><option value="Tight">Tight</option>
+</select>&nbsp;&nbsp;Noise<select size="1" class="dropdown" name="noise">
+<option value="1">Very High</option><option value="2">High</option><option selected="" value="3">Medium</option><option value="4">Low</option><option value="5">Very Low</option>
+</select>&nbsp;&nbsp;Layout<select size="1" class="dropdown" name="view">
+<option selected="" value="Normal">Normal</option><option value="Topic">Open Topics</option><option value="Expanded">Open All</option><option value="Thread">Thread View</option>
+</select>&nbsp;&nbsp;Per page<select size="1" class="dropdown" name="mpp">
+<option value="10">10</option><option value="25">25</option><option selected="" value="50">50</option>
+</select>&nbsp;&nbsp;&nbsp;<input type="submit" value="Update" name="SetOpt" class="button">
+</form>
+</div></td>
+</tr>
+</tbody></table></td>
+</tr><tr>
+<td><a name="xx0xx"></a><table border="0" cellpadding="2px" cellspacing="0" width="100%">
+<tbody><tr class="navbar">
+<td></td><td style="text-align:right;width:50%;"></td><td style="text-align:right;white-space:nowrap;"><span class="nav-link disabled">First</span> <span class="nav-link disabled">Prev</span> <span class="nav-link disabled">Next</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%" class="fixed-layout blank-background">
+<tbody><tr>
+<td><img src="./Observer design pattern in java - CodeProject_files/t(1).gif" border="0" width="1px" height="5px" alt=""></td>
+</tr><tr id="F4610880_h0" class="header hover-row root">
+<td class="subject-line normal  vote-hi" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td width="20px" class="indent"><a name="xx4610880xx"></a><img height="16px" width="16px" align="top" src="./Observer design pattern in java - CodeProject_files/msg_general.gif" alt="General"></td><td class="subject hover-container"><a class="message-link" name="4610880" parent="0" thread="4610880" href="http://www.codeproject.com/Messages/4610880/My-vote-of.aspx">My vote of 4</a> <a onclick="return Pin(this);" rel="nofollow" href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java#" title="Click to pin message"><img src="./Observer design pattern in java - CodeProject_files/pin.png" border="0" align="top" alt="Pin" width="13px" height="13px"></a><div class="mobile-only">
+	<span class="author">Himanshu Thawait</span><span class="date">12-Jul-13  7:23</span>
+</div></td><td class="icon"><img border="0" src="./Observer design pattern in java - CodeProject_files/icn-member-16.gif" title="member" alt="member" height="16px"></td><td class="author"><span><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=1582084">Himanshu Thawait</a></span></td><td class="date"><span>12-Jul-13  7:23&nbsp;</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F4610880_h1" class="content root selected" style="display:none;">
+<td class="normal" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="indent align-right" style="width:20px;"><div class="voteform vertical" ownerid="1582084" msgid="4610880" votingtype="GoodOrBad">
+
+</div><img src="./Observer design pattern in java - CodeProject_files/t(1).gif" height="1px" width="20px" alt=""></td><td class="text"><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">Like is, sweet and simple<br></td>
+</tr><tr class="footer" style="vertical-align:top;">
+<td><a href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fArticles%2f565642%2fObserver-design-pattern-in-java">Sign In</a>·<wbr><a href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java?fid=1828704&df=10000&mpp=50&sort=Position&spc=Relaxed&tid=4610880" title="View Thread">View&nbsp;Thread</a>·<wbr><a href="http://www.codeproject.com/Messages/4610880/My-vote-of.aspx" title="Get permanent link">Permalink</a></td><td style="text-align:right;"><span id="MVF4610880" data-ref="3_4610880" class="rating-label" style="white-space:nowrap;"><span>5.00/5 (1 vote)</span></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F4540506_h0" class="header hover-row root">
+<td class="subject-line normal " width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td width="20px" class="indent"><a name="xx4540506xx"></a><img height="16px" width="16px" align="top" src="./Observer design pattern in java - CodeProject_files/msg_general.gif" alt="General"></td><td class="subject hover-container"><a class="message-link" name="4540506" parent="0" thread="4540506" href="http://www.codeproject.com/Messages/4540506/My-vote-of.aspx">My vote of 5</a> <a onclick="return Pin(this);" rel="nofollow" href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java#" title="Click to pin message"><img src="./Observer design pattern in java - CodeProject_files/pin.png" border="0" align="top" alt="Pin" width="13px" height="13px"></a><div class="mobile-only">
+	<span class="author">Sudhakar Shinde</span><span class="date">14-Apr-13  20:58</span>
+</div></td><td class="icon"><img border="0" src="./Observer design pattern in java - CodeProject_files/icn-member-16.gif" title="member" alt="member" height="16px"></td><td class="author"><span><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=8561798">Sudhakar Shinde</a></span></td><td class="date"><span>14-Apr-13  20:58&nbsp;</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F4540506_h1" class="content root selected" style="display:none;">
+<td class="normal" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="indent align-right" style="width:20px;"><div class="voteform vertical" ownerid="8561798" msgid="4540506" votingtype="GoodOrBad">
+
+</div><img src="./Observer design pattern in java - CodeProject_files/t(1).gif" height="1px" width="20px" alt=""></td><td class="text"><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">Good work..!!<br></td>
+</tr><tr class="footer" style="vertical-align:top;">
+<td><a href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fArticles%2f565642%2fObserver-design-pattern-in-java">Sign In</a>·<wbr><a href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java?fid=1828704&df=10000&mpp=50&sort=Position&spc=Relaxed&tid=4540506" title="View Thread">View&nbsp;Thread</a>·<wbr><a href="http://www.codeproject.com/Messages/4540506/My-vote-of.aspx" title="Get permanent link">Permalink</a></td><td style="text-align:right;"><span id="MVF4540506" data-ref="3_4540506" class="rating-label" style="white-space:nowrap;"></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F4526261_h0" class="header hover-row root">
+<td class="subject-line normal " width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td width="20px" class="indent"><a name="xx4526261xx"></a><img height="16px" width="16px" align="top" src="./Observer design pattern in java - CodeProject_files/msg_idea.gif" alt="Suggestion"></td><td class="subject hover-container"><a class="message-link" name="4526261" parent="0" thread="4526261" href="http://www.codeproject.com/Messages/4526261/Careful-with-data-exposure.aspx">Careful with data exposure</a> <a onclick="return Pin(this);" rel="nofollow" href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java#" title="Click to pin message"><img src="./Observer design pattern in java - CodeProject_files/pin.png" border="0" align="top" alt="Pin" width="13px" height="13px"></a><div class="mobile-only">
+	<span class="author">Chad3F</span><span class="date">25-Mar-13  16:06</span>
+</div></td><td class="icon"><img border="0" src="./Observer design pattern in java - CodeProject_files/icn-member-16.gif" title="member" alt="member" height="16px"></td><td class="author"><span><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=8781470">Chad3F</a></span></td><td class="date"><span>25-Mar-13  16:06&nbsp;</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F4526261_h1" class="content root selected" style="display:none;">
+<td class="normal" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="indent align-right" style="width:20px;"><div class="voteform vertical" ownerid="8781470" msgid="4526261" votingtype="GoodOrBad">
+
+</div><img src="./Observer design pattern in java - CodeProject_files/t(1).gif" height="1px" width="20px" alt=""></td><td class="text"><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">In your example you include:<br>
+<br>
+<div class="pre-action-link" id="premain865354" style="width:100%;display:block;"><span id="prehide865354" onclick="processCodeBlocks.togglePre(865354);">Hide</span>  &nbsp; <span id="preShrink865354" onclick="processCodeBlocks.shrinkExpand(865354);">Shrink</span> <img id="preimg865354" src="./Observer design pattern in java - CodeProject_files/arrow-up-16.png" style="height:16px;width:16px" onclick="processCodeBlocks.shrinkExpand(865354);">  &nbsp; <span onclick="return processCodeBlocks.copyCode(865354);">Copy Code</span></div><pre lang="java" style="margin-top: 0px;" id="pre865354">	<span class="code-keyword">public</span> ArrayList&lt;Observer&gt; getObservers() {
+		<span class="code-keyword">return</span> observers;
+	}
+</pre>
+<br>
+<br>
+Since this returns a direct reference to the internal list, a caller might attempt to manipulate it directly (knowingly or unknowingly), which could break your code. And while this was just a tutorial on observers (and data encapsulation is beyond its scope), if someone was to create "real" code based on your example they might be in for a surprise. A related issue is setObservers(), which should either make a copy, or clearly document the caveat that the list is now "owned" by the Product object and should not be modifier by other objects (directly or indirectly).<br>
+<br>
+Something like this might be better (note it also only returns List to hide the ArrayList implementation):<br>
+<br>
+<div class="pre-action-link" id="premain107402" style="width:100%;display:block;"><span id="prehide107402" onclick="processCodeBlocks.togglePre(107402);">Hide</span>  &nbsp; <span id="preShrink107402" onclick="processCodeBlocks.shrinkExpand(107402);">Shrink</span> <img id="preimg107402" src="./Observer design pattern in java - CodeProject_files/arrow-up-16.png" style="height:16px;width:16px" onclick="processCodeBlocks.shrinkExpand(107402);">  &nbsp; <span onclick="return processCodeBlocks.copyCode(107402);">Copy Code</span></div><pre lang="java" style="margin-top: 0px;" id="pre107402">	<span class="code-keyword">public</span> List&lt;Observer&gt; getObservers() {
+		<span class="code-keyword">return</span> Collections.unmodifiableList(observers);
+	}
+</pre>
+<br>
+Also, one other thing to point out [for readers] is the example is non-reentrant.. so implementers of the called Observer should not call registerObserver() or removeObserver() on the source while being called, or a ConcurrentModificationException may result. This could be a problem if the observer needs to add/remove other observers as a result of a trigger event. Eg:<br>
+<br>
+<div class="pre-action-link" id="premain504251" style="width:100%;display:block;"><span id="prehide504251" onclick="processCodeBlocks.togglePre(504251);">Hide</span>  &nbsp; <span id="preShrink504251" onclick="processCodeBlocks.shrinkExpand(504251);">Shrink</span> <img id="preimg504251" src="./Observer design pattern in java - CodeProject_files/arrow-up-16.png" style="height:16px;width:16px" onclick="processCodeBlocks.shrinkExpand(504251);">  &nbsp; <span onclick="return processCodeBlocks.copyCode(504251);">Copy Code</span></div><pre lang="java" style="margin-top: 0px;" id="pre504251">	<span class="code-keyword">public</span> <span class="code-keyword">void</span> update(<span class="code-sdkkeyword">String</span> availabiliy) {
+		<span class="code-comment">//</span><span class="code-comment"> Hypothetical "price" attribute
+</span>		<span class="code-keyword">if</span>(product.getPrice() &lt; <span class="code-digit">5</span>)
+			product.registerObserver(<span class="code-keyword">new</span> StockUpBuyer())).
+	}</pre>
+<br>
+<br>
+On a [non-technical] side note.. when I first skimmed the source, I thought the package read org.armpit.  <img src="./Observer design pattern in java - CodeProject_files/smiley_laugh.gif" align="top" alt="Laugh | :laugh:"> <br></td>
+</tr><tr class="footer" style="vertical-align:top;">
+<td><a href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fArticles%2f565642%2fObserver-design-pattern-in-java">Sign In</a>·<wbr><a href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java?fid=1828704&df=10000&mpp=50&sort=Position&spc=Relaxed&tid=4526261" title="View Thread">View&nbsp;Thread</a>·<wbr><a href="http://www.codeproject.com/Messages/4526261/Careful-with-data-exposure.aspx" title="Get permanent link">Permalink</a></td><td style="text-align:right;"><span id="MVF4526261" data-ref="3_4526261" class="rating-label" style="white-space:nowrap;"></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F4524792_h0" class="header hover-row root">
+<td class="subject-line normal " width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td width="20px" class="indent"><a name="xx4524792xx"></a><img height="16px" width="16px" align="top" src="./Observer design pattern in java - CodeProject_files/msg_general.gif" alt="General"></td><td class="subject hover-container"><a class="message-link" name="4524792" parent="0" thread="4524792" href="http://www.codeproject.com/Messages/4524792/My-vote-of.aspx">My vote of 5</a> <a onclick="return Pin(this);" rel="nofollow" href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java#" title="Click to pin message"><img src="./Observer design pattern in java - CodeProject_files/pin.png" border="0" align="top" alt="Pin" width="13px" height="13px"></a><div class="mobile-only">
+	<span class="author">javaposts</span><span class="date">22-Mar-13  20:40</span>
+</div></td><td class="icon"><img border="0" src="./Observer design pattern in java - CodeProject_files/icn-member-16.gif" title="member" alt="member" height="16px"></td><td class="author"><span><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=9480050">javaposts</a></span></td><td class="date"><span>22-Mar-13  20:40&nbsp;</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F4524792_h1" class="content root selected" style="display:none;">
+<td class="normal" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="indent align-right" style="width:20px;"><div class="voteform vertical" ownerid="9480050" msgid="4524792" votingtype="GoodOrBad">
+
+</div><img src="./Observer design pattern in java - CodeProject_files/t(1).gif" height="1px" width="20px" alt=""></td><td class="text"><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">Nice article <img src="./Observer design pattern in java - CodeProject_files/smiley_smile.gif" align="top" alt="Smile | :)"> <br></td>
+</tr><tr class="footer" style="vertical-align:top;">
+<td><a href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fArticles%2f565642%2fObserver-design-pattern-in-java">Sign In</a>·<wbr><a href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java?fid=1828704&df=10000&mpp=50&sort=Position&spc=Relaxed&tid=4524792" title="View Thread">View&nbsp;Thread</a>·<wbr><a href="http://www.codeproject.com/Messages/4524792/My-vote-of.aspx" title="Get permanent link">Permalink</a></td><td style="text-align:right;"><span id="MVF4524792" data-ref="3_4524792" class="rating-label" style="white-space:nowrap;"></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F4524793_h0" class="header hover-row">
+<td class="subject-line normal " width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td width="38px" class="indent"><a name="xx4524793xx"></a><img height="16px" width="16px" align="top" src="./Observer design pattern in java - CodeProject_files/msg_general.gif" alt="General"></td><td class="subject hover-container"><a class="message-link" name="4524793" parent="4524792" thread="4524792" href="http://www.codeproject.com/Messages/4524793/Re-My-vote-of.aspx">Re: My vote of 5</a> <a onclick="return Pin(this);" rel="nofollow" href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java#" title="Click to pin message"><img src="./Observer design pattern in java - CodeProject_files/pin.png" border="0" align="top" alt="Pin" width="13px" height="13px"></a><div class="mobile-only">
+	<span class="author">Arpit Mandliya</span><span class="date">22-Mar-13  20:44</span>
+</div></td><td class="icon"><img border="0" src="./Observer design pattern in java - CodeProject_files/icn-member-16.gif" title="member" alt="member" height="16px"></td><td class="author"><span><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=8092538">Arpit Mandliya</a></span></td><td class="date"><span>22-Mar-13  20:44&nbsp;</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F4524793_h1" class="content selected" style="display:none;">
+<td class="normal" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="indent align-right" style="width:38px;"><div class="voteform vertical" ownerid="8092538" msgid="4524793" votingtype="GoodOrBad">
+
+</div><img src="./Observer design pattern in java - CodeProject_files/t(1).gif" height="1px" width="38px" alt=""></td><td class="text"><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2"><div class="parent"><a rel="nofollow" onclick="return SwitchMessage(null,4524792);" href="http://www.codeproject.com/Messages/4524792/My-vote-of.aspx"><img src="./Observer design pattern in java - CodeProject_files/arrow-up24.png" title="Go to Parent" style="width:16px;height:16px;border:0"></a></div>Thank you <img src="./Observer design pattern in java - CodeProject_files/smiley_smile.gif" align="top" alt="Smile | :)"> <br></td>
+</tr><tr class="footer" style="vertical-align:top;">
+<td><a href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fArticles%2f565642%2fObserver-design-pattern-in-java">Sign In</a>·<wbr><a href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java?fid=1828704&df=10000&mpp=50&sort=Position&spc=Relaxed&tid=4524792" title="View Thread">View&nbsp;Thread</a>·<wbr><a href="http://www.codeproject.com/Messages/4524793/Re-My-vote-of.aspx" title="Get permanent link">Permalink</a></td><td style="text-align:right;"><span id="MVF4524793" data-ref="3_4524793" class="rating-label" style="white-space:nowrap;"></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F4524585_h0" class="header hover-row root">
+<td class="subject-line normal  vote-hi" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td width="20px" class="indent"><a name="xx4524585xx"></a><img height="16px" width="16px" align="top" src="./Observer design pattern in java - CodeProject_files/msg_general.gif" alt="General"></td><td class="subject hover-container"><a class="message-link" name="4524585" parent="0" thread="4524585" href="http://www.codeproject.com/Messages/4524585/plus-from-me.aspx">5+ from me</a> <a onclick="return Pin(this);" rel="nofollow" href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java#" title="Click to pin message"><img src="./Observer design pattern in java - CodeProject_files/pin.png" border="0" align="top" alt="Pin" width="13px" height="13px"></a><div class="mobile-only">
+	<span class="author">Sandip.Nascar</span><span class="date">22-Mar-13  10:15</span>
+</div></td><td class="icon"><img border="0" src="./Observer design pattern in java - CodeProject_files/icn-member-16.gif" title="member" alt="member" height="16px"></td><td class="author"><span><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=149179">Sandip.Nascar</a></span></td><td class="date"><span>22-Mar-13  10:15&nbsp;</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F4524585_h1" class="content root selected" style="display:none;">
+<td class="normal" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="indent align-right" style="width:20px;"><div class="voteform vertical" ownerid="149179" msgid="4524585" votingtype="GoodOrBad">
+
+</div><img src="./Observer design pattern in java - CodeProject_files/t(1).gif" height="1px" width="20px" alt=""></td><td class="text"><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">Keep up your good work! cheers<br>
+<div class="signature">"We know accurately only when we know little. With knowledge, doubt increases.”</div><br></td>
+</tr><tr class="footer" style="vertical-align:top;">
+<td><a href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fArticles%2f565642%2fObserver-design-pattern-in-java">Sign In</a>·<wbr><a href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java?fid=1828704&df=10000&mpp=50&sort=Position&spc=Relaxed&tid=4524585" title="View Thread">View&nbsp;Thread</a>·<wbr><a href="http://www.codeproject.com/Messages/4524585/plus-from-me.aspx" title="Get permanent link">Permalink</a></td><td style="text-align:right;"><span id="MVF4524585" data-ref="3_4524585" class="rating-label" style="white-space:nowrap;"><span>5.00/5 (1 vote)</span></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F4524584_h0" class="header hover-row root">
+<td class="subject-line normal  vote-hi" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td width="20px" class="indent"><a name="xx4524584xx"></a><img height="16px" width="16px" align="top" src="./Observer design pattern in java - CodeProject_files/msg_general.gif" alt="General"></td><td class="subject hover-container"><a class="message-link" name="4524584" parent="0" thread="4524584" href="http://www.codeproject.com/Messages/4524584/My-vote-of.aspx">My vote of 5</a> <a onclick="return Pin(this);" rel="nofollow" href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java#" title="Click to pin message"><img src="./Observer design pattern in java - CodeProject_files/pin.png" border="0" align="top" alt="Pin" width="13px" height="13px"></a><div class="mobile-only">
+	<span class="author">Sandip.Nascar</span><span class="date">22-Mar-13  10:14</span>
+</div></td><td class="icon"><img border="0" src="./Observer design pattern in java - CodeProject_files/icn-member-16.gif" title="member" alt="member" height="16px"></td><td class="author"><span><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=149179">Sandip.Nascar</a></span></td><td class="date"><span>22-Mar-13  10:14&nbsp;</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F4524584_h1" class="content root selected" style="display:none;">
+<td class="normal" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="indent align-right" style="width:20px;"><div class="voteform vertical" ownerid="149179" msgid="4524584" votingtype="GoodOrBad">
+
+</div><img src="./Observer design pattern in java - CodeProject_files/t(1).gif" height="1px" width="20px" alt=""></td><td class="text"><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">Nice article. Keep up your good work.<br>
+<br>
+cheers<br></td>
+</tr><tr class="footer" style="vertical-align:top;">
+<td><a href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fArticles%2f565642%2fObserver-design-pattern-in-java">Sign In</a>·<wbr><a href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java?fid=1828704&df=10000&mpp=50&sort=Position&spc=Relaxed&tid=4524584" title="View Thread">View&nbsp;Thread</a>·<wbr><a href="http://www.codeproject.com/Messages/4524584/My-vote-of.aspx" title="Get permanent link">Permalink</a></td><td style="text-align:right;"><span id="MVF4524584" data-ref="3_4524584" class="rating-label" style="white-space:nowrap;"><span>5.00/5 (1 vote)</span></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F4524596_h0" class="header hover-row">
+<td class="subject-line normal " width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td width="38px" class="indent"><a name="xx4524596xx"></a><img height="16px" width="16px" align="top" src="./Observer design pattern in java - CodeProject_files/msg_general.gif" alt="General"></td><td class="subject hover-container"><a class="message-link" name="4524596" parent="4524584" thread="4524584" href="http://www.codeproject.com/Messages/4524596/Re-My-vote-of.aspx">Re: My vote of 5</a> <a onclick="return Pin(this);" rel="nofollow" href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java#" title="Click to pin message"><img src="./Observer design pattern in java - CodeProject_files/pin.png" border="0" align="top" alt="Pin" width="13px" height="13px"></a><div class="mobile-only">
+	<span class="author">Arpit Mandliya</span><span class="date">22-Mar-13  10:29</span>
+</div></td><td class="icon"><img border="0" src="./Observer design pattern in java - CodeProject_files/icn-member-16.gif" title="member" alt="member" height="16px"></td><td class="author"><span><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=8092538">Arpit Mandliya</a></span></td><td class="date"><span>22-Mar-13  10:29&nbsp;</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F4524596_h1" class="content selected" style="display:none;">
+<td class="normal" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="indent align-right" style="width:38px;"><div class="voteform vertical" ownerid="8092538" msgid="4524596" votingtype="GoodOrBad">
+
+</div><img src="./Observer design pattern in java - CodeProject_files/t(1).gif" height="1px" width="38px" alt=""></td><td class="text"><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2"><div class="parent"><a rel="nofollow" onclick="return SwitchMessage(null,4524584);" href="http://www.codeproject.com/Messages/4524584/My-vote-of.aspx"><img src="./Observer design pattern in java - CodeProject_files/arrow-up24.png" title="Go to Parent" style="width:16px;height:16px;border:0"></a></div>Thanks a lot.I am glad you liked it <img src="./Observer design pattern in java - CodeProject_files/smiley_smile.gif" align="top" alt="Smile | :)"> <br></td>
+</tr><tr class="footer" style="vertical-align:top;">
+<td><a href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fArticles%2f565642%2fObserver-design-pattern-in-java">Sign In</a>·<wbr><a href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java?fid=1828704&df=10000&mpp=50&sort=Position&spc=Relaxed&tid=4524584" title="View Thread">View&nbsp;Thread</a>·<wbr><a href="http://www.codeproject.com/Messages/4524596/Re-My-vote-of.aspx" title="Get permanent link">Permalink</a></td><td style="text-align:right;"><span id="MVF4524596" data-ref="3_4524596" class="rating-label" style="white-space:nowrap;"></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr>
+<td><img src="./Observer design pattern in java - CodeProject_files/t(1).gif" border="0" width="1px" height="5px" alt=""></td>
+</tr><tr>
+<td><table width="100%" cellpadding="2px" cellspacing="0">
+<tbody><tr class="footer">
+<td><span class="last-visit desktop-only tablet-only">Last Visit: 31-Dec-99  18:00 &nbsp; &nbsp; Last Update: 3-Aug-15  4:10</span></td><td><a rel="nofollow" href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java?fid=1828704&df=10000&mpp=50&noise=3&prof=True&sort=Position&view=Normal&spc=Relaxed">Refresh</a></td><td style="text-align:right;white-space:nowrap;"><input id="_mbnUrl" type="hidden" value="/Articles/565642/Observer-design-pattern-in-java?fid=1828704&amp;df=10000&amp;mpp=50&amp;noise=3&amp;prof=True&amp;sort=Position&amp;view=Normal&amp;spc=Relaxed&amp;fr=9"><span class="nav-link selected">1</span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table>
+</div><p class="small-text"><img align="top" src="./Observer design pattern in java - CodeProject_files/msg_general.gif" width="16px" height="16px" alt="General"> General &nbsp;&nbsp; <img align="top" src="./Observer design pattern in java - CodeProject_files/msg_news.gif" width="16px" height="16px" alt="News"> News &nbsp;&nbsp; <img align="top" src="./Observer design pattern in java - CodeProject_files/msg_idea.gif" width="16px" height="16px" alt="Suggestion"> Suggestion &nbsp;&nbsp; <img align="top" src="./Observer design pattern in java - CodeProject_files/msg_question.gif" width="16px" height="16px" alt="Question"> Question &nbsp;&nbsp; <img align="top" src="./Observer design pattern in java - CodeProject_files/msg_bug.gif" width="16px" height="16px" alt="Bug"> Bug &nbsp;&nbsp; <img align="top" src="./Observer design pattern in java - CodeProject_files/msg_answer.gif" width="16px" height="16px" alt="Answer"> Answer &nbsp;&nbsp; <img align="top" src="./Observer design pattern in java - CodeProject_files/msg_joke.gif" width="16px" height="16px" alt="Joke"> Joke &nbsp;&nbsp; <img align="top" src="./Observer design pattern in java - CodeProject_files/msg_rant.gif" width="16px" height="16px" alt="Rant"> Rant &nbsp;&nbsp; <img align="top" src="./Observer design pattern in java - CodeProject_files/msg_admin.gif" width="16px" height="16px" alt="Admin"> Admin &nbsp;&nbsp; </p><p class="small-text">Use Ctrl+Left/Right to switch messages, Ctrl+Up/Down to switch threads, Ctrl+Shift+Left/Right to switch pages.</p>
+				
+
+			</div>
+			
+		</td>
+		<td width="170px" class="article-wing-right">
+			<div id="ctl00_RightSideBar" class="container-article-info">
+
+                <div id="RHSticky" class="container-article-info-sticky stuck" style="position: fixed; top: 10px; left: 1023.5px;">
+        			
+
+<div class="header">Info</div>
+<div class="article-summary">
+
+<a id="ctl00_InfoBox_ParentLink"></a>
+
+<table cellpadding="0" cellspacing="0" class="article-info">
+
+    
+
+    
+	
+
+	
+
+    
+
+	<tbody><tr><td nowrap="">First Posted&nbsp;</td><td nowrap="nowrap" class="value"><span itemprop="datePublished" content="2013-03-22">21 Mar 2013</span></td></tr>
+    
+
+	<tr><td colspan="2"></td></tr>
+	
+	
+</tbody></table>
+</div>
+
+				    
+
+				    <div style="width:160px;margin: 10px auto;">
+					    <div class="msg-160x600" data-format="160x600" data-type="ad" data-publisher="lqm.codeproject.site" data-zone="Development-Lifecycle/Design-and-Architecture/General" data-tags="Java, Design, Intermediate,rating4.5"><iframe id="dmad4" allowtransparency="false" style="z-index:10" width="160" height="600" marginwidth="0" marginheight="0" frameborder="0" scrolling="no"></iframe></div>
+				    </div>
+
+                    
+
+				    
+
+				    
+
+				    
+
+                    <div class="anchorLink gototop" id="gototop">
+                        <a id="ctl00_GoToTop" href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java#_articleTop">Go to top</a>
+                    </div>
+
+				</div>
+
+			</div>
+		</td>
+		</tr></tbody></table>
+
+		
+		<div class="theme1-background" style="height:2px" id="stickyStop"></div>
+
+		<div class="extended tiny-text">
+			<div class="row">
+				<div class="float-left">
+					<a id="ctl00_PermaLink" itemprop="url" href="./Observer design pattern in java - CodeProject_files/Observer design pattern in java - CodeProject.html">Permalink</a> | 
+					<a id="ctl00_AdvertiseLink" href="http://developermedia.com/">Advertise </a> |
+					<a id="ctl00_PrivacyLink" href="http://www.codeproject.com/info/privacy.aspx">Privacy</a> |
+                    <a id="ctl00_TermsOfUseLink" href="http://www.codeproject.com/info/TermsOfUse.aspx">Terms of Use</a> |
+					<a id="ctl00_Mobile" rel="nofollow" href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java?display=Mobile">Mobile</a>
+					<br>
+								
+					
+					Web01 |
+					2.8.150731.1 |
+					Last Updated 22 Mar 2013								
+				</div>
+
+                <div id="ctl00_GoogleTranslate" class="translate float-left"><div class="skiptranslate goog-te-gadget" dir="ltr"><div id=":0.targetLanguage" class="goog-te-gadget-simple" style="white-space: nowrap;"><img src="./Observer design pattern in java - CodeProject_files/cleardot.gif" class="goog-te-gadget-icon" style="background-image: url(https://translate.googleapis.com/translate_static/img/te_ctrl3.gif); background-position: -65px 0px;"><span style="vertical-align: middle;"><a class="goog-te-menu-value" href="javascript:void(0)"><span>Select Language</span><img src="./Observer design pattern in java - CodeProject_files/cleardot.gif" width="1" height="1"><span style="border-left-width: 1px; border-left-style: solid; border-left-color: rgb(187, 187, 187);">​</span><img src="./Observer design pattern in java - CodeProject_files/cleardot.gif" width="1" height="1"><span style="color: rgb(155, 155, 155);">▼</span></a></span></div></div></div>      
+
+				<div class="float-right align-right">
+					Article Copyright 2013 by Arpit Mandliya<br>Everything else
+					Copyright © <a href="mailto:webmaster@codeproject.com">CodeProject</a>, 1999-2015 <br>
+				</div>
+
+				
+
+
+<div class="page-width">
+Layout: <a id="ctl00_PageWidth_FixedT" title="Fixed width layout" rel="nofollow" class=" active" href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java?PageFlow=FixedWidth">fixed</a>
+|
+<a id="ctl00_PageWidth_FluidT" title="Fluid layout" rel="nofollow" href="http://www.codeproject.com/Articles/565642/Observer-design-pattern-in-java?PageFlow=Fluid">fluid</a>
+</div>
+
+
+
+			</div>
+		</div>
+		
+
+		<br clear="all">
+		
+			
+
+	</div> 
+	</div>
+</div>
+
+
+<div style="display:none;" id="dm_AdTable">
+	
+</div>
+<img id="ctl00_Audience" src="./Observer design pattern in java - CodeProject_files/DFPAudiencePixel" style="border-width:0px;height:1px;width:1px;">
+
+
+
+<script type="text/javascript" language="Javascript" src="./Observer design pattern in java - CodeProject_files/jquery.min.js"></script><script type="text/javascript">//<![CDATA[
+if (typeof jQuery == 'undefined') {
+    document.write(unescape("%3Cscript src='/script/JS/jquery-1.6.2.min.js' type='text/javascript' %3E%3C/script%3E"));
+}//]]></script>
+<script type="text/javascript" language="Javascript" src="./Observer design pattern in java - CodeProject_files/article.min.js"></script>
+<script type="text/javascript" language="Javascript" src="./Observer design pattern in java - CodeProject_files/element.js"></script>
+<script type="text/javascript" language="Javascript" src="./Observer design pattern in java - CodeProject_files/navbar.min.js"></script>
+<script type="text/javascript" language="Javascript" src="./Observer design pattern in java - CodeProject_files/Notifications.min.js"></script>
+<script type="text/javascript" language="Javascript" src="./Observer design pattern in java - CodeProject_files/MemberProfilePopup.min.js"></script>
+<script type="text/javascript" language="Javascript">//<![CDATA[
+$(document).ready(function () { processCodeBlocks.Initialise('#contentdiv'); });
+function googleTranslateElementInit() {  new google.translate.TranslateElement({   pageLanguage: 'en',   layout: google.translate.TranslateElement.InlineLayout.SIMPLE,   autoDisplay: false,   gaTrack: true,   gaId: 'UA-1735123-1'},  'ctl00_GoogleTranslate');}
+$(document).ready(function() { anchorAnimate();
+$('#RHSticky').sticky($('#stickyStop'));
+$('#ctl00_Nav').sticky($('#stickyStop'));
+});
+$(function ()
+                {
+                    $('.oauth').click(function () {
+                        $this = $(this);
+                        href = $this.attr('href');
+                        var myWindow = window.open(href, 'popup',
+                                    'width=800,height=600,location=0,menubar=0,resizeable=0,scrollbars=0,toolbar=0');
+                        myWindow.focus();
+                        var timer = setInterval(function () {
+                                        if (myWindow.closed) {
+                                            clearInterval(timer);
+                                            // window.location.reload(); // May do a POST reload, shows a warning
+                                            window.location = window.location; // force a GET reload
+                                        }
+                                    }, 200);
+                        return false;
+                    });
+                });
+var oSrchFlt = false, oSrchBox=false,srchBoxFoc=false;
+$(document).ready(function() {
+ if(InitWatermark)InitWatermark('sb_tb', 'Search for articles, questions, tips');
+ var sbar = $('#sb_tb'); 
+ var sfilter = $('#SearchFilter');
+ if (sbar && sfilter) {
+  sfilter.removeClass('popup'); sfilter.hide(); sfilter.removeClass('open');
+  sbar.blur(function() {
+ if (!oSrchFlt) {sfilter.hide(); sfilter.removeClass('open');}
+ srchBoxFoc=false;
+ });
+  sbar.focus(function() {
+ oSrchFlt=false; srchBoxFoc=true;
+ sfilter.show(); sfilter.addClass('open');
+ });
+  sbar.mouseleave(function() { oSrchBox=false; });
+  sbar.mouseover(function() { oSrchBox=true; });
+  sfilter.mouseleave(function() { oSrchFlt=false; if (!srchBoxFoc&&!oSrchBox) { sfilter.hide(); sfilter.removeClass('open'); }});
+  sfilter.mouseover(function() { oSrchFlt=true; });
+ }
+});
+$('#clear-rate_ctl00_RateArticle_RSU').click(function () {    $('#ctl00_RateArticle_RSU').hide(); return false;});$("#ctl00_RateArticle_RateItemWrapper")   .removeClass("container-rating")   .hover( function() { $('#ctl00_RateArticle_RSU').fadeIn('fast'); },            function() { $('#ctl00_RateArticle_RSU').fadeOut('fast'); } );
+function PostBack_ctl00_RateArticle_RateItemWrapper() {
+  return rateItem(565642,2,1,true,true,0,'LargeStars');
+}
+
+                        function getVotesHistogram(objectId, objectTypeId, containerId, loadingId) {
+                            if (!$('#' + containerId).attr('alreadyRequested')){
+                                $.ajax({
+                                    url: '/script/Ratings/Ajax/Histogram.aspx?obid=' + objectId + '&obtid='+objectTypeId,
+                                    success: function (data) {
+                                        $('#' + containerId).html(data);
+                                        $('#' + loadingId).hide();
+                                    }
+                                });
+                                $('#' + containerId).attr('alreadyRequested', 'true');
+                            }
+                        }
+$(document).ready(function() {   new starRating('#ctl00_RateArticle_VoteFormDiv', PostBack_ctl00_RateArticle_RateItemWrapper,'ctl00_RateArticle');
+  $('#ctl00_RateArticle_RB').mouseenter(function() {     getVotesHistogram(565642,2   ,'ctl00_RateArticle_Histogram','ctl00_RateArticle_Loading');  })})
+$(document).ready(function() { $('#ctl00_RateArticle_SubmitRateBtn').hide(); });
+$(document).ready(function() { $('#ctl00_RateArticle_SubmitRateBtn').hide(); });function ChkRtctl00_RateArticle(){}
+
+forumDir = '/script/Forums/';
+staticServer = '//codeproject.cachefly.net';
+allowReporting = false;
+allowRating = false;
+allowRatingDisplay = true;
+var smoothScroll = true;
+Selected        = -1;
+oldTitle        = document.title;
+minMessageScore = 1;
+minMessageScore = 5;
+abuseScore      = -2;
+spamScore       = -1;
+getRatingUrl    = '/script/Ratings/Ajax/GetRatings.aspx';
+noiseThreshold  = 3;
+getRatingRefKey = 'obrs';
+
+
+//]]>
+</script>
+
+
+
+<canvas id="cv1" width="1px" height="1px" style="position:absolute;left:0;top:0;pointer-events:none"></canvas><canvas id="cv2" width="1px" height="1px" style="position:absolute;left:0;top:0;pointer-events:none"></canvas><div id="MemberProfilePopupDiv" class="raised box" style="display: none; position: absolute;"></div><div id="MemberProfilePopupDiv" class="raised box" style="display: none; position: absolute;"></div><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./Observer design pattern in java - CodeProject_files/translate-32.png" width="20" height="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div id="MemberProfilePopupDiv" class="raised box" style="display: none; position: absolute;"></div><iframe frameborder="0" class="goog-te-menu-frame skiptranslate" style="visibility: visible; box-sizing: content-box; width: 860px; height: 263px; display: none;"></iframe></body></html>
