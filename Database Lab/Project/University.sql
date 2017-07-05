@@ -278,6 +278,14 @@ begin
 end;
 /
 
+-- Join operaition
+select * from course;
+select * from teacher;
+select * from course_teacher;
+select course_id, name from course_teacher join teacher on course_teacher.teacher_id = teacher.id;
+
+select title, name from course natural join (select course_id, name from course_teacher join teacher on course_teacher.teacher_id = teacher.id);
+
 
 
 -- Cleaning database
