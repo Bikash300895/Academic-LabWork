@@ -8,6 +8,14 @@
 #include <iostream>
 using namespace std;
 
+void decide(char l){
+    if(l == '\n'){
+        cout<<"Parsing suffessful"<<endl;
+    } else {
+        cout<<"Parsing error"<<endl;
+    }
+}
+
 // Defining the E_()
 void E_(){
     char l = getchar();
@@ -19,12 +27,8 @@ void E_(){
             E_();
         }
     }
-
-    else if(l == '\n'){
-        cout<<"Parsing suffessful"<<endl;
-    } else {
-        cout<<"Parsing error"<<endl;
-    }
+    else
+        decide(l);
 
 }
 
