@@ -1,4 +1,9 @@
 -- Creating table
+create table users(
+	id 			int NOT NULL,
+	password	varchar(10) not null
+);
+
 create table student(
 	id  	int NOT NULL,
 	name	varchar(50)	not null,
@@ -51,6 +56,8 @@ create table course_teacher(
 
 
 -- Inserting data
+insert into users values(1407001, '1407001');
+
 insert into student values(1407001, 'bikash', 3.27);
 
 insert into department values('CSE', 'Computer science and engineering', 'Mr. X');
@@ -108,6 +115,7 @@ begin
 
 	elsif(gpa = 3.75) then
 		dbms_output.put_line('A');
+
 	else
 		dbms_output.put_line('A-');
 
@@ -148,7 +156,7 @@ end;
 
 create or replace procedure INSEERTSTUDENT (id IN NUMBER, name IN VARCHAR2, cgpa IN number) is
 	begin
-		insert into student values(id, name, cgpa);   
+		insert into student values(id, name, cgpa);
 	end;
 	/
 
@@ -237,6 +245,48 @@ select * from course;
 
 
 
+-- inserting into table taking data from two table
+insert into teacher values(
+	(select id from student where cgpa = (select max(cgpa) from student)),
+	(select name from student where cgpa = (select max(cgpa) from student)),
+	(select id from department where name = 'Computer science and engineering')
+);
+
+
+
+-- Login inforamtion
+set serveroutput on
+declare
+	id_no 			users.id%type;
+	pass		users.password%type;
+	any_rows_found number;
+begin
+	id_no := &id;
+	pass := &password;
+
+	select count(*)
+	into any_rows_found
+	from users
+	where users.id=id_no and users.password=pass;
+
+	if any_rows_found = 1 then
+		dbms_output.put_line ('Log in successful');
+	else
+		dbms_output.put_line ('Id or password did not match');
+	end if;
+
+end;
+/
+
+-- Join operaition
+select * from course;
+select * from teacher;
+select * from course_teacher;
+select course_id, name from course_teacher join teacher on course_teacher.teacher_id = teacher.id;
+
+select title, name from course natural join (select course_id, name from course_teacher join teacher on course_teacher.teacher_id = teacher.id);
+
+
 
 -- Cleaning database
 drop table course_teacher;
@@ -245,3 +295,4 @@ drop table enrollment;
 drop table course;
 drop table department;
 drop table student;
+drop table users;
