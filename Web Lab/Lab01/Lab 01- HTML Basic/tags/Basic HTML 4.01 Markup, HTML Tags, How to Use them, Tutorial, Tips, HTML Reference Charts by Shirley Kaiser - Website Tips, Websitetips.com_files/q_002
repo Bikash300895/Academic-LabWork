@@ -1,8 +1,0 @@
-
-
-
-
-                                                   var amzn_wdgt={"cols":1,"tag":"skdesigns","width":"186","inner_bkgd_color":"#331312","serviceVersion":"20070822","use_default_search_term":false,"head_text_color":"#FBE9AC","marketPlace":"US","show_image":true,"rows":2,"price_color":"#FBE9AC","templateId":"8002","default_search_term":"","category":"All","outer_bkgd_color":"#331312","show_review":true,"displayTemplate":"7","show_price":true,"border_color":"#B57111","text_color":"#FBE9AC"}
-            amzn_wdgt.ID = "V20070822/US/skdesigns/8002/5c19043e-f060-48c6-8238-4e80b5ad63c7";
-	                        document.write('<script charset="utf-8" type="text/javascript" src="http://wms.assoc-amazon.com/20070822/US/js/8002_7.js"> </script>');
-                       
