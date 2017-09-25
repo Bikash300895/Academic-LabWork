@@ -79,7 +79,43 @@ follow = {}
 follow[start] = {"$"}
 
 
+def findFirstinFollow(key, x):
+    follows = set()
+    if x=="":
+        if key in follow:
+            return follow[key]
+        else:
+            return {}
 
+    firsts = findFirst(x[0])
+    for i in firsts:
+        if i == '@':
+            follows.update(findFirstinFollow(key, x[1:]))
+        else:
+            follows.add(i)
+
+    return follows
+
+
+def findFollow():
+    # saperate all the production rules
+    for key, values in grammer.items():
+        for product in values:
+            for index in range(len(product)):
+                if not isTerminal(product[index]):
+                    # initialize empty set if it is encountered first time
+                    if product[index] not in follow:
+                        follow[product[index]] = set()
+
+                    if index != len(product) - 1:
+                        follow[product[index]].update(findFirstinFollow(key, product[index + 1:]))
+                    else:
+                        if key in follow:
+                            follow[product[index]].update(follow[key])
+
+for i in range(5):
+    findFollow()
+print(follow)
 
 stack = "$S"
 word = input()
