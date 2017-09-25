@@ -1,8 +1,8 @@
 def isTerminal(char):
     if "A" <= char <= "Z":
-        return True
-    else:
         return False
+    else:
+        return True
 
 
 parse_table = {
@@ -19,6 +19,12 @@ grammer = {}
 start = ""
 
 with open("grammer.txt") as f:
+    firstLine = f.readline()
+    start = firstLine[0]
+    f.close()
+
+# Taking input from input file
+with open("grammer.txt") as f:
     for line in f:
         variable = line[0]
         grammer[variable] = []
@@ -32,6 +38,48 @@ with open("grammer.txt") as f:
                 grammer[variable].append(production)
                 production = ""
         grammer[variable].append(production)
+    f.close()
+
+# Calculating first
+first = {}
+
+
+def findFirst(x):
+    # see if already calculated
+    if x in first:
+        return first[x]
+
+    # If X is a terminal then First(X) ={X}
+    if isTerminal(x):
+        first[x] = x
+        return x
+    else:
+        # Get all the productions
+        productions = grammer[x]
+        currentFirst = set()
+
+        # If there is a Production X → ε then add ε to first(X)
+        if '@' in productions:
+            currentFirst = {'@'}
+        for product in productions:
+            if isTerminal(product[0]):
+                currentFirst.add(product[0])
+            else:
+                currentFirst.update(findFirst(product[0]))
+    first[x] = currentFirst
+    return currentFirst
+
+
+# Calculate all the first()
+for key, ls in grammer.items():
+    findFirst(key)
+
+# Calculate follow
+follow = {}
+follow[start] = {"$"}
+
+
+
 
 stack = "$S"
 word = input()
