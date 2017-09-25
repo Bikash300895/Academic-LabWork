@@ -139,6 +139,8 @@ for key, value in grammer.items():
 stack = "$" + start
 word = input()
 word = word + "$"
+print(stack.ljust(20), end="\t")
+print(word.ljust(20), end="\t")
 
 while len(stack) > 0:
     stackTop = stack[len(stack) - 1]
@@ -154,12 +156,15 @@ while len(stack) > 0:
         reversedProduction = production[::-1]
         stack = stack + reversedProduction
 
-        print(stack.ljust(20), end="\t")
-        print(word.ljust(20), end="\t")
         # change the name of production in case of epsilon
         if production == "":
-            production = "epsilon"
-        print(stackTop, "->", production)
+            print("")
+        else:
+            print(stackTop, "->", production)
+
+        print(stack.ljust(20), end="\t")
+        print(word.ljust(20), end="\t")
+
 
     # if terminal and same input
     elif stackTop == inputFront:
