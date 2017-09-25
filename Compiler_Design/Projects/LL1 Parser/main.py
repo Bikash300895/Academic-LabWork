@@ -6,13 +6,13 @@ def isTerminal(char):
 
 
 parse_table = {
-    "S": {
-        "a": "aBa"
-    },
-    "B": {
-        "a": "",
-        "b": "bB"
-    }
+    # "S": {
+    #     "a": "aBa"
+    # },
+    # "B": {
+    #     "a": "",
+    #     "b": "bB"
+    # }
 }
 
 grammer = {}
@@ -81,7 +81,7 @@ follow[start] = {"$"}
 
 def findFirstinFollow(key, x):
     follows = set()
-    if x=="":
+    if x == "":
         if key in follow:
             return follow[key]
         else:
@@ -113,11 +113,33 @@ def findFollow():
                         if key in follow:
                             follow[product[index]].update(follow[key])
 
+
 for i in range(5):
     findFollow()
-print(follow)
+# print(follow)
 
-stack = "$S"
+
+# Creating parse table
+for key, value in grammer.items():
+    parse_table[key] = {}
+    for production in value:
+        if isTerminal(production[0]):
+            if production[0] == "@":
+                followofFirstTerm = follow[key]
+                for f in followofFirstTerm:
+                    parse_table[key][f] = ""
+            else:
+                parse_table[key][production[0]] = production
+
+        else:
+            firstofProduction = first[production[0]]
+            for f in firstofProduction:
+                parse_table[key][f] = production
+
+
+
+
+stack = "$" + start
 word = input()
 word = word + "$"
 
