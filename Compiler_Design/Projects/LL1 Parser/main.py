@@ -136,9 +136,6 @@ for key, value in grammer.items():
             for f in firstofProduction:
                 parse_table[key][f] = production
 
-
-
-
 stack = "$" + start
 word = input()
 word = word + "$"
@@ -150,7 +147,10 @@ while len(stack) > 0:
     # Check if stack top is not terminal
     if stackTop in parse_table:
         stack = stack[:-1]
-        production = parse_table[stackTop][inputFront]
+        try:
+            production = parse_table[stackTop][inputFront]
+        except:
+            print("Grammar not defined for this...")
         reversedProduction = production[::-1]
         stack = stack + reversedProduction
 
@@ -163,5 +163,5 @@ while len(stack) > 0:
         stack = stack[:-1]
         word = word[1:]
     else:
-        print("Error in compiling")
+        print("Error in compilation")
         break
