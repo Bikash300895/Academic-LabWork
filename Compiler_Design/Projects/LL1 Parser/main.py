@@ -144,7 +144,7 @@ while len(stack) > 0:
     stackTop = stack[len(stack) - 1]
     inputFront = word[0]
 
-    # Check if stack top is not terminal
+    # Check if stack top is not terminal (variable)
     if stackTop in parse_table:
         stack = stack[:-1]
         try:
@@ -153,6 +153,13 @@ while len(stack) > 0:
             print("Grammar not defined for this...")
         reversedProduction = production[::-1]
         stack = stack + reversedProduction
+
+        print(stack.ljust(20), end="\t")
+        print(word.ljust(20), end="\t")
+        # change the name of production in case of epsilon
+        if production == "":
+            production = "epsilon"
+        print(stackTop, "->", production)
 
     # if terminal and same input
     elif stackTop == inputFront:
