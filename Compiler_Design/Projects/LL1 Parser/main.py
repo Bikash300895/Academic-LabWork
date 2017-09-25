@@ -15,6 +15,24 @@ parse_table = {
     }
 }
 
+grammer = {}
+start = ""
+
+with open("grammer.txt") as f:
+    for line in f:
+        variable = line[0]
+        grammer[variable] = []
+        production = ""
+        for i in range(3, len(line)):
+            if line[i] == '\n':
+                break
+            elif line[i] != '/':
+                production += line[i]
+            else:
+                grammer[variable].append(production)
+                production = ""
+        grammer[variable].append(production)
+
 stack = "$S"
 word = input()
 word = word + "$"
