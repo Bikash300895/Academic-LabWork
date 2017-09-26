@@ -137,7 +137,7 @@ for key, value in grammer.items():
                 parse_table[key][f] = production
 
 stack = "$" + start
-word = input()
+word = input("Enter the language to check : ")
 word = word + "$"
 print(stack.ljust(20), end="\t")
 print(word.ljust(20), end="\t")
