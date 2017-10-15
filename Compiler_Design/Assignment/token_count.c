@@ -9,11 +9,12 @@
 	int loops = 0;
 	int coditionalStatements = 0;
 	int syntexs = 0;
+	int functionCalls = 0;
 %}
 
 %%
 
-["\n"|" "] {
+"\t"|"\n"|[" "]* {
 	// printf("syntex\n");
 }
 
@@ -26,7 +27,7 @@
 	syntexs++;
 }
 
-"def" {
+"def "[a-zA-Z_][a-zA-Z_0-9]*"(" {
 	functions++;
 }
 
@@ -39,6 +40,10 @@
 	keywords++;
 }
 
+[a-zA-Z_][a-zA-Z_0-9]*"(" {
+	functionCalls++;
+}
+
 "import"|"int"|"string"|"char"|"float"|"in"|"range"|"return" {
 	keywords++;
 }
@@ -47,11 +52,14 @@
 	variables++;
 }
 
+
 [0-9]*["."]?[0-9]+ {
 	numbers++;
 }
 
-
+. {
+	printf("syntex error %s\n", yytext);
+}
 %%
 
 int yywrap()
@@ -73,6 +81,7 @@ main(){
 	printf("Number of loops= %d\n", loops);
 	printf("Number of functions= %d\n", functions);
 	printf("Number of coditionalStatements= %d\n", coditionalStatements);
+	printf("Number of functionCalls= %d\n", functionCalls);
 
 	fclose(yyin);
 	fclose(yyout);
