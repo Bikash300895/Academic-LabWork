@@ -1,0 +1,2280 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/QAPage">
+<head>
+
+<title>c - undefined reference to pthread_create in Linux - Stack Overflow</title>
+    <link rel="shortcut icon" href="//cdn.sstatic.net/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="//cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com"/>
+    <meta property="og:type" content="website" />    
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded&a" />
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="undefined reference to pthread_create in Linux" />
+    <meta name="twitter:description" property="og:description" itemprop="description" content="I picked up the following demo off the web from https://computing.llnl.gov/tutorials/pthreads/
+
+#include &amp;lt;pthread.h&amp;gt;
+#include &amp;lt;stdio.h&amp;gt;
+#define NUM_THREADS     5
+
+void *PrintHello(void " />
+    <meta property="og:url" content="http://stackoverflow.com/questions/1662909/undefined-reference-to-pthread-create-in-linux"/>
+    <link rel="canonical" href="http://stackoverflow.com/questions/1662909/undefined-reference-to-pthread-create-in-linux" />
+
+    
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="//cdn.sstatic.net/Js/stub.en.js?v=7c7d429b8cb6"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.sstatic.net/stackoverflow/all.css?v=d04344cac28a">
+
+            <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;undefined reference to pthread_create in Linux&#39;" href="/feeds/question/1662909">
+            <meta name="twitter:app:country" content="US" />
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS" />
+            <meta name="twitter:app:id:iphone" content="871299723" />
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/1662909/undefined-reference-to-pthread-create-in-linux" />
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS" />
+            <meta name="twitter:app:id:ipad" content="871299723" />
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/1662909/undefined-reference-to-pthread-create-in-linux" />
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/1662909/undefined-reference-to-pthread-create-in-linux">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:5,shownCommentCount:5,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:1662909});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '1662909');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1453694671,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"enableSocialMediaInSharePopup":true},"user":{"fkey":"844ba0fa570e28605579013fc28e97e9","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"f52ba7d6d172","js/moderator.en.js":"49ee0b0b190c","js/full-anon.en.js":"3d1150144fac","js/full.en.js":"093cb59388a6","js/wmd.en.js":"c4f3b5102bab","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"318dc7d17006","js/help.en.js":"54b998574be9","js/tageditor.en.js":"5afacbc9cb6d","js/tageditornew.en.js":"d69fbfb2216e","js/inline-tag-editing.en.js":"0f5c6409438a","js/revisions.en.js":"faae7769c4b4","js/review.en.js":"ca23bb3a38e6","js/tagsuggestions.en.js":"d1ff9b84abe5","js/post-validation.en.js":"38881ac6b6fc","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"20353cf9bdd3","js/keyboard-shortcuts.en.js":"13378d129ffc","js/external-editor.en.js":"9327339c2328","js/external-editor.en.js":"9327339c2328","js/snippet-javascript.en.js":"a787fb64bef0","js/snippet-javascript-codemirror.en.js":"34b543e2770a"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+    
+    
+</head>
+<body class="question-page new-topbar">
+    <noscript><div id="noscript-padding"></div></noscript>
+    
+
+
+
+
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="//stackoverflow.com">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+                    <a href="http://chat.stackoverflow.com" class="js-gps-track"     data-gps-track="site_switcher.click({ item_type:6 })"
+>chat</a>
+            </div>
+
+
+
+
+    <a href="//stackoverflow.com"
+       class="current-site-link site-link js-gps-track"
+       data-id="1"
+       data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com"
+       class="site-link js-gps-track"
+       data-id="552"
+       data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link js-gps-track"
+                       href="//careers.stackoverflow.com?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=multicollider"
+                            data-gps-track="site_switcher.click({ item_type:9 })"
+>
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Stack Overflow Careers
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f1662909%2fundefined-reference-to-pthread-create-in-linux" class="login-link js-gps-track"     data-gps-track="site_switcher.click({ item_type:10 })"
+>Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f1662909%2fundefined-reference-to-pthread-create-in-linux" class="login-link js-gps-track"     data-gps-track="site_switcher.click({ item_type:11 })"
+>log in</a> to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="//stackexchange.com/sites">more stack exchange communities</a></h3>
+        <a href="http://blog.stackoverflow.com" class="fr">company blog</a>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="//stackexchange.com"
+               class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track"
+               data-gps-track="site_switcher.show"
+               title="A list of all 151 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+    <a href="#"
+       class="topbar-icon icon-inbox yes-hover js-inbox-button"
+       title="Recent inbox messages">
+        <span class="hidden-text">Inbox</span>
+        <span class="unread-count" style="display:none"></span>
+    </a>
+    <a href="#"
+       class="topbar-icon icon-achievements yes-hover js-achievements-button "
+       data-unread-class=""
+       title="Recent achievements: reputation, badges, and privileges earned">
+        <span class="hidden-text">Reputation and Badges</span>
+        <span class="unread-count" style="display:none">
+            
+        </span>
+    </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                <span class="topbar-menu-links">
+                                    <a href="https://stackoverflow.com/users/signup?ssrc=head&returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f1662909%2fundefined-reference-to-pthread-create-in-linux" class="login-link">sign up</a>
+                                <a href="https://stackoverflow.com/users/login?ssrc=head&returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f1662909%2fundefined-reference-to-pthread-create-in-linux" class="login-link">log in</a>
+
+                        <a href="/tour">tour</a>
+                            <a href="#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="//meta.stackoverflow.com" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="/search" method="get" autocomplete="off">
+                    <input name="q" type="text" placeholder="search" value="" tabindex="1" autocomplete="off" maxlength="240" />
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="/" >
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="/questions">Questions</a></li>
+                            <li><a id="nav-jobs" href="/jobs">Jobs</a></li>
+                        <li><a id="nav-tags" href="/tags">Tags</a></li>
+                        <li><a id="nav-users" href="/users">Users</a></li>
+                        <li><a id="nav-badges" href="/help/badges">Badges</a></li>
+                                            </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion"  href="/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope itemtype="http://schema.org/Question">
+    <link itemprop="image" href="//cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+
+<div id="herobox">
+    <div id="hero-content">
+            <div id="close"><a title="click to minimize">_</a></div>
+        <div id="blurb">
+            Stack Overflow is a community of 4.7 million programmers, just like you, helping each other.
+            <br/>
+                <br/>Join them; it only takes a minute:<br/>
+            <br/>
+            <a href="/users/signup?ssrc=hero&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f1662909%2fundefined-reference-to-pthread-create-in-linux" id="tell-me-more" class="button">Sign up</a>
+        </div>
+        <div id="desc">
+            <b>Join the Stack Overflow community to:</b>
+            <ol id="hiw">
+                <li id="q">Ask programming questions
+                </li>
+                <li id="an">Answer and help your peers
+                </li>
+                <li id="b">Get recognized for your expertise
+                </li>
+            </ol>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    <script>
+        StackExchange.ready(function () {
+
+            var location = 0;
+            if ($("body").hasClass("questions-page")) {
+                location = 1;;
+            } else if ($("body").hasClass("question-page")) {
+                location = 1;;
+            } else if ($("body").hasClass("faq-page")) {
+                location = 5;;
+            } else if ($("body").hasClass("home-page")) {
+                location = 3;;
+            }
+
+            $('#tell-me-more').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+                });
+            });
+            $('#herobox #close').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: "minimize", location: location }, true);
+                });
+                $.cookie("hero", "mini", { path: "/", expires: 365 });
+                $.ajax({
+                    url: "/hero-mini",
+                    success: function (data) {
+                        $("#herobox").fadeOut("fast", function () {
+                            $("#herobox").replaceWith(data);
+                            $("#herobox-mini").fadeIn("fast");
+                        });
+                    }
+                });
+                return false;
+            });
+        });
+
+    </script>
+</div>
+			<div id="question-header">
+                <h1 itemprop="name"><a href="/questions/1662909/undefined-reference-to-pthread-create-in-linux" class="question-hyperlink">undefined reference to pthread_create in Linux</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="1662909"  id="question">
+
+    <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk534416923",4).setZone(43); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk534416923">
+            </div>    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="1662909">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">125</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#" title="This is a favorite question (click again to undo)">favorite</a>
+        <div class="favoritecount"><b>50</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>I picked up the following demo off the web from <a href="https://computing.llnl.gov/tutorials/pthreads/">https://computing.llnl.gov/tutorials/pthreads/</a></p>
+
+<pre><code>#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+#define NUM_THREADS     5
+
+void *PrintHello(void *threadid)
+{
+   long tid;
+   tid = (long)threadid;
+   printf("Hello World! It's me, thread #%ld!\n", tid);
+   pthread_exit(NULL);
+}
+
+int main (int argc, char *argv[])
+{
+   pthread_t threads[NUM_THREADS];
+   int rc;
+   long t;
+   for(t=0; t&lt;NUM_THREADS; t++){
+      printf("In main: creating thread %ld\n", t);
+      rc = pthread_create(&amp;threads[t], NULL, PrintHello, (void *)t);
+      if (rc){
+         printf("ERROR; return code from pthread_create() is %d\n", rc);
+         exit(-1);
+      }
+   }
+   pthread_exit(NULL);
+}
+</code></pre>
+
+<p>But when I compile it on my machine (running Ubuntu Linux 9.04) I get the following error:</p>
+
+<pre><code>corey@ubuntu:~/demo$ gcc -o term term.c
+term.c: In function ‘main’:
+term.c:23: warning: incompatible implicit declaration of built-in function ‘exit’
+/tmp/cc8BMzwx.o: In function `main':
+term.c:(.text+0x82): undefined reference to `pthread_create'
+collect2: ld returned 1 exit status
+</code></pre>
+
+<p>This doesn't make any sense to me, because the header includes <code>pthread.h</code>, which should have the <code>pthread_create</code> function. Any ideas what's going wrong?</p>
+    </div>
+    <div class="post-taglist">
+        <a href="/questions/tagged/c" class="post-tag" title="show questions tagged &#39;c&#39;" rel="tag">c</a> <a href="/questions/tagged/linux" class="post-tag" title="show questions tagged &#39;linux&#39;" rel="tag">linux</a> <a href="/questions/tagged/multithreading" class="post-tag" title="show questions tagged &#39;multithreading&#39;" rel="tag">multithreading</a> <a href="/questions/tagged/pthreads" class="post-tag" title="show questions tagged &#39;pthreads&#39;" rel="tag">pthreads</a> 
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/q/1662909" title="short permalink to this question" class="short-link" id="link-post-1662909">share</a><span class="lsep">|</span><a href="/posts/1662909/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/1662909/revisions" title="show all edits to this post">edited <span title="2015-01-06 17:44:36Z" class="relativetime">Jan 6 '15 at 17:44</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/321731/tshepang"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/88e60659e997d36af3ff348b3251e1a6?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/321731/tshepang">Tshepang</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">4,074</span><span title="10 gold badges"><span class="badge1"></span><span class="badgecount">10</span></span><span title="51 silver badges"><span class="badge2"></span><span class="badgecount">51</span></span><span title="96 bronze badges"><span class="badge3"></span><span class="badgecount">96</span></span>
+        </div>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2009-11-02 18:40:52Z" class="relativetime">Nov 2 '09 at 18:40</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/187770/ralph"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/077251bd9e12b6614a200b83a2761e2c?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/187770/ralph">Ralph</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">904</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="13 silver badges"><span class="badge2"></span><span class="badgecount">13</span></span><span title="16 bronze badges"><span class="badge3"></span><span class="badgecount">16</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1662909" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+
+
+    <tr id="comment-1537627" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">3</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Additionally: depending on the platform, you may need (a) a different compiler for threads, (b) a different libc for threads (i.e. <code>-lc_r</code>), (c) <code>-thread</code> or <code>-threads</code> or other, instead of or in addition to <code>-lpthread</code>.</span>
+                    &ndash;&nbsp;<a href="/users/20713/ephemient"
+                       title="107968 reputation"
+                       class="comment-user">ephemient</a>
+                <span class="comment-date" dir="ltr"><span title="2009-11-03 01:42:57Z" class="relativetime-clean">Nov 3 '09 at 1:42</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-7620262" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Just a little above that example, you&#39;ll see a table of the correct compiler commands, whether it be GCC, IBM, etc. &#39;Employed Russian&#39; is correct.</span>
+                    &ndash;&nbsp;<a href="/users/119527/jonathon-reinhart"
+                       title="55553 reputation"
+                       class="comment-user">Jonathon Reinhart</a>
+                <span class="comment-date" dir="ltr"><span title="2011-06-26 06:47:50Z" class="relativetime-clean">Jun 26 '11 at 6:47</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-18483252" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="warm">6</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Can you please unmark my answer, so that I can delete it (and mark the one that is actually correct, which is the highest-voted one)?</span>
+                    &ndash;&nbsp;<a href="/users/111335/pavel-minaev"
+                       title="69693 reputation"
+                       class="comment-user">Pavel Minaev</a>
+                <span class="comment-date" dir="ltr"><span title="2012-11-22 00:41:57Z" class="relativetime-clean">Nov 22 '12 at 0:41</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-32279702" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy"><code>-lpthread</code> is needed during compile</span>
+                    &ndash;&nbsp;<a href="/users/1602184/how-chen"
+                       title="548 reputation"
+                       class="comment-user">How Chen</a>
+                <span class="comment-date" dir="ltr"><span title="2014-01-28 08:21:34Z" class="relativetime-clean">Jan 28 '14 at 8:21</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-54610049" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">solution <code>LDFLAGS= -pthread  -lpthread</code></span>
+                    &ndash;&nbsp;<a href="/users/5254528/dsnk"
+                       title="113 reputation"
+                       class="comment-user">dsnk</a>
+                <span class="comment-date" dir="ltr"><span title="2015-10-29 09:01:05Z" class="relativetime-clean">Oct 29 '15 at 9:01</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-1662909" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>        </table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								8 Answers
+                                <span style="display:none;" itemprop="answerCount">8</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="/questions/1662909/undefined-reference-to-pthread-create-in-linux?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active">
+            active</a>
+        <a href="/questions/1662909/undefined-reference-to-pthread-create-in-linux?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest">
+            oldest</a>
+        <a class="youarehere" href="/questions/1662909/undefined-reference-to-pthread-create-in-linux?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes">
+            votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="1665110"></a>
+<div id="answer-1665110" class="answer" data-answerid="1665110"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="1665110">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">325</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Both answers to this question so far are <em>incorrect</em>.<br>
+For Linux the correct command is:</p>
+
+<pre><code>gcc -pthread -o term term.c
+</code></pre>
+
+<p>In general, libraries should follow sources and objects on command line, and <code>-lpthread</code> is not an "option", it's a library specification. On a system with only <code>libpthread.a</code> installed, </p>
+
+<pre><code>gcc -lpthread ...
+</code></pre>
+
+<p>will fail to link.</p>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/1665110" title="short permalink to this answer" class="short-link" id="link-post-1665110">share</a><span class="lsep">|</span><a href="/posts/1665110/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/1665110/revisions" title="show all edits to this post">edited <span title="2012-01-13 04:35:06Z" class="relativetime">Jan 13 '12 at 4:35</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2009-11-03 03:44:10Z" class="relativetime">Nov 3 '09 at 3:44</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/50617/employed-russian"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/ef1a6d68122b3abb128184f3e2921b8e?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/50617/employed-russian">Employed Russian</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 73835" dir="ltr">73.8k</span><span title="12 gold badges"><span class="badge1"></span><span class="badgecount">12</span></span><span title="93 silver badges"><span class="badge2"></span><span class="badgecount">93</span></span><span title="151 bronze badges"><span class="badge3"></span><span class="badgecount">151</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1665110" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="3"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+
+
+    <tr id="comment-11047365" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">+1 this solution worked... otheres did not.  Also, suggestion that &#39;libraries should follow sources and objects&#39; is great advice -- a citation or further explanation would be great.</span>
+                    &ndash;&nbsp;<a href="/users/319006/sholsapp"
+                       title="4217 reputation"
+                       class="comment-user">sholsapp</a>
+                <span class="comment-date" dir="ltr"><span title="2012-01-13 03:02:11Z" class="relativetime-clean">Jan 13 '12 at 3:02</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-11048174" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">4</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@sholsapp Here is the explanation: <a href="http://webpages.charter.net/ppluzhnikov/linker.html" rel="nofollow">webpages.charter.net/ppluzhnikov/linker.html</a></span>
+                    &ndash;&nbsp;<a href="/users/50617/employed-russian"
+                       title="73835 reputation"
+                       class="comment-user">Employed Russian</a>
+                <span class="comment-date" dir="ltr"><span title="2012-01-13 04:33:20Z" class="relativetime-clean">Jan 13 '12 at 4:33</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-14179982" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">+1 for explanation of -pthread vs -lpthread</span>
+                    &ndash;&nbsp;<a href="/users/1305559/qwerty9967"
+                       title="358 reputation"
+                       class="comment-user">qwerty9967</a>
+                <span class="comment-date" dir="ltr"><span title="2012-06-04 11:48:14Z" class="relativetime-clean">Jun 4 '12 at 11:48</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-22980041" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This still errored for me till I put -lpthread at the very end of my command. <code>gcc term.c -lpthread</code></span>
+                    &ndash;&nbsp;<a href="/users/665400/cornsmith"
+                       title="304 reputation"
+                       class="comment-user">CornSmith</a>
+                <span class="comment-date" dir="ltr"><span title="2013-04-18 23:49:43Z" class="relativetime-clean">Apr 18 '13 at 23:49</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-37448839" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">While I know the advantages of using -pthread (gcc supports it, among others) over -lpthread. But AFAIK, POSIX way is to use <i>-l library</i>, presumably to be in sync with general linking of libs.</span>
+                    &ndash;&nbsp;<a href="/users/1275169/l3x"
+                       title="51314 reputation"
+                       class="comment-user">l3x</a>
+                <span class="comment-date" dir="ltr"><span title="2014-06-16 14:04:32Z" class="relativetime-clean">Jun 16 '14 at 14:04</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-1665110" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link  dno"
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   ></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href=# onclick="">show <b>3</b> more comments</a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk548197398",4).setZone(44); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk548197398">
+            </div>
+  
+<a name="13006887"></a>
+<div id="answer-13006887" class="answer" data-answerid="13006887"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="13006887">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">18</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>in eclipse </p>
+
+<p>properties->c/c++Build->setting->GCC C++ linker->libraries in top part add "pthread"</p>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/13006887" title="short permalink to this answer" class="short-link" id="link-post-13006887">share</a><span class="lsep">|</span><a href="/posts/13006887/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-10-22 07:36:39Z" class="relativetime">Oct 22 '12 at 7:36</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/837489/sam"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/R6leD.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/837489/sam">sam</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">492</span><span title="7 silver badges"><span class="badge2"></span><span class="badgecount">7</span></span><span title="17 bronze badges"><span class="badge3"></span><span class="badgecount">17</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-13006887" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+
+
+    <tr id="comment-37769195" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Best and easiest answer, ty !</span>
+                    &ndash;&nbsp;<a href="/users/3672429/jproton"
+                       title="161 reputation"
+                       class="comment-user">jproton</a>
+                <span class="comment-date" dir="ltr"><span title="2014-06-25 16:53:00Z" class="relativetime-clean">Jun 25 '14 at 16:53</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-13006887" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+
+  
+<a name="21398483"></a>
+<div id="answer-21398483" class="answer" data-answerid="21398483"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="21398483">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">9</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Acutally, it gives several examples of compile commands used for pthreads codes are listed in the table below, if you continue reading the following tutorial:</p>
+
+<p><a href="https://computing.llnl.gov/tutorials/pthreads/#Compiling">https://computing.llnl.gov/tutorials/pthreads/#Compiling</a></p>
+
+<p><img src="http://i.stack.imgur.com/Z8G26.png" alt="enter image description here"></p>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/21398483" title="short permalink to this answer" class="short-link" id="link-post-21398483">share</a><span class="lsep">|</span><a href="/posts/21398483/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/21398483/revisions" title="show all edits to this post">edited <span title="2014-01-28 07:25:08Z" class="relativetime">Jan 28 '14 at 7:25</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2014-01-28 06:33:24Z" class="relativetime">Jan 28 '14 at 6:33</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/1448139/dylanninin"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/51c41f05ce581e3a23d37f8536cf18ce?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/1448139/dylanninin">dylanninin</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">191</span><span title="2 silver badges"><span class="badge2"></span><span class="badgecount">2</span></span><span title="5 bronze badges"><span class="badge3"></span><span class="badgecount">5</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-21398483" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-21398483" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+
+  
+<a name="9659995"></a>
+<div id="answer-9659995" class="answer" data-answerid="9659995"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="9659995">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">7</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>You need to use the option <code>-lpthread</code> with gcc.</p>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/9659995" title="short permalink to this answer" class="short-link" id="link-post-9659995">share</a><span class="lsep">|</span><a href="/posts/9659995/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/9659995/revisions" title="show all edits to this post">edited <span title="2012-03-12 10:35:55Z" class="relativetime">Mar 12 '12 at 10:35</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/703019/waynn-lue"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/27105a4873af6ef3a8291467896968d2?s=32&amp;d=identicon&amp;r=PG&amp;f=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/703019/waynn-lue">Waynn Lue</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">7,425</span><span title="5 gold badges"><span class="badge1"></span><span class="badgecount">5</span></span><span title="35 silver badges"><span class="badge2"></span><span class="badgecount">35</span></span><span title="57 bronze badges"><span class="badge3"></span><span class="badgecount">57</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-03-11 23:33:21Z" class="relativetime">Mar 11 '12 at 23:33</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/802268/pdxhiker"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/47738d1deebdc397e348a02fecb10e86?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/802268/pdxhiker">pdxhiker</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">626</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="8 silver badges"><span class="badge2"></span><span class="badgecount">8</span></span><span title="21 bronze badges"><span class="badge3"></span><span class="badgecount">21</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-9659995" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+
+
+    <tr id="comment-32268294" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Thanks. this works!</span>
+                    &ndash;&nbsp;<a href="/users/1522257/dao-lam"
+                       title="726 reputation"
+                       class="comment-user">Dao Lam</a>
+                <span class="comment-date" dir="ltr"><span title="2014-01-27 22:55:16Z" class="relativetime-clean">Jan 27 '14 at 22:55</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-38408657" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">-pthread also works with gcc</span>
+                    &ndash;&nbsp;<a href="/users/3345302/sjain"
+                       title="2056 reputation"
+                       class="comment-user">SJain</a>
+                <span class="comment-date" dir="ltr"><span title="2014-07-15 10:16:37Z" class="relativetime-clean">Jul 15 '14 at 10:16</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-50756241" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">wrong information! <code>-lpthread</code> is not an &quot;option&quot;, it specifies a library.</span>
+		            &ndash;&nbsp;<span class="comment-user">user1709175</span>
+                <span class="comment-date" dir="ltr"><span title="2015-07-13 17:32:38Z" class="relativetime-clean">Jul 13 '15 at 17:32</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-9659995" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+
+  
+<a name="10052001"></a>
+<div id="answer-10052001" class="answer" data-answerid="10052001"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="10052001">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">2</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>you need only Add "pthread"  in  proprieties=>C/C++ build=>GCC C++ Linker=>Libraries=> top part "Libraries(-l)".
+thats it </p>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/10052001" title="short permalink to this answer" class="short-link" id="link-post-10052001">share</a><span class="lsep">|</span><a href="/posts/10052001/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-04-07 05:16:19Z" class="relativetime">Apr 7 '12 at 5:16</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/837489/sam"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/R6leD.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/837489/sam">sam</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">492</span><span title="7 silver badges"><span class="badge2"></span><span class="badgecount">7</span></span><span title="17 bronze badges"><span class="badge3"></span><span class="badgecount">17</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-10052001" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-10052001" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+
+  
+<a name="33325389"></a>
+<div id="answer-33325389" class="answer" data-answerid="33325389"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="33325389">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>For Linux use:</p>
+
+<pre><code>gcc -pthread -o term term.c
+</code></pre>
+
+<p><strong>-pthread</strong> tells the compiler to link in the pthread library as well as configure the compilation for threads.</p>
+
+<p>Using the <strong>-lpthread</strong> option only causes the pthread library to be linked - the pre-defined macros don't get defined.</p>
+
+<p>Bottom line: you should use the <strong>-pthread</strong> option.</p>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/33325389" title="short permalink to this answer" class="short-link" id="link-post-33325389">share</a><span class="lsep">|</span><a href="/posts/33325389/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2015-10-25 01:58:12Z" class="relativetime">Oct 25 '15 at 1:58</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/3719699/abby"><div class="gravatar-wrapper-32"><img src="https://graph.facebook.com/100003296268020/picture?type=large" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/3719699/abby">abby</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">343</span><span title="2 silver badges"><span class="badge2"></span><span class="badgecount">2</span></span><span title="7 bronze badges"><span class="badge3"></span><span class="badgecount">7</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-33325389" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-33325389" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+
+  
+<a name="14538008"></a>
+<div id="answer-14538008" class="answer" data-answerid="14538008"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="14538008">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>In Anjuta, go to the Build menu, then Configure Project. 
+In the Configure Options box, add:</p>
+
+<pre><code>LDFLAGS='-lpthread'
+</code></pre>
+
+<p>Hope it'll help somebody too...</p>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/14538008" title="short permalink to this answer" class="short-link" id="link-post-14538008">share</a><span class="lsep">|</span><a href="/posts/14538008/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2013-01-26 14:46:00Z" class="relativetime">Jan 26 '13 at 14:46</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/1429387/naxa"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/LVOVA.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/1429387/naxa">naXa</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">3,079</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="24 silver badges"><span class="badge2"></span><span class="badgecount">24</span></span><span title="48 bronze badges"><span class="badge3"></span><span class="badgecount">48</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-14538008" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-14538008" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+
+  
+<a name="17442077"></a>
+<div id="answer-17442077" class="answer" data-answerid="17442077"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="17442077">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Sometimes, if you use multiple library, check the library dependency.
+(e.g. -lpthread -lSDL... &lt;==> ... -lSDL -lpthread)</p>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/17442077" title="short permalink to this answer" class="short-link" id="link-post-17442077">share</a><span class="lsep">|</span><a href="/posts/17442077/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-07-03 07:27:04Z" class="relativetime">Jul 3 '13 at 7:27</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/1793997/user1793997"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/f50ae885038583662a5aeabc4a7c9fcc?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/1793997/user1793997">user1793997</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">29</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="6 bronze badges"><span class="badge3"></span><span class="badgecount">6</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-17442077" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-17442077" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+				    <div class="question-status">
+        <h2>                    <b>protected</b> by <a href="/users/-1/community">Community</a><span class="mod-flair" title="moderator">&#9830;</span> <span dir="ltr"><span title="2011-10-11 16:15:39Z" class="relativetime">Oct 11 '11 at 16:15</span></span>
+</h2>
+        <p>
+Thank you for your interest in this question. 
+Because it has attracted low-quality or spam answers that had to be removed, posting an answer now requires 10 <a href="/help/whats-reputation">reputation</a> on this site.
+<br /><br />
+Would you like to answer one of these <a href="/unanswered?fromProtectedNotice=true">unanswered questions</a> instead?
+</p>
+    </div>
+
+
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you&#39;re looking for?							Browse other questions tagged <a href="/questions/tagged/c" class="post-tag" title="show questions tagged &#39;c&#39;" rel="tag">c</a> <a href="/questions/tagged/linux" class="post-tag" title="show questions tagged &#39;linux&#39;" rel="tag">linux</a> <a href="/questions/tagged/multithreading" class="post-tag" title="show questions tagged &#39;multithreading&#39;" rel="tag">multithreading</a> <a href="/questions/tagged/pthreads" class="post-tag" title="show questions tagged &#39;pthreads&#39;" rel="tag">pthreads</a>  or <a href="/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2009-11-02 18:40:52Z"><b>6 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>215452 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="?lastactivity" class="lastactivity-link" title="2015-10-25 01:58:12Z">3 months ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </table>
+			    </div>
+						
+			<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1753563276",[5,17,2221]).setZone(45); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1753563276">
+            </div>
+        <div id="hireme">
+            <script>
+;var _extends=Object.assign||function(n){for(var i,r,t=1;t<arguments.length;t++){i=arguments[t];for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(n[r]=i[r])}return n};(function(n){function f(){return(new Date).getTime()}function rt(n,t){return n.split(/\&/g).reduce(function(n,t){var i=t.split("=");return n[v(i[0])]=v(i[1]),n},t||{})}function ut(n,t){return Object.keys(n).filter(function(n){return t.indexOf(n)!==-1}).map(function(t){return u(t)+"="+u(n[t])}).join("&")}function y(n){return i.querySelectorAll(n)}function r(n){return i.querySelector(n)}function p(n,t,r){var u=i.createElement("script"),e="onreadystatechange",o="onload",f="readyState",s=!1;u.async=!0;u.src=n;typeof t=="function"&&(u[o]=u[e]=function(){s||u[f]&&u[f]!=="loaded"&&u[f]!=="complete"||(s=!0,typeof t=="function"&&t(u),u[o]=u[e]=null,r&&u.parentNode.removeChild(u))});nt.appendChild(u)}function w(n){var t=i.createElement("link");t.type="text/css";t.rel="stylesheet";t.href=n;tt.appendChild(t)}function ft(){return[].map.call(y(".post-taglist .post-tag"),function(n){return n.innerText}).join(";")||null}function et(){var n=t.StackExchange,i="options",r="user";return n&&n[i]&&n[i][r]&&n[i][r].accountId}function ot(n){var t,i;return n=rt(s.hash?s.hash.substr(1):"",n||{}),t=n.ac||n.accountId||et(),t&&(n.ac=t),n.tags||(i=ft(),i&&(n.tags=i)),n}function b(n){return n.innerHTML.replace(/\s+$/g,"")}function st(n,t,i,u){var c=r(n);if(c===null)return function(){};var h=null,s=null,l=f(),a=function a(){b(c)?(o(h),u(!1,f()-l)):s=e(a,t)};return s=e(a,t),i&&(h=e(function(){o(s);u(!0,f()-l)},i)),function(){o(s);o(h)}}function ht(){var t="careers1",i="careers3",u=!d()||r("#careersadsdoublehigh"),f=u?1:2,n=[f+"=hireme"];return r("#"+t)&&n.push("5="+t),r("#"+i)&&n.push("6="+i),n.join("&")}function k(n,i){var r=ot(_extends({},g,{zones:ht()})),u,e;n&&(r.azt=1);i&&(r.lw=i);typeof t.innerWidth=="number"&&(r.bw=t.innerWidth);u=["zones","ip","ac","eng","prov","tags","theme","at","remote","seed","lw","azt","sysadmin","bw","nocpm"];e=l+"?"+ut(r,u);c=f();p(e)}function ct(n){function h(){u.forEach(w);e.forEach(function(n){lt(n,i[n],s,o)});typeof t.clc_after_load=="function"&&t.clc_after_load()}var i=n.cr,r=n.h,u=n.st,e=Object.keys(i),o=c?f()-c:0,s="//"+r+"/ct";h()}function lt(n,t,i,f){var h=t.cl,c=t.cn,o=t.an,l=t.utm,s=(h||[]).join(" "),e=r("#"+n);e&&(s&&(e.className+=" "+s),e.innerHTML=c.replace("&pt=0","&pt="+(f||0)),e.onmousedown=function(n){for(var t=n.target,r,f,s;t.tagName!=="A"&&t!==e;)t=t.parentNode;t!==e&&(r=[],o&&r.push("an="+o),f=[].filter.call(t.attributes,function(n){return/^data-/.test(n.name)}),f.length>0&&f.forEach(function(n){var t=n.name.replace(/^data-/,"");r.push(u(t)+"="+u(n.value))}),r.push("utm="+u(it+l)),s="",r.length>0&&(s="?"+r.join("&")),t.href=i+s)})}function d(){return y(h).length>0}function at(n){var t=i.createElement("a");return t.href=n,t.host}function vt(){var t,n;d()?(n=st(h,20,t,function(n,t){k(n,t)}),e(function(){var u=r(h),t;b(u)||(u.parentNode.removeChild(u),typeof n=="function"&&n(),t=i.createElement("img"),t.src="//"+at(l)+"/to.gif",t.style.display="none",i.body.appendChild(t))},2e3)):k()}var l=n.u,a=n.o,g=a===undefined?{}:a,t=window,s=t.location,u=t.encodeURIComponent,v=t.decodeURIComponent,i=t.document,nt=i.body,tt=i.getElementsByTagName("head")[0],e=t.setTimeout,o=t.clearTimeout,it="&utm_source="+s.hostname+"&utm_medium=ad&utm_campaign=",h="#sidebar [id^=adzerk].everyonelovesstackoverflow",c=0;t.clc={init:ct,load:vt,ls:p,as:w}}).call(null, {"u":"//clc.stackoverflow.com/p.js"});var allowedHosts=["stackoverflow.com","serverfault.com"];(allowedHosts[0]==="*"||allowedHosts.indexOf(location.hostname)!==-1)&&window.clc.load();            </script>
+        </div>
+			<div style="margin-bottom: 10px;">
+        
+
+<style type="text/css">
+#newsletter-ad {
+    width: 270px;
+    height: 250px;
+    overflow: hidden;
+    background: url('//cdn.sstatic.net/stackoverflow/img/newsletter-ad.png?v=3');
+    padding: 0 15px 0 15px;
+}
+#newsletter-ad-header {
+    margin-top: 60px;
+}
+#newsletter-ad ul {
+    margin: 1em 0 1em 1.5em;
+}
+#newsletter-ad ul li {
+    margin-bottom: 5px;
+}
+#newsletter-signup-container {
+    text-align: center;
+}
+#newsletter-preview-container {
+    margin-top: 10px;
+    text-align: center;
+}
+#newsletter-email-input {
+    width: 200px;
+}
+</style>
+
+<script>
+    StackExchange.ready(function () {
+        StackExchange.newsletterAd.init();
+    });
+</script>
+
+<div id="newsletter-ad">
+        <p id="newsletter-ad-header">Get the <b>weekly newsletter!</b> In it, you&#39;ll get:</p>
+        <ul>
+            <li>The week&#39;s top questions and answers</li>
+            <li>Important community announcements</li>
+            <li>Questions that need answers</li>
+        </ul>
+    <div id="newsletter-signup-container"><input id="newsletter-signup" type="button" value="Sign up for the newsletter" /></div>
+    <p id="newsletter-preview-container">see an <a href="//stackexchange.com/newsletters/newsletter?site=stackoverflow.com" id="newsletter-preview">example newsletter</a></p>
+    <div class="dno">
+        
+<p class="privacy-policy-agreement">
+By subscribing, you agree to the <a href='http://stackexchange.com/legal/privacy-policy' target='_blank'>privacy policy</a> and <a href='http://stackexchange.com/legal/terms-of-service' target='_blank'>terms of service</a>.</p>
+<input type="hidden" name="legalLinksShown" value="1" />
+    </div>
+</div>
+
+    </div>  
+    
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+	<a href="/q/9253200" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">9</div>
+	</a>
+	<a href="/questions/9253200/undefined-reference-to-pthread-create" class="question-hyperlink">Undefined reference to &#39;pthread_create&#39;</a>
+</div><div class="spacer">
+	<a href="/q/17264984" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">3</div>
+	</a>
+	<a href="/questions/17264984/undefined-reference-to-pthread-create" class="question-hyperlink">undefined reference to `pthread_create&#39;</a>
+</div><div class="spacer">
+	<a href="/q/15115260" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">3</div>
+	</a>
+	<a href="/questions/15115260/pthread-library-undefined-reference" class="question-hyperlink">pthread library undefined reference</a>
+</div><div class="spacer">
+	<a href="/q/5854787" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="/questions/5854787/undefined-reference-to-pthread-create-in-linux-c-programming" class="question-hyperlink">undefined reference to pthread_create in linux (c programming)</a>
+</div><div class="spacer">
+	<a href="/q/13706552" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="/questions/13706552/undefined-reference-for-pthread-function-in-c" class="question-hyperlink">Undefined Reference for Pthread function in C</a>
+</div><div class="spacer">
+	<a href="/q/13789687" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">-1</div>
+	</a>
+	<a href="/questions/13789687/lpthread-linking-error" class="question-hyperlink">-lpthread linking error</a>
+</div><div class="spacer">
+	<a href="/q/33027913" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="/questions/33027913/c-code-compiles-on-mac-but-not-on-linux" class="question-hyperlink">C++ code compiles on mac but not on linux</a>
+</div><div class="spacer">
+	<a href="/q/29318394" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">-1</div>
+	</a>
+	<a href="/questions/29318394/undefined-reference-to-pthread-create" class="question-hyperlink">Undefined reference to pthread_create()</a>
+</div><div class="spacer">
+	<a href="/q/34066517" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">-1</div>
+	</a>
+	<a href="/questions/34066517/g-ubuntu-multithreading-undefined-reference" class="question-hyperlink">g++ ubuntu multithreading undefined reference</a>
+</div><div class="spacer">
+	<a href="/q/25117940" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">8</div>
+	</a>
+	<a href="/questions/25117940/flow-of-program-execution-during-thread-creation" class="question-hyperlink">Flow of program execution during Thread creation</a>
+</div>					<div class="spacer more">
+				<a href="/questions/linked/1662909">see more linked questions…</a>
+			</div>
+	</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer">
+<a href="/q/5854787" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="/questions/5854787/undefined-reference-to-pthread-create-in-linux-c-programming" class="question-hyperlink">undefined reference to pthread_create in linux (c programming)</a>
+</div>
+<div class="spacer">
+<a href="/q/9253200" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">9
+    </div>
+</a><a href="/questions/9253200/undefined-reference-to-pthread-create" class="question-hyperlink">Undefined reference to &#39;pthread_create&#39;</a>
+</div>
+<div class="spacer">
+<a href="/q/9803145" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">5
+    </div>
+</a><a href="/questions/9803145/undefined-reference-to-pthread-create" class="question-hyperlink">Undefined reference to pthread_create</a>
+</div>
+<div class="spacer">
+<a href="/q/17264984" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">3
+    </div>
+</a><a href="/questions/17264984/undefined-reference-to-pthread-create" class="question-hyperlink">undefined reference to `pthread_create&#39;</a>
+</div>
+<div class="spacer">
+<a href="/q/20849215" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="/questions/20849215/seems-like-pthread-create-is-overriding-previous-threads" class="question-hyperlink">Seems like pthread_create is overriding previous threads</a>
+</div>
+<div class="spacer">
+<a href="/q/21243666" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="/questions/21243666/arg-in-pthread-create-in-linux" class="question-hyperlink">&#39;arg&#39; in pthread_create in linux</a>
+</div>
+<div class="spacer">
+<a href="/q/24859814" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="/questions/24859814/linux-application-get-crashed-in-pthread-create" class="question-hyperlink">Linux application get crashed in pthread_create()</a>
+</div>
+<div class="spacer">
+<a href="/q/29318394" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">-1
+    </div>
+</a><a href="/questions/29318394/undefined-reference-to-pthread-create" class="question-hyperlink">Undefined reference to pthread_create()</a>
+</div>
+<div class="spacer">
+<a href="/q/33177641" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="/questions/33177641/about-pthread-create-and-pthread-join" class="question-hyperlink">About pthread_create() and pthread_join()</a>
+</div>
+<div class="spacer">
+<a href="/q/34331519" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">2
+    </div>
+</a><a href="/questions/34331519/output-from-a-thread-created-using-pthread-create-is-not-getting-printed" class="question-hyperlink">Output from a thread created using pthread_create is not getting printed</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="//stackexchange.com/questions?tab=hot" 
+           class="js-gps-track" 
+           data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li >
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/62183/what-can-i-do-if-i-dont-like-the-proposed-research-subject-by-my-potential-sup" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What can I do, if I don&#39;t like the proposed research subject by my potential supervisor?
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/117797/replace-spaces-with-20" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Replace spaces with &#39;%20&#39;
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div><a href="http://aviation.stackexchange.com/questions/24573/is-it-possible-to-takeoff-on-an-elevated-short-field-by-falling" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it possible to takeoff on an elevated short field by &quot;falling&quot;?
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/289224/how-to-get-a-horizontal-line-that-is-aligned-at-the-bottom-of-a-fraction" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to get a horizontal line that is aligned at the bottom of a fraction?
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/115803/are-any-harry-potter-characters-completely-redeemed" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are any Harry Potter characters completely redeemed?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/116163/does-voldemort-know-about-the-invisibility-cloak" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Does Voldemort know about the Invisibility Cloak?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-mechanics" title="Motor Vehicle Maintenance &amp; Repair Stack Exchange"></div><a href="http://mechanics.stackexchange.com/questions/25235/what-is-a-head" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:224 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is a head?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/289233/draw-a-line-on-a-given-page" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    draw a line on a given page #
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-lifehacks" title="Lifehacks Stack Exchange"></div><a href="http://lifehacks.stackexchange.com/questions/10767/how-can-i-humidify-a-room-without-a-humidifier" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:593 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can I humidify a room without a humidifier?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/257297/how-does-yes-write-to-file-so-quickly" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How does `yes` write to file so quickly?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="http://travel.stackexchange.com/questions/61702/i-am-travelling-with-a-medication-that-needs-to-be-cool-at-all-times-will-the-a" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    I am travelling with a medication that needs to be cool at all times, will the airline allow me to use the onboard chiller?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-askubuntu" title="Ask Ubuntu"></div><a href="http://askubuntu.com/questions/724991/unsupported-ubuntus-is-it-safe-to-continue-with-them" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:89 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Unsupported Ubuntus - is it safe to continue with them?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/34136/what-would-the-chemical-make-up-of-a-silicon-based-life-form-be-like" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What would the chemical make-up of a silicon based life-form be like?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-money" title="Personal Finance &amp; Money Stack Exchange"></div><a href="http://money.stackexchange.com/questions/58487/whats-the-difference-between-stocks-and-shares" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:93 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What&#39;s the difference between stocks and shares?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/34064/how-could-a-law-exist-that-allows-victims-to-be-arrested-for-the-crime-against-t" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How could a law exist that allows victims to be arrested for the crime against them?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/257343/a-gzip-process-regularly-runs-on-my-system-how-do-i-figure-out-what-is-triggeri" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    A gzip process regularly runs on my system, how do I figure out what is triggering it?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-superuser" title="Super User"></div><a href="http://superuser.com/questions/1030800/how-can-a-files-size-on-disk-be-0-bytes-when-theres-data-in-it" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can a file&#39;s size on disk be 0 bytes when there&#39;s data in it?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/213224/why-such-low-voltage-across-my-filtered-half-wave-rectifier" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why such low voltage across my filtered half-wave rectifier?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/116096/how-was-e%c3%a4rendils-ship-vingilot-able-to-fly" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How was E&#228;rendil&#39;s ship Vingilot able to fly?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/62194/cant-and-dont-in-a-mathematical-paper" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    &quot;Can&#39;t&quot; and &quot;don&#39;t&quot; in a mathematical paper
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-law" title="Law Stack Exchange"></div><a href="http://law.stackexchange.com/questions/6579/under-which-legislation-was-the-nyc-travel-ban-during-the-jan-2016-blizzard-perm" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:617 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Under which legislation was the NYC travel ban during the Jan 2016 blizzard permitted?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-chemistry" title="Chemistry Stack Exchange"></div><a href="http://chemistry.stackexchange.com/questions/44150/how-to-calculate-the-concentration-h3o-in-a-solution-with-ph-6-99" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:431 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to calculate the concentration H3O+ in a solution with pH=6.99?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-puzzling" title="Puzzling Stack Exchange"></div><a href="http://puzzling.stackexchange.com/questions/25731/what-am-i-i-always-play-fair" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:559 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What am I? I always play fair
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div><a href="http://physics.stackexchange.com/questions/230703/do-we-know-why-there-is-a-speed-limit-in-our-universe" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Do we know why there is a speed limit in our universe?
+                </a>
+
+            </li>
+    </ul>
+
+        <a href="#" 
+           class="show-more js-show-more js-gps-track" 
+           data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">
+            more hot questions
+        </a>
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="/feeds/question/1662909" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/1662909/ivc/8313');});
+</script>
+<noscript>
+    <div><img src="/posts/1662909/ivc/8313" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">lang-c</div></div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="/tour">tour</a>
+                    <a href="/help">help</a>
+                    <a href="http://blog.stackoverflow.com?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com">chat</a>
+                    <a href="http://data.stackexchange.com">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick='StackExchange.switchMobile("on")'>mobile</a>
+                    <b><a href="/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tr>
+            <th colspan=3>
+                Technology
+            </th>
+            <th >
+                Life / Arts
+            </th>
+            <th >
+                Culture / Recreation
+            </th>
+            <th >
+                Science
+            </th>
+            <th >
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="//stackoverflow.com" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="//serverfault.com" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="//superuser.com" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="//webapps.stackexchange.com" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="//askubuntu.com" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="//webmasters.stackexchange.com" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="//gamedev.stackexchange.com" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="//tex.stackexchange.com" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="//programmers.stackexchange.com" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="//unix.stackexchange.com" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="//apple.stackexchange.com" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="//wordpress.stackexchange.com" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="//gis.stackexchange.com" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="//electronics.stackexchange.com" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="//android.stackexchange.com" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="//security.stackexchange.com" title="information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="//dba.stackexchange.com" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="//drupal.stackexchange.com" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="//sharepoint.stackexchange.com" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="//ux.stackexchange.com" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="//mathematica.stackexchange.com" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="//salesforce.stackexchange.com" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="//expressionengine.stackexchange.com" title="administrators, end users, developers and designers for ExpressionEngine&#174; CMS">ExpressionEngine&#174; Answers</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="//photo.stackexchange.com" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="//scifi.stackexchange.com" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="//graphicdesign.stackexchange.com" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="//movies.stackexchange.com" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="//cooking.stackexchange.com" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="//diy.stackexchange.com" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="//money.stackexchange.com" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="//academia.stackexchange.com" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (9)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="//english.stackexchange.com" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="//skeptics.stackexchange.com" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="//judaism.stackexchange.com" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="//travel.stackexchange.com" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="//christianity.stackexchange.com" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="//gaming.stackexchange.com" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="//bicycles.stackexchange.com" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="//rpg.stackexchange.com" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="//math.stackexchange.com" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="//stats.stackexchange.com" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="//cstheory.stackexchange.com" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="//physics.stackexchange.com" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="//mathoverflow.net" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="//chemistry.stackexchange.com" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="//biology.stackexchange.com" title="biology researchers, academics, and students">Biology</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (5)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="//stackapps.com" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="//meta.stackexchange.com" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="//area51.stackexchange.com" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="//careers.stackoverflow.com">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo &#169; 2016 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2016.1.24.3209
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () {
+        ados_setKeywords('c,linux,multithreading,pthreads');; ados_load();
+    });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');
+                        ga('set', 'dimension2', '|c|linux|multithreading|pthreads|');         ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>
+            
+    </body>
+</html>

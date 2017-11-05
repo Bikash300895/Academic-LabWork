@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1453743319 source:/home/jakaria/LAB6/pthread2/main.c
+	<pthread.h>
+	<stdio.h>
+	<stdlib.h>
+
+1509734074 source:f:\study\cse 32\cse 3202\lab-8\pthread2\main.c
+	<pthread.h>
+	<stdio.h>
+	<stdlib.h>
+
