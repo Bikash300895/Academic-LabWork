@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1449210874 source:e:\document\programming problem\algorithm\graph\bfs\main.cpp
+	<iostream>
+	<vector>
+	<queue>
+

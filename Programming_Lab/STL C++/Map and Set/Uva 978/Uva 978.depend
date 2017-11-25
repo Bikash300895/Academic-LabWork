@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1449363695 source:e:\document\programming problem\stl c++\map and set\uva 978\main.cpp
+	<iostream>
+	<map>
+	<queue>
+	<set>
+	<vector>
+

@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1462391443 source:c:\users\bikash\documents\c++ projects\inesrt iterator\main.cpp
+	<iostream>
+	<algorithm>
+	<list>
+	<vector>
+	<deque>
+	<set>
+

@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1460404031 source:c:\users\bikash\documents\c++ projects\postfix evalustion\main.cpp
+	<iostream>
+	<string.h>
+	<stdio.h>
+	<ctype.h>
+

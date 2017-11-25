@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1448140026 source:e:\document\programming problem\algorithm\greedy\uva 410\main.cpp
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<vector>
+

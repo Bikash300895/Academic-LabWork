@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1460404155 source:c:\users\bikash\documents\c++ projects\prefix to postfix to evaluation\main.cpp
+	<iostream>
+	<stdio.h>
+	<cstring>
+	<ctype.h>
+

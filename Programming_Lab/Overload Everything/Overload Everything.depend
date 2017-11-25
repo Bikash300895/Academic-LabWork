@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1461252095 source:e:\program\codeblock\overload everything\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	<sstream>
+

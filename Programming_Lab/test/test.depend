@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1462643309 source:e:\program\codeblock\test\main.cpp
+	<iostream>
+	<fstream>
+
+1463007231 source:e:\program\c++\test\main.cpp
+	<iostream>
+	<map>
+	<string>
+	<list>
+	<set>
+	<stack>
+	<queue>
+
+1466019737 source:d:\program\c++\test\main.cpp
+	<iostream>
+	<stack>
+	<limits.h>
+

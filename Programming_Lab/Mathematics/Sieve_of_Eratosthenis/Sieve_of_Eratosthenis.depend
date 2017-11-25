@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1444984975 source:e:\document\programming problem\algorithm\sieve_of_eratosthenis\main.cpp
+	<iostream>
+	<math.h>
+

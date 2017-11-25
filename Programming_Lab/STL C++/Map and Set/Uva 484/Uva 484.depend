@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1449365104 source:e:\document\programming problem\stl c++\map and set\uva 484\main.cpp
+	<iostream>
+	<map>
+	<vector>
+	<cstdio>
+

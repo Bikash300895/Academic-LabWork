@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1462472556 source:c:\users\bikash\documents\c++ projects\remove3.1\main.cpp
+	<iostream>
+	<set>
+	<algorithm>
+	<iterator>
+

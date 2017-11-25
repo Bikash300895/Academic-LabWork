@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1450546553 source:e:\document\programming problem\algorithm\dynamic programming\box sraciking\main.cpp
+	<iostream>
+	<stdio.h>
+	<algorithm>
+	<stdlib.h>
+	<vector>
+

@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1461145234 source:c:\users\bikash\documents\c++ projects\quick sort\main.cpp
+	<iostream>
+	<algorithm>
+

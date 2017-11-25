@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1463727968 source:e:\program\c++\lcs\main.cpp
+	<iostream>
+	<cstring>
+	<algorithm>
+

@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1460273971 source:c:\users\bikash\documents\uva\prefix_to_postfix\main.cpp
+	<iostream>
+	<cstdio>
+

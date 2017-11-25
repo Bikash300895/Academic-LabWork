@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1463015418 source:e:\program\c++\periority_queue\main.cpp
+	<iostream>
+	<list>
+	<queue>
+	<stack>
+	<string>
+	<iomanip>
+
