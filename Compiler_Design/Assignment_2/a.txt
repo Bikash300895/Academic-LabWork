@@ -1,6 +1,6 @@
 void start()
 {
-int  a ,  b , c;
+int  aE9 ,  b9 , c;
 
 c <- 5;
 

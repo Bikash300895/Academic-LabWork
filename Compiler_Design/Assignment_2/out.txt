@@ -1,0 +1,10 @@
+
+valid declaration
+Variable not declared
+
+value of expression: 9
+
+value of expression: 23
+Variable not declared
+
+successful compilation

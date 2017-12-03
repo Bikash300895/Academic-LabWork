@@ -34,15 +34,18 @@
 "GT"	{ return GT; }
 "LT"	{ return LT; }
 
-[a-z]	{
-		yylval = *yytext - 'a';
-		return	VAR;
-	}
+
 [,;]	{ return *yytext; }
 
 "void start"	{ return VOIDMAIN; }
 
 [ \t\n]*	;
+
+[a-zA-Z][a-zA-Z0-9]*	{
+		yylval = *yytext;
+		//printf("%s\n", yytext);
+		return	VAR;
+	}
 
 .	{
 		yyerror("Unknown Character.\n");
