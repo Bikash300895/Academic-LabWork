@@ -15,21 +15,21 @@
 "float"	{ return FLOAT; }
 "char"	{ return CHAR; }
 
-[0-9]+	{ 
+[0-9]+	{
 		yylval = atoi(yytext);
 		return NUM;
 	}
-	
-"LP"	{ return LP; }
-"RP"	{ return RP; }
-"LB"	{ return LB; }
-"RB"	{ return RB; }
+
+"("	{ return LP; }
+")"	{ return RP; }
+"{"	{ return LB; }
+"}"	{ return RB; }
 "cm"	{ return CM; }
 "sm"	{ return SM; }
-"++"	{ return PLUS; }
-"--"	{ return MINUS; }
-"**"	{ return MULT; }
-"//"	{ return DIV; }
+"+"	{ return PLUS; }
+"-"	{ return MINUS; }
+"*"	{ return MULT; }
+"/"	{ return DIV; }
 "<-"	{ return ASSIGN;  }
 "GT"	{ return GT; }
 "LT"	{ return LT; }
@@ -40,7 +40,7 @@
 	}
 [,;]	{ return *yytext; }
 
-"void main_function"	{ return VOIDMAIN; }
+"void start"	{ return VOIDMAIN; }
 
 [ \t\n]*	;
 
@@ -58,4 +58,3 @@ int main()
 	yyparse();
 
 }
-
