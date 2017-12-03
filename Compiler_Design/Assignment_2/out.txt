@@ -1,0 +1,12 @@
+Declare duplication
+
+valid declaration
+Variable not declared
+
+value of expression: 9
+
+value of expression: 23
+
+Value of the variable: 9	
+
+successful compilation

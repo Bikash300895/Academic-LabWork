@@ -1,0 +1,12 @@
+void main_function LP   RP
+LB
+int  a ,  b , a ;
+
+e <- 5;
+
+1 ++ 8 // 4 ** 4 ;
+18 -- 15 ++ 8 // 2 ** 5 ; 
+
+a <-  1 ++ 8 // 4 ** 4;
+	
+RB
