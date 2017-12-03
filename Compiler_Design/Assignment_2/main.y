@@ -1,8 +1,13 @@
 /* C Declarations */
 
 %{
-	#include<stdio.h>
+	#include <stdio.h>
+	#include <string.h>
 	int sym[26],store[26], flag[26];
+	char variables_names[100][100];
+	int variable_values[100];
+	int total_varible = 0;
+
 %}
 
 /* BISON Declarations */
@@ -45,6 +50,13 @@ ID1  : ID1 ',' VAR	{
 				// } else {
 				// 	flag[$3]=1;
 				// }
+
+				printf("%d\n", total_varible);
+				//printf("%s\n", string_var_name);
+				//strcpy(variables_names[total_varible] ,flag[$3]);
+				total_varible++;
+				printf("Hello World!2\n");
+
 			}
 
      |VAR	{
@@ -54,6 +66,12 @@ ID1  : ID1 ',' VAR	{
 				// } else {
 				// 	flag[$1]=1;
 				// }
+
+				// strcpy(variables_names[total_varible] ,flag[$3]);
+				// total_varible++;
+				// printf("%d\n", total_varible);
+				// printf("%s\n", &variables_names[0]);
+				printf("Hello World!\n");
 			}
      ;
 

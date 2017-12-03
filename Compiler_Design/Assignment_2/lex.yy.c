@@ -403,10 +403,12 @@ char *yytext;
 #line 4 "main.l"
 	#include<stdio.h>
 	#include "main.tab.h"
+	#include <string.h>
 	#include<stdlib.h>
-	extern int yylval;
+	//extern int yylval;
+	extern int string_var_name;
 /*RE and Action*/
-#line 410 "lex.yy.c"
+#line 412 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -557,10 +559,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 12 "main.l"
+#line 14 "main.l"
 
 
-#line 564 "lex.yy.c"
+#line 566 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -645,22 +647,22 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 14 "main.l"
+#line 16 "main.l"
 { return INT; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 15 "main.l"
+#line 17 "main.l"
 { return FLOAT; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 16 "main.l"
+#line 18 "main.l"
 { return CHAR; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 18 "main.l"
+#line 20 "main.l"
 {
 		yylval = atoi(yytext);
 		return NUM;
@@ -668,106 +670,107 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 23 "main.l"
+#line 25 "main.l"
 { return LP; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 24 "main.l"
+#line 26 "main.l"
 { return RP; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 25 "main.l"
+#line 27 "main.l"
 { return LB; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 26 "main.l"
+#line 28 "main.l"
 { return RB; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 27 "main.l"
+#line 29 "main.l"
 { return CM; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 28 "main.l"
+#line 30 "main.l"
 { return SM; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 29 "main.l"
+#line 31 "main.l"
 { return PLUS; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 30 "main.l"
+#line 32 "main.l"
 { return MINUS; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 31 "main.l"
+#line 33 "main.l"
 { return MULT; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 32 "main.l"
+#line 34 "main.l"
 { return DIV; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 33 "main.l"
+#line 35 "main.l"
 { return ASSIGN;  }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 34 "main.l"
+#line 36 "main.l"
 { return GT; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 35 "main.l"
+#line 37 "main.l"
 { return LT; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 38 "main.l"
+#line 40 "main.l"
 { return *yytext; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 40 "main.l"
+#line 42 "main.l"
 { return VOIDMAIN; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 42 "main.l"
+#line 44 "main.l"
 ;
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 44 "main.l"
+#line 46 "main.l"
 {
-		yylval = *yytext;
-		//printf("%s\n", yytext);
+		string_var_name = 0;
+		//strcpy(string_var_name, "name");
+		//printf("%s\n", string_var_name);
 		return	VAR;
 	}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 50 "main.l"
+#line 53 "main.l"
 {
 		yyerror("Unknown Character.\n");
 	}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 53 "main.l"
+#line 56 "main.l"
 ECHO;
 	YY_BREAK
-#line 771 "lex.yy.c"
+#line 774 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1653,7 +1656,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 53 "main.l"
+#line 56 "main.l"
 
 
 /* user subroutines */

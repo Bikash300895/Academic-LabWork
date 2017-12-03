@@ -70,12 +70,17 @@
 /* Line 189 of yacc.c  */
 #line 3 "main.y"
 
-	#include<stdio.h>
+	#include <stdio.h>
+	#include <string.h>
 	int sym[26],store[26], flag[26];
+	char variables_names[100][100];
+	int variable_values[100];
+	int total_varible = 0;
+
 
 
 /* Line 189 of yacc.c  */
-#line 79 "main.tab.c"
+#line 84 "main.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -141,7 +146,7 @@ typedef int YYSTYPE;
 
 
 /* Line 264 of yacc.c  */
-#line 145 "main.tab.c"
+#line 150 "main.tab.c"
 
 #ifdef short
 # undef short
@@ -433,9 +438,9 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    21,    21,    24,    26,    28,    31,    34,    36,    38,
-      41,    50,    60,    62,    64,    75,    77,    79,    81,    83,
-      85,    96,    98,   100
+       0,    26,    26,    29,    31,    33,    36,    39,    41,    43,
+      46,    62,    78,    80,    82,    93,    95,    97,    99,   101,
+     103,   114,   116,   118
 };
 #endif
 
@@ -1362,21 +1367,21 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 21 "main.y"
+#line 26 "main.y"
     { printf("\nsuccessful compilation\n"); ;}
     break;
 
   case 6:
 
 /* Line 1455 of yacc.c  */
-#line 31 "main.y"
+#line 36 "main.y"
     { printf("\nvalid declaration\n"); ;}
     break;
 
   case 10:
 
 /* Line 1455 of yacc.c  */
-#line 41 "main.y"
+#line 46 "main.y"
     {
 				// add your code here
 				// if(flag[$3]==1){
@@ -1384,13 +1389,20 @@ yyreduce:
 				// } else {
 				// 	flag[$3]=1;
 				// }
+
+				printf("%d\n", total_varible);
+				//printf("%s\n", string_var_name);
+				//strcpy(variables_names[total_varible] ,flag[$3]);
+				total_varible++;
+				printf("Hello World!2\n");
+
 			;}
     break;
 
   case 11:
 
 /* Line 1455 of yacc.c  */
-#line 50 "main.y"
+#line 62 "main.y"
     {
 				// add your code here
 				// if(flag[$1]==1){
@@ -1398,20 +1410,26 @@ yyreduce:
 				// } else {
 				// 	flag[$1]=1;
 				// }
+
+				// strcpy(variables_names[total_varible] ,flag[$3]);
+				// total_varible++;
+				// printf("%d\n", total_varible);
+				// printf("%s\n", &variables_names[0]);
+				printf("Hello World!\n");
 			;}
     break;
 
   case 13:
 
 /* Line 1455 of yacc.c  */
-#line 62 "main.y"
+#line 80 "main.y"
     { printf("\nvalue of expression: %d\n", (yyvsp[(1) - (2)])); ;}
     break;
 
   case 14:
 
 /* Line 1455 of yacc.c  */
-#line 64 "main.y"
+#line 82 "main.y"
     {
         					if(flag[(yyvsp[(1) - (4)])]==1){
         						sym[(yyvsp[(1) - (4)])] = (yyvsp[(3) - (4)]);
@@ -1426,42 +1444,42 @@ yyreduce:
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 75 "main.y"
+#line 93 "main.y"
     { (yyval) = (yyvsp[(1) - (1)]); 	;}
     break;
 
   case 16:
 
 /* Line 1455 of yacc.c  */
-#line 77 "main.y"
+#line 95 "main.y"
     { (yyval) = sym[(yyvsp[(1) - (1)])]; ;}
     break;
 
   case 17:
 
 /* Line 1455 of yacc.c  */
-#line 79 "main.y"
+#line 97 "main.y"
     { (yyval) = (yyvsp[(1) - (3)]) + (yyvsp[(3) - (3)]); ;}
     break;
 
   case 18:
 
 /* Line 1455 of yacc.c  */
-#line 81 "main.y"
+#line 99 "main.y"
     { (yyval) = (yyvsp[(1) - (3)]) - (yyvsp[(3) - (3)]); ;}
     break;
 
   case 19:
 
 /* Line 1455 of yacc.c  */
-#line 83 "main.y"
+#line 101 "main.y"
     { (yyval) = (yyvsp[(1) - (3)]) * (yyvsp[(3) - (3)]); ;}
     break;
 
   case 20:
 
 /* Line 1455 of yacc.c  */
-#line 85 "main.y"
+#line 103 "main.y"
     { 	if((yyvsp[(3) - (3)]))
 				  		{
 				     			(yyval) = (yyvsp[(1) - (3)]) / (yyvsp[(3) - (3)]);
@@ -1477,28 +1495,28 @@ yyreduce:
   case 21:
 
 /* Line 1455 of yacc.c  */
-#line 96 "main.y"
+#line 114 "main.y"
     { (yyval) = (yyvsp[(1) - (3)]) < (yyvsp[(3) - (3)]); ;}
     break;
 
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 98 "main.y"
+#line 116 "main.y"
     { (yyval) = (yyvsp[(1) - (3)]) > (yyvsp[(3) - (3)]); ;}
     break;
 
   case 23:
 
 /* Line 1455 of yacc.c  */
-#line 100 "main.y"
+#line 118 "main.y"
     { (yyval) = (yyvsp[(2) - (3)]);	;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 1502 "main.tab.c"
+#line 1520 "main.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1710,7 +1728,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 102 "main.y"
+#line 120 "main.y"
 
 
 int yywrap()

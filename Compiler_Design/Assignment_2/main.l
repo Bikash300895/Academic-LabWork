@@ -3,8 +3,10 @@
 %{
 	#include<stdio.h>
 	#include "main.tab.h"
+	#include <string.h>
 	#include<stdlib.h>
-	extern int yylval;
+	//extern int yylval;
+	extern int string_var_name;
 %}
 
 /*RE and Action*/
@@ -42,8 +44,9 @@
 [ \t\n]*	;
 
 [a-zA-Z][a-zA-Z0-9]*	{
-		yylval = *yytext;
-		//printf("%s\n", yytext);
+		string_var_name = 0;
+		//strcpy(string_var_name, "name");
+		//printf("%s\n", string_var_name);
 		return	VAR;
 	}
 
