@@ -1,0 +1,11 @@
+
+valid declaration
+
+Value of the variable: 5	
+
+value of expression: 7
+condition value zero in IF block
+ inside for loop
+
+successful compilation
+syntax error

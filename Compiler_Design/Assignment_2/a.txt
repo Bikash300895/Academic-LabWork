@@ -1,0 +1,12 @@
+void start()
+{
+int  a ,  b , a ;
+
+e <-- 5;
+
+1 add 8 div 4 mul 4 ;
+18 sub 15 add 8 div 2 mul 5 ;
+
+a <--  1 add 8 div 4 mul 4;
+
+}
