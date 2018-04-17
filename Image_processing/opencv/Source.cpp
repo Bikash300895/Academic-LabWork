@@ -833,6 +833,342 @@ void histogram_equalization(){
 }
 
 
+
+float* histogram(Mat &img)
+{
+	
+	/*Mat n_k_mat = Mat::zeros(1, 256, CV_32FC1);
+	uchar *n_k = n_k_mat.ptr(0);*/
+
+	float n_k[256];
+	memset(n_k, 0.0, sizeof(n_k));
+
+	float p_k[256]; 
+	memset(p_k, 0.0, sizeof(p_k));
+
+	float cum_p_k[256];
+	memset(cum_p_k, 0.0, sizeof(cum_p_k));
+
+	int row, col;
+	row = img.size[0];
+	col = img.size[1];
+
+
+	//calculating n_k 
+
+	for (int i = 0; i < row; i++) {
+		// accessing image with row pointer
+		uchar *ptr = img.ptr(i);
+
+		for (int j = 0; j < col; j++) {
+			n_k[ptr[j]]++;
+		}
+	}
+
+	int mn = row * col;
+	double max = 0;
+	for (int i = 0; i < 256; i++) {
+		p_k[i] = double(n_k[i] / mn);
+
+		if (p_k[i] > max) {
+			max = p_k[i];
+		}
+	}
+
+	//calculating cumilative pk
+	for (int i = 0; i < 256; i++) {
+		for (int j = 0; j <= i; j++) {
+			cum_p_k[i] += p_k[j];
+		}
+	}
+
+	//creating histogram matrix
+
+	Mat hist;
+	hist.create(300, 256, CV_8UC1);
+	hist.setTo(0);
+
+	//plotting into histogram
+	for (int i = 0; i <256; i++) {
+		int line = int(300 * p_k[i] / max);
+		for (int j = 299; j >= 300 - line; j--) {
+			hist.at<uchar>(j, i) = 255;
+		}
+	}
+
+	//showing the histogram
+
+	imshow("Histogram", hist);
+	waitKey(0);
+
+	return cum_p_k;
+}
+
+
+void histogram_matching()
+{
+	Mat reference_image, target_image;
+	reference_image = imread("lena.jpg"); //Fig0316_a.tif
+	target_image = imread("Fig0316_b.tif");
+	cvtColor(reference_image, reference_image, CV_RGB2GRAY);
+	cvtColor(target_image, target_image, CV_RGB2GRAY);
+
+
+	float *ref_cum_p_k = histogram(reference_image);
+	float *tar_cum_p_k = histogram(target_image);
+
+	float ref_s[256], tar_s[256];
+
+	for (int i = 0; i < 256; i++) {
+		ref_s[i] = ref_cum_p_k[i] * 256;
+		tar_s[i] = tar_cum_p_k[i] * 256;
+	}
+
+	float M_G[256];
+	memset(M_G, 0.0, sizeof(M_G));
+
+	//for (int g1 = 0; g1 < 256; g1++) {
+	//	for (int g2 = 0; g2 < 256; g2++) {
+	//		if (ref_s[g1] >= tar_s[g2]) {
+	//			M_G[g1] = g2;
+	//		}
+	//	}
+	//}
+
+	for (int g1 = 0; g1 < 256; g1++) {
+		int min = 256;
+		for (int g2 = 0; g2 < 256; g2++) {
+			if (ref_s[g1] <= tar_s[g2] && tar_s[g2] < min) {
+				M_G[g1] = g2;
+				min = tar_s[g2];
+			}
+		}
+	}
+
+
+	for (int i = 0; i < reference_image.rows; i++) {
+		uchar* ptr = reference_image.ptr(i);
+		for (int j = 0; j < reference_image.cols; j++) {
+			ptr[j] = M_G[int(ptr[j])];
+			//reference_image.at<uchar>(i, j) = M_G[int(reference_image.at<uchar>(i, j))];
+		}
+	}
+
+	imshow("Reference Image", reference_image);
+	waitKey(0);
+
+	float *ref_cum_p_k_new = histogram(reference_image);
+
+	
+}
+
+
+
+Mat histogram_mat(Mat &img)
+{
+	
+	Mat n_k_mat = Mat::zeros(1, 256, CV_32FC1);
+	float *n_k = n_k_mat.ptr<float>(0);
+
+	Mat p_k_mat = Mat::zeros(1, 256, CV_32FC1);
+	float *p_k = n_k_mat.ptr<float>(0);
+
+	Mat cum_p_k_mat = Mat::zeros(1, 256, CV_32FC1);
+	float *cum_p_k = n_k_mat.ptr<float>(0);
+
+	//float n_k[256];
+	//memset(n_k, 0.0, sizeof(n_k));
+
+	//float p_k[256]; 
+	//memset(p_k, 0.0, sizeof(p_k));
+
+	//float cum_p_k[256];
+	//memset(cum_p_k, 0.0, sizeof(cum_p_k));
+
+	int row, col;
+	row = img.size[0];
+	col = img.size[1];
+
+
+	//calculating n_k 
+
+	for (int i = 0; i < row; i++) {
+		// accessing image with row pointer
+		uchar *ptr = img.ptr(i);
+
+		for (int j = 0; j < col; j++) {
+			n_k[ptr[j]]++;
+		}
+	}
+
+	int mn = row * col;
+	double max = 0;
+	for (int i = 0; i < 256; i++) {
+		p_k[i] = double(n_k[i] / mn);
+
+		if (p_k[i] > max) {
+			max = p_k[i];
+		}
+	}
+
+	//calculating cumilative pk
+	for (int i = 0; i < 256; i++) {
+		for (int j = 0; j <= i; j++) {
+			cum_p_k[i] += p_k[j];
+		}
+	}
+
+	//creating histogram matrix
+
+	Mat hist;
+	hist.create(300, 256, CV_8UC1);
+	hist.setTo(0);
+
+	//plotting into histogram
+	for (int i = 0; i <256; i++) {
+		int line = int(300 * p_k[i] / max);
+		for (int j = 299; j >= 300 - line; j--) {
+			hist.at<uchar>(j, i) = 255;
+		}
+	}
+
+	//showing the histogram
+
+	imshow("Histogram", hist);
+	waitKey(0);
+
+	return cum_p_k_mat;
+}
+
+
+void histogram_matching_mat()
+{
+	Mat reference_image, target_image;
+	reference_image = imread("lena.jpg"); //Fig0316_a.tif
+	target_image = imread("Fig0316_b.tif");
+	cvtColor(reference_image, reference_image, CV_RGB2GRAY);
+	cvtColor(target_image, target_image, CV_RGB2GRAY);
+
+	Mat ref_cum_p_k_mat = histogram_mat(reference_image);
+	float *ref_cum_p_k = ref_cum_p_k_mat.ptr<float>(0);
+
+	Mat tar_cum_p_k_mat = histogram_mat(target_image);
+	float *tar_cum_p_k = tar_cum_p_k_mat.ptr<float>(0);
+
+	float ref_s[256], tar_s[256];
+
+	for (int i = 0; i < 256; i++) {
+		ref_s[i] = ref_cum_p_k[i] * 256;
+		tar_s[i] = tar_cum_p_k[i] * 256;
+	}
+
+	float M_G[256];
+	memset(M_G, 0.0, sizeof(M_G));
+
+	//for (int g1 = 0; g1 < 256; g1++) {
+	//	for (int g2 = 0; g2 < 256; g2++) {
+	//		if (ref_s[g1] >= tar_s[g2]) {
+	//			M_G[g1] = g2;
+	//		}
+	//	}
+	//}
+
+	for (int g1 = 0; g1 < 256; g1++) {
+		int min = 256;
+		for (int g2 = 0; g2 < 256; g2++) {
+			if (ref_s[g1] <= tar_s[g2] && tar_s[g2] < min) {
+				M_G[g1] = g2;
+				min = tar_s[g2];
+			}
+		}
+	}
+
+
+	for (int i = 0; i < reference_image.rows; i++) {
+		uchar* ptr = reference_image.ptr(i);
+		for (int j = 0; j < reference_image.cols; j++) {
+			ptr[j] = M_G[int(ptr[j])];
+			//reference_image.at<uchar>(i, j) = M_G[int(reference_image.at<uchar>(i, j))];
+		}
+	}
+
+	imshow("Reference Image", reference_image);
+	waitKey(0);
+}
+
+
+void shapen()
+{
+	Mat img = imread("lena.jpg");
+	image_info(img);
+	cvtColor(img, img, CV_BGR2GRAY);
+	
+	imshow("lena", img);
+
+	int row = img.size[0];
+	int col = img.size[1];
+
+	// defining the kernel
+	float kernel_[9] = {-1, -1, -1,
+						 -1, 8, -1,
+						-1, -1, -1};
+	Mat kernel = Mat(3,3,CV_32F, kernel_);
+
+	// Applying the filter
+	Mat des;
+	filter2D(img, des, CV_32F, kernel, cv::Point(-1,-1));
+	imshow("filtered", des);
+
+	//Absolute des
+	Mat abs_des = cv::abs(des);
+	imshow("laplas absolute", abs_des);
+
+	//Normalization
+	Mat norm_des;
+	cv::normalize(des, norm_des, 0, 255, NORM_MINMAX, CV_8U);
+	imshow("normalized laplas", norm_des);
+
+	//shaped
+	Mat sharpen;
+	cv::addWeighted(img, 0.5, norm_des, 0.5, 0, sharpen);
+
+	Mat norm_sharpen;
+	cv::normalize(sharpen, norm_sharpen, 0, 255, NORM_MINMAX, CV_8U);
+	imshow("sharpen", norm_sharpen);
+
+
+	// Extra work::
+	//1
+	Mat box_1;
+	float box_filter_1[9] = {-1,-2,-1,
+							0, 0, 0,
+							1, 2, 1};
+
+	Mat box_filter_1_kenel = Mat(3,3,CV_32F, box_filter_1);
+
+	filter2D(norm_des, box_1, CV_32F, box_filter_1_kenel, cv::Point(-1,-1));
+
+	Mat box_1_normalized;
+	cv::normalize(box_1, box_1_normalized, 0, 255, NORM_MINMAX, CV_8U);
+	imshow("box 1 filtered", box_1_normalized);
+
+
+	// 2
+	Mat box_2;
+	float box_filter_2[9] = {-1,0, 1,
+							-2, 0, 2,
+							-1, 0, 1};
+
+	Mat box_filter_2_kenel = Mat(3,3,CV_32F, box_filter_2);
+
+	filter2D(norm_des, box_2, CV_32F, box_filter_2_kenel, cv::Point(-1,-1));
+
+	Mat box_2_normalized;
+	cv::normalize(box_2, box_2_normalized, 0, 255, NORM_MINMAX, CV_8U);
+	imshow("box 2 filtered", box_2_normalized);
+}
+
+
 int main(int argc, char** argv)
 {
 	
@@ -848,8 +1184,9 @@ int main(int argc, char** argv)
 	//edge_detector();
 	//dilation();
 	//finger_print();
-	histogram_equalization();
-
+	//histogram_equalization();
+	//histogram_matching();
+	shapen();
 
 	waitKey(0);
 	getchar();
