@@ -1168,7 +1168,29 @@ void shapen()
 	imshow("box 2 filtered", box_2_normalized);
 }
 
-void showDFT(Mat source)
+void shiftDFT(Mat& fImage )
+{
+  	int centerX = fImage.cols / 2;
+	int centerY = fImage.rows / 2;
+
+	Mat q1(fImage, Rect(0, 0, centerX, centerY));
+	Mat q2(fImage, Rect(centerX, 0, centerX, centerY));
+	Mat q3(fImage, Rect(0, centerY, centerX, centerY));
+	Mat q4(fImage, Rect(centerX, centerY, centerX, centerY));
+
+	Mat swapMap;
+
+	q1.copyTo(swapMap);
+	q4.copyTo(q1);
+	swapMap.copyTo(q4);
+
+	q2.copyTo(swapMap);
+	q3.copyTo(q2);
+	swapMap.copyTo(q3);
+}
+
+
+void showDFT(Mat source, String name)
 {
 	// Split the real and img parts
 	Mat splitArray[2] = { Mat::zeros(source.size(), CV_32F), Mat::zeros(source.size(), CV_32F) };
@@ -1203,10 +1225,147 @@ void showDFT(Mat source)
 	q2.copyTo(swapMap);
 	q3.copyTo(q2);
 	swapMap.copyTo(q3);
-	imshow("DFT centerized", dftMagnitude);
+	imshow(name, dftMagnitude);
 	waitKey();
 
 }
+
+Mat createSpectrumMagnitudeDisplay(Mat& complexImg, bool rearrange)
+{
+    Mat planes[2];
+
+    split(complexImg, planes);
+    magnitude(planes[0], planes[1], planes[0]);
+
+    Mat mag = (planes[0]).clone();
+    mag += Scalar::all(1);
+    log(mag, mag);
+
+    if (rearrange)
+    {
+        // re-arrange the quaderants
+        shiftDFT(mag);
+    }
+
+    normalize(mag, mag, 0, 1, CV_MINMAX);
+
+    return mag;
+
+}
+
+
+void low_pass_filter_(Mat dft, int D)
+{
+	Mat original = dft.clone();
+
+	Mat filter = Mat(dft.rows, dft.cols, CV_32F);
+
+	Point centre = Point(dft.rows / 2, dft.cols / 2);
+	double radius;
+
+	for(int i = 0; i < dft.rows; i++)
+	{
+		for(int j = 0; j < dft.cols; j++)
+		{
+			radius = (double) sqrt(pow((i - centre.x), 2.0) + pow((double) (j - centre.y), 2.0));
+			if(radius>D){
+				filter.at<float>(i,j) = (float)0;
+			}else{
+				filter.at<float>(i,j) = (float)1; 
+			}
+						
+		}
+	}
+
+    Mat toMerge[] = {filter, filter};
+	merge(toMerge, 2, dft);
+
+	shiftDFT(dft);
+	mulSpectrums(original, dft, dft, 0);
+	showDFT(dft, "low pass filter");
+	shiftDFT(dft);
+
+	Mat inverse;
+	cv::dft(dft, inverse, DFT_INVERSE | DFT_REAL_OUTPUT | DFT_SCALE);
+	imshow("low pass output image", inverse);
+	waitKey();
+
+}
+
+void high_pass_filter_(Mat dft, int D)
+{
+	Mat original = dft.clone();
+
+	Mat filter = Mat(dft.rows, dft.cols, CV_32F);
+
+	Point centre = Point(dft.rows / 2, dft.cols / 2);
+	double radius;
+
+	for(int i = 0; i < dft.rows; i++)
+	{
+		for(int j = 0; j < dft.cols; j++)
+		{
+			radius = (double) sqrt(pow((i - centre.x), 2.0) + pow((double) (j - centre.y), 2.0));
+			if(radius>D){
+				filter.at<float>(i,j) = (float)1;
+			}else{
+				filter.at<float>(i,j) = (float)0; 
+			}
+						
+		}
+	}
+
+    Mat toMerge[] = {filter, filter};
+	merge(toMerge, 2, dft);
+
+	shiftDFT(dft);
+	mulSpectrums(original, dft, dft, 0);
+	showDFT(dft, "high pass filter");
+	shiftDFT(dft);
+
+	Mat inverse;
+	cv::dft(dft, inverse, DFT_INVERSE | DFT_REAL_OUTPUT | DFT_SCALE);
+	imshow("high pass output image", inverse);
+	waitKey();
+
+}
+
+void butter_worth_filter_(Mat dft, int D, int n)
+{
+	Mat original = dft.clone();
+
+	Mat filter = Mat(dft.rows, dft.cols, CV_32F);
+
+	Point centre = Point(dft.rows / 2, dft.cols / 2);
+	double radius;
+
+	for(int i = 0; i < dft.rows; i++)
+	{
+		for(int j = 0; j < dft.cols; j++)
+		{
+			radius = (double) sqrt(pow((i - centre.x), 2.0) + pow((double) (j - centre.y), 2.0));
+			filter.at<float>(i,j) = (float)
+						( 1 / (1 + pow((double) (radius /  D), (double) (2 * n))));
+		
+						
+		}
+	}
+
+    Mat toMerge[] = {filter, filter};
+	merge(toMerge, 2, dft);
+
+	shiftDFT(dft);
+	mulSpectrums(original, dft, dft, 0);
+	showDFT(dft, "BW filter");
+	shiftDFT(dft);
+
+	Mat inverse;
+	cv::dft(dft, inverse, DFT_INVERSE | DFT_REAL_OUTPUT | DFT_SCALE);
+	imshow("Butter worth output image", inverse);
+	waitKey();
+
+}
+
 
 void fourier_transform_()
 {
@@ -1228,14 +1387,103 @@ void fourier_transform_()
 	// now we can get the dft
 	Mat dftOriginal;
 	dft(dftReady, dftOriginal, DFT_COMPLEX_OUTPUT);
+	Mat dftOriginalClone = dftOriginal.clone();
 
-	showDFT(dftOriginal);
+	showDFT(dftOriginal.clone(), "original dft");
 
 	// inverse fourier transform
 	Mat inverse;
 	dft(dftOriginal, inverse, DFT_INVERSE | DFT_REAL_OUTPUT | DFT_SCALE);
 	imshow("inversed image", inverse);
 	waitKey();
+
+	// low pass filter output
+	int r = 30;
+	low_pass_filter_(dftOriginalClone.clone(), r);
+	high_pass_filter_(dftOriginalClone.clone(), r);
+	butter_worth_filter_(dftOriginalClone.clone(), r, 2);
+
+}
+
+void binary_thresholding(Mat img, int t, String name)
+{
+
+	for(int i=0; i<img.rows; i++){
+		uchar *pt = img.ptr<uchar>(i);
+		for(int j=0; j<img.cols; j++){
+			int intensity = pt[j]; //img.at<uchar>(i, j);
+			
+			if(intensity > t){
+				pt[j] = 255;
+			} else {
+				pt[j] = 0;
+			}
+		}
+	}
+
+	imshow("binary thresholded"+name, img);
+	waitKey();
+}
+
+int find_global_threshold(Mat img)
+{
+	Mat mask = img.clone();
+	for(int i=0; i<mask.rows; i++){
+		uchar *pt = mask.ptr<uchar>(i);
+		for(int j=0; j<mask.cols; j++){
+			pt[j]=255;
+		}
+	}
+
+	Scalar s = mean(img, mask);
+	int mean = (int)s[0];
+	cout<<mean<<endl;
+
+	for(int i=0; i<10; i++){
+		int prev_mean = mean;
+
+		Mat G1_mask = img.clone();
+		Mat G2_mask = img.clone();
+
+		for(int i=0; i<img.rows; i++){
+			for(int j=0; j<img.cols; j++){
+				if(img.at<uchar>(i, j) > mean) {
+					G1_mask.at<uchar>(i,j) = 255;
+					G2_mask.at<uchar>(i,j) = 0;
+				} else {
+					G1_mask.at<uchar>(i,j) = 0;
+					G2_mask.at<uchar>(i,j) = 255;
+				}
+				
+			}
+		} // end of mask
+
+		s = cv::mean(img, G1_mask);
+		int mask1mean = (int)s[0];
+
+		s = cv::mean(img, G2_mask);
+		int mask2mean = (int)s[0];
+
+		mean = (mask1mean + mask2mean)/2;
+		cout<<mean<<endl;
+
+		if(abs(mean-prev_mean) < 2)
+			break;
+
+	}
+
+	return mean;
+	
+}
+
+void thresholding()
+{
+	Mat img = imread("lena.JPG", CV_LOAD_IMAGE_GRAYSCALE);
+	//binary_thresholding(img, 100, "binary");
+
+	int mean= find_global_threshold(img);
+	binary_thresholding(img, mean, "binary threshold");
+
 }
 
 
@@ -1259,6 +1507,7 @@ int main(int argc, char** argv)
 	//shapen();
 
 	fourier_transform_();
+	//thresholding();
 
 	waitKey(0);
 	getchar();
