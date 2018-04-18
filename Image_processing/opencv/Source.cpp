@@ -1168,6 +1168,76 @@ void shapen()
 	imshow("box 2 filtered", box_2_normalized);
 }
 
+void showDFT(Mat source)
+{
+	// Split the real and img parts
+	Mat splitArray[2] = { Mat::zeros(source.size(), CV_32F), Mat::zeros(source.size(), CV_32F) };
+	split(source, splitArray);
+
+	Mat dftMagnitude;  // x^2 + y^2
+	magnitude(splitArray[0], splitArray[1], dftMagnitude);
+
+	dftMagnitude += Scalar::all(1);
+	log(dftMagnitude, dftMagnitude);
+
+	normalize(dftMagnitude, dftMagnitude, 0, 1, CV_MINMAX);
+
+	imshow("DFT", dftMagnitude);
+	waitKey();
+
+	// re center the output
+	int centerX = dftMagnitude.cols / 2;
+	int centerY = dftMagnitude.rows / 2;
+
+	Mat q1(dftMagnitude, Rect(0, 0, centerX, centerY));
+	Mat q2(dftMagnitude, Rect(centerX, 0, centerX, centerY));
+	Mat q3(dftMagnitude, Rect(0, centerY, centerX, centerY));
+	Mat q4(dftMagnitude, Rect(centerX, centerY, centerX, centerY));
+
+	Mat swapMap;
+
+	q1.copyTo(swapMap);
+	q4.copyTo(q1);
+	swapMap.copyTo(q4);
+
+	q2.copyTo(swapMap);
+	q3.copyTo(q2);
+	swapMap.copyTo(q3);
+	imshow("DFT centerized", dftMagnitude);
+	waitKey();
+
+}
+
+void fourier_transform_()
+{
+	// Read image from file
+	// Make sure that the image is in grayscale
+	Mat original = imread("lena.JPG", CV_LOAD_IMAGE_GRAYSCALE);
+	
+	// rescale image between 0 & 1
+	Mat originalFloat;
+	original.convertTo(originalFloat, CV_32FC1, 1.0 / 255.0);
+
+	// we need an object that can hold the real and imaginary part
+	Mat originalComplex[2] = { originalFloat, Mat::zeros(originalFloat.size(), CV_32F) };
+
+	//marge this two
+	Mat dftReady;
+	merge(originalComplex, 2, dftReady);
+
+	// now we can get the dft
+	Mat dftOriginal;
+	dft(dftReady, dftOriginal, DFT_COMPLEX_OUTPUT);
+
+	showDFT(dftOriginal);
+
+	// inverse fourier transform
+	Mat inverse;
+	dft(dftOriginal, inverse, DFT_INVERSE | DFT_REAL_OUTPUT | DFT_SCALE);
+	imshow("inversed image", inverse);
+	waitKey();
+}
+
 
 int main(int argc, char** argv)
 {
@@ -1186,7 +1256,9 @@ int main(int argc, char** argv)
 	//finger_print();
 	//histogram_equalization();
 	//histogram_matching();
-	shapen();
+	//shapen();
+
+	fourier_transform_();
 
 	waitKey(0);
 	getchar();
