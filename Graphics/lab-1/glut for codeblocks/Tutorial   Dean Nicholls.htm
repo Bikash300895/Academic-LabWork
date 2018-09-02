@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)http://www.deannicholls.co.uk/tutorials/show/cpp_glut -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<link href="./Tutorial   Dean Nicholls_files/style.css" rel="stylesheet" type="text/css">
+		<script id="facebook-jssdk" src="./Tutorial   Dean Nicholls_files/all.js"></script><script type="text/javascript" async="" src="./Tutorial   Dean Nicholls_files/ga.js"></script><script src="./Tutorial   Dean Nicholls_files/all(1).js"></script>
+		<script type="text/javascript" src="./Tutorial   Dean Nicholls_files/global.js"></script>
+		<script type="text/javascript" src="./Tutorial   Dean Nicholls_files/swfobject.js"></script>
+		<title>Tutorial | Dean Nicholls</title>
+		<script type="text/javascript">
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-28033153-1']);
+		  _gaq.push(['_setDomainName', 'deannicholls.co.uk']);
+		  _gaq.push(['_trackPageview']);
+		
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		</script>
+	<style type="text/css">.adlesse-hidden{display:none!important;}				.adlesse-invisible{visibility:hidden!important;}								#adlesse_configPopup{position:fixed; background-color:#FFFFFF!important; z-index:5000!important; width:1px; height:1px;}				#adlesse_configPopup_overlay{z-index:4999!important; position:fixed; left:0; top:0; width:0; height:0; background:Black!important;}				#adlesse_configPopup_iframe{width:100%; height:100%; border:0; margin:0; padding:0;}								</style><style type="text/css">.adlesse-hidden{display:none!important;}				.adlesse-invisible{visibility:hidden!important;}				.adlesse-actionpanel{padding:0!important; margin:0!important; position:absolute!important; z-index:9999!important; border:solid #000000 1px!important; background:#ffffff!important; font-family:sans-serif!important; font-weight:normal!important; font-size:10px!important; text-decoration:none!important; color:#000000!important;}				.adlesse-actionpanel a{padding:0!important; margin:0!important; background:none repeat scroll 0 0 transparent!important; font-family:sans-serif!important; font-weight:normal!important; font-size:10px!important; text-decoration:none!important; color: #000000!important; display: inline-block !important }				.adlesse-actionpanel a:hover{text-decoration:underline!important; }				.adlesse-trans-65{opacity:0.65; filter:alpha(opacity=65); -moz-opacity:0.65; filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=65); -khtml-opacity: 0.65; -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=65)';}				.adlesse-rounded-corner{-moz-border-radius:3px; -webkit-border-radius:3px; -khtml-border-radius:3px; border-radius:3px;}								.adlesse-actionpanel-menu{position:absolute!important; z-index:9999!important;background:#ffffff!important; font-family:sans-serif!important; font-weight:normal!important; font-size:10px!important; text-decoration:none!important; color: #000000!important; border:1px solid #000000;text-align:center!important;padding:0!important; margin:5px!important; margin-top:1px!important;min-width:55px;}				.adlesse-actionpanel-menu-h {margin: 5px;list-style-type: none;}				.adlesse-actionpanel-menu-v {list-style-type: none;} 				.adlesse-actionpanel-menu-h li{background:#ffffff; cursor:pointer; display: inline-block; padding: 5px; zoom: 1;*display: inline;border-right:1px solid #cccccc}				.adlesse-actionpanel-menu-v li{background:#ffffff;cursor:pointer;padding:3px; border-bottom: 1px solid #000000;}								.adlesse-widget-div{}				.adlesse-widget-iframe{border:0px;}								</style></head>
+	<body promptdialogcheckdone="1">
+	<div class="header">
+		<div class="title">
+			<div class="logo">
+				<a href="http://www.deannicholls.co.uk/">
+					<img src="./Tutorial   Dean Nicholls_files/logo.png" border="0" alt="logo" style="vertical-align:center;">
+				</a>
+			</div>
+		</div>
+		<div class="menu">
+			<a href="http://www.deannicholls.co.uk/blog">Blog</a>						<a href="http://www.deannicholls.co.uk/games">Games</a>			<a href="http://www.deannicholls.co.uk/tutorials">Tutorials</a>			<a href="http://www.deannicholls.co.uk/gameprefabs">Game Prefabs</a>		</div>
+		<div class="fb_details">	
+						<div class="login_button">
+				<a href="http://www.deannicholls.co.uk/index.php/login">
+					<img src="./Tutorial   Dean Nicholls_files/facebook_login.png">
+				</a>
+			</div>
+					</div>
+	</div>
+	<div class="page">
+		<div id="fb-root"></div>
+		<script>
+		(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=260850207308484";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+		</script>
+		<div class="sidebar">
+	<script src="./Tutorial   Dean Nicholls_files/widget.js"></script>
+	<script>
+	new TWTR.Widget({
+	  version: 2,
+	  type: 'profile',
+	  rpp: 4,
+	  interval: 30000,
+	  width: 195,
+	  height: 400,
+	  theme: {
+	    shell: {
+	      background: '#333333',
+	      color: '#ffffff'
+	    },
+	    tweets: {
+	      background: '#ffffff',
+	      color: '#333333',
+	      links: '#0066c6'
+	    }
+	  },
+	  features: {
+	    scrollbar: false,
+	    loop: false,
+	    live: false,
+	    behavior: 'all'
+	  }
+	}).render().setUser('levelbylevel').start();
+	</script>
+</div>
+<div class="content_container">
+<h2>OpenGL, C++ and GLUT using CodeBlocks and MinGW</h2>
+<p>On my old blog, CodieCode, I wrote a tutorial on how to set up an OpenGL, C++ and GLUT environment using the CodeBlocks IDE and MinGW compiler on a Windows XP and Vista machine. This was a popular post which seemed to help quite a few people. However time moves on, software updates and operating systems change. I've decided to update this tutorial with Windows 7 (though this should still work fine on XP and Vista) and the latest version of CodeBlocks and MinGW. Hope it helps :)</p>
+<p>I would like to add that if you're serious about learning OpenGL, I think it's a must that you own "The Red Book" (OpenGL Programming Guide by Dave Shreiner). You can buy it from Amazon or wherever you normally buy your coding books. Either way it's a fantastic resource to have and it's helped me countless times in the past.</p>
+<p>---------</p>
+<p>If you’re interested in coding in OpenGL and C++, a great way to&nbsp; start is by using GLUT.&nbsp; GLUT takes care of a lot of the difficulties in setting up an OpenGL project and lets you get started on your project quick and easily. In this tutorial I will guide you through installing and setting up the software you’ll need (CodeBlocks, MinGW and GLUT).</p>
+<!--more-->
+<p>Before you can start you’re going to need a few things:</p>
+<p>Windows –&nbsp;I've&nbsp;updated the steps below to run on Windows 7, Windows XP and Vista, If you manage to get this working on other operating systems, let me know :)</p>
+<p>OpenGL – I’m not going to go into how to install OpenGL in this tutorial as most people will be using Windows XP or later and OpenGL comes ready in these operating systems.</p>
+<p>GLUT – To download the GLUT files you’ll need&nbsp;<a href="http://www.deannicholls.co.uk/site/files/glut.zip" title="Download Glut" target="_blank">click here</a> and download ‘glut.zip’.</p>
+<p>IDE (Integrated Development Environment) – While it’s possible to use an editor (such as Notepad++) and makefiles. I find the easiest and most efficient way to code is using a good IDE (be careful there’s some not-so-good IDE's out there). The best that I’ve come across is CodeBlocks (I’m not a fan of using Visual Studio for OpenGL but you can use that too if you wish) and it’s this IDE that we’ll be setting up today.</p>
+<p>C++ Compiler – The compiler I’ll be using is MinGW, there are many advantages to using this but I wont go into these here.</p>
+<p>So without further ado, lets start:</p>
+<p><strong>Step 1<br></strong><a href="http://www.codeblocks.org/" title="Download CodeBlocks and MinGW from the CodeBlocks website">Download CodeBlocks and MinGW from the CodeBlocks website</a>. Be sure to select the binary installer (.exe file) which comes with the MinGW compiler. As of writing this tutorial the file you need is: 'codeblocks-10.05mingw-setup.exe' (found by clicking on 'Downloads' &gt; 'Download the binary release').</p>
+<p><strong>Step 2</strong> <br>Download the GLUT file’s you’ll need by&nbsp;<a href="http://www.deannicholls.co.uk/site/files/glut.zip" title="Download Glut" target="_blank">clicking here</a> and downloading ‘glut.zip’</p>
+<p><strong>Step 3</strong> <br>Install CodeBlocks and MinGW by running the '.exe' file you downloaded in Step 1. The default install options are sufficient.</p>
+<p><strong>Step 4</strong> <br>Extract the 'Glut.zip' file you downloaded in Step 2 and do the following:-</p>
+<p>Copy glut.dll into your 'C:\Windows\System32' folder (If you're using Windows 7 64-bit, you'll need to copy this file into 'C:\Windows\sysWOW64').</p>
+<p>Copy glut.h into the ‘include\GL’ folder in the MinGW compiler folder. If you installed CodeBlocks and MinGW to the default directory in Step 3, this folder will be 'C:\Program Files\CodeBlocks\MinGW\include\GL'.</p>
+<p>Copy libglut32.a into the 'MinGW\lib' folder. If you installed CodeBlocks and MinGW to the default directory in Step 3, this folder will be 'C:\Program Files\CodeBlocks\MinGW\lib'.</p>
+<p><strong>Step 5</strong> <br>Now you have all the required software installed you can create a new OpenGL and GLUT project. CodeBlocks has an option for creating a GLUT project when creating a new project, we <strong>won't</strong> be using this option today though as I want to show you how to link your files:</p>
+<p>Startup CodeBlocks and select 'File &gt; New &gt; Project…', in the new project window select 'Empty project' and click the 'Go' button.</p>
+<p>In the wizard that follows press 'Next' to the first page (the one welcoming you to the wizard) and in the second page enter a project title name into the textbox labelled 'Project title:' and leave the other 3 textboxes with their default properties (you can change these if you like, it’s upto you) and click 'Next'. In this final wizard page, ensure that 'GNU GCC Compiler' is selected in the drop-down menu box labeled 'Compiler:', leave the other options with their default setting and click 'Finish'.</p>
+<p>Once your project has been created, right click on the project in the Workspace explorer frame on the left of the screen and select 'Build options…'. In this options window select your project name in the tree to the left of the window (<strong>do not</strong> select either Debug or Release) and open the 'Linker settings' tab.</p>
+<p>In this tab, click the 'Add' button below the 'Link libraries:' text box and in the textbox&nbsp; next to 'File:' enter 'opengl32' (without the quotes) and click 'OK'. &nbsp;(See Picture 1.1 Below)</p>
+<p><img src="./Tutorial   Dean Nicholls_files/tumblr_loiugkiUVB1qk14cg.png"><br><strong>Picture 1.1 - add 'opengl32' to the linker</strong></p>
+<p>Do the same again, this time entering 'glu32'. And once again entering 'glut32'. (See Picture 1.2 Below)</p>
+<p><img src="./Tutorial   Dean Nicholls_files/tumblr_loiuhtTmLg1qk14cg.png"><br><strong>Picture 1.2 - your linker settings should look like this</strong></p>
+<p>You now have a project setup for OpenGL and GLUT. Let’s create a simple program to check everything works.</p>
+<p><strong>Step 6</strong> <br>Download my simple glut c++ file by&nbsp;<a href="http://www.deannicholls.co.uk/site/files/deannicholls_glut_tutorial_main.zip" title="Glut Tutorial - Main" target="_blank">clicking here</a> and downloading 'levelbylevel_glut_tutorial_main.zip'. This application will draw a lit sphere to a window with a black background.</p>
+<p>Extract the .zip file and open up the main.cpp file in Notepad. Select all the text and click 'Edit &gt; Copy'</p>
+<p>In CodeBlocks select 'File &gt; New &gt; File…', in the new file window select 'Empty File' and click the 'Go' button. In the wizard that opens select 'Next', then enter 'main.cpp' for the filename and click 'Save'. (See Picture 1.3 Below)</p>
+<p><img src="./Tutorial   Dean Nicholls_files/tumblr_loiukkEaEP1qk14cg.png"><br><strong>Picture 1.3 - Enter 'main.cpp' for the file name&nbsp;</strong></p>
+<p>Put a tick in the tickboxes next to &nbsp;'Debug' and 'Release' and then click the 'OK' button. (See Picture 1.4 Below)</p>
+<p><img src="./Tutorial   Dean Nicholls_files/tumblr_loiumqvjsX1qk14cg.png"><br><strong>Picture 1.5 - Select both debug and release</strong></p>
+<p>This should create a new empty file. Now click 'Edit &gt; Paste' to copy in the code from the file above.  You’re now ready to compile and run. Simply select 'Build &gt; Build' to compile, hopefully if you followed all the steps above you should have no build errors.&nbsp; To run select 'Build &gt; Run'. (See Picture 1.5 Below)</p>
+<p><img src="./Tutorial   Dean Nicholls_files/tumblr_loiup7xhi71qk14cg.png"><br><strong>Picture 1.5 - Success!</strong></p>
+<p>------</p>
+<p>I recently moved the site over to a codeigniter powered site, unfortunately this meant I lost the many many comments left for this tutorial over the time it's been up. I really appreciate everyone who took the time to post comments and feedback. Thank you so much.</p><div class="comments">
+	<h3>Comments</h3>
+	<div class="fb-comments" data-href="http://www.deannicholls.co.uk/tutorials/show/cpp_glut" data-num-posts="20" data-width="545"></div>
+</div>
+				</div>
+				</div>
+		<div class="footer">
+			<p>
+				<a href="http://www.deannicholls.co.uk/">www.deannicholls.co.uk</a>
+			</p>
+		</div>
+	
+<textarea id="adlesse_unifier_magic_element_id" style="display: none;"></textarea></body></html>
