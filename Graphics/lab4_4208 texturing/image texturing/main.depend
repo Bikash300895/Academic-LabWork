@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1540284937 source:c:\users\softeng\desktop\lab4_4208 texturing\image texturing\main.cpp
+	<stdio.h>
+	<math.h>
+	<windows.h>
+	<GL/glut.h>
+	"RGBpixmap.cpp"
+
+1540285915 c:\users\softeng\desktop\lab4_4208 texturing\image texturing\rgbpixmap.cpp
+	<fstream>
+	<iostream>
+	<GL/glut.h>
+
