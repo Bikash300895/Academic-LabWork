@@ -10,6 +10,8 @@
 #include <ctime>
 #include "RGBpixmap.cpp"
 
+static int score = 0;
+
 int randNum(int min, int max)
 {
     return min + (rand() % static_cast<int>(max - min + 1));
@@ -53,13 +55,32 @@ static void display(void)
     for(int i=0; i<n; i++)
     {
 
-        eggs_y_position[i]-=0.01;
+        eggs_y_position[i]-=0.05;
 
-        if(eggs_y_position[i]<-1.0)
-        {
+        if(eggs_y_position[i]<0.0 ){
+
+                if((eggs_x_position[i]-busket_x_position) <0.05){
+                    if(egg_color[i]==5)
+                    {
+                        score+=1;
+                    }
+                    else
+                    {
+                        score-=1;
+                    }
+                    std::cout<<"Score: "<<score<<std::endl;
+                }
+
+
+
             eggs_x_position[i] = randNum(-x_limit,x_limit);
             eggs_y_position[i] = randNum(4,7);
             egg_color[i] = randNum(4,5);
+        }
+
+        if(eggs_y_position[i]<-1.0)
+        {
+
         }
 
     }
