@@ -41,7 +41,9 @@ static int stacks = 16;
 GLfloat dx = 0, dy=0, dz=0;
 GLfloat theta = 0;
 GLfloat sx=1, sy=1, sz=1;
-
+static float busket_x_position = 0.0;
+static float eggs_x_position[5];
+static float eggs_y_position[5];
 /* GLUT callback Handlers */
 
 
@@ -428,44 +430,7 @@ static void display(void)
 
 
     const double t = glutGet(GLUT_ELAPSED_TIME) / 1000.0;
-    const double a = t*90.0;
-
-    glPushMatrix();
-        glBindTexture(GL_TEXTURE_2D,3);
-        glEnable(GL_TEXTURE_2D);
-
-        glTranslated(-0,-0.2,-10);
-        glRotated(30, 0, 1, 0);
-        glRotated(a,0,1,1);
-        table();
-        glDisable(GL_TEXTURE_2D);
-	glPopMatrix();
-
-    glPushMatrix();
-        glBindTexture(GL_TEXTURE_2D,4);
-        glEnable(GL_TEXTURE_2D);
-
-        glTranslated(-0,-0.2,-10);
-        glRotated(30, 0, 1, 0);
-        glRotated(a,0,1,1);
-        wall();
-        glDisable(GL_TEXTURE_2D);
-	glPopMatrix();
-
-    glPushMatrix();
-        glBindTexture(GL_TEXTURE_2D,5);
-        glEnable(GL_TEXTURE_2D);
-
-        glTranslated(-0,-0.2,-10);
-        glRotated(30, 0, 1, 0);
-        glRotated(a,0,1,1);
-        nationalMemorialLoop();
-        glDisable(GL_TEXTURE_2D);
-	glPopMatrix();
-
-
-
-
+    const double a = t*90.0
 
     glutSwapBuffers();
 }

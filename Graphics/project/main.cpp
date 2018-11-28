@@ -8,10 +8,11 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include "RGBpixmap.cpp"
 
 int randNum(int min, int max)
 {
-   return min + (rand() % static_cast<int>(max - min + 1));
+    return min + (rand() % static_cast<int>(max - min + 1));
 }
 
 static int n = 5;
@@ -22,6 +23,9 @@ static int y_limit = 6;
 static float busket_x_position = 0.0;
 static float eggs_x_position[5];
 static float eggs_y_position[5];
+static int egg_color[5];
+
+RGBpixmap pix[6];
 
 
 
@@ -46,36 +50,46 @@ static void display(void)
     const double a = t*90.0;
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glColor3d(1,0,0);
-
-    for(int i=0; i<n; i++){
+    for(int i=0; i<n; i++)
+    {
 
         eggs_y_position[i]-=0.01;
 
-        if(eggs_y_position[i]<-1.0){
+        if(eggs_y_position[i]<-1.0)
+        {
             eggs_x_position[i] = randNum(-x_limit,x_limit);
             eggs_y_position[i] = randNum(4,7);
+            egg_color[i] = randNum(4,5);
         }
 
     }
 
 
-    for(int i=0; i<n; i++){
+    for(int i=0; i<n; i++)
+    {
         glPushMatrix();
+        glBindTexture(GL_TEXTURE_2D,egg_color[i]);
+        glEnable(GL_TEXTURE_2D);
+
         glTranslated(eggs_x_position[i],eggs_y_position[i],-9);
         glRotated(60,1,0,0);
         glRotated(a,0,0,1);
         glutSolidSphere(0.5,slices,stacks);
+
+        glDisable(GL_TEXTURE_2D);
         glPopMatrix();
     }
 
 
 
     glPushMatrix();
-        glTranslated(busket_x_position,0,-9);
-        //glRotated(60,1,0,0);
-        glRotated(a,0,0,1);
-        glutSolidTorus(0.2,0.8,slices,stacks);
+    glBindTexture(GL_TEXTURE_2D,5);
+    glEnable(GL_TEXTURE_2D);
+
+    glTranslated(busket_x_position,0,-9);
+    glRotated(a,0,0,1);
+    glutSolidTorus(0.2,0.8,slices,stacks);
+    glDisable(GL_TEXTURE_2D);
     glPopMatrix();
 
 
@@ -88,31 +102,31 @@ static void key(unsigned char key, int x, int y)
 {
     switch (key)
     {
-        case 27 :
-        case 'q':
-            exit(0);
-            break;
+    case 27 :
+    case 'q':
+        exit(0);
+        break;
 
-        case 's':
-            busket_x_position+=0.1;
-            break;
+    case 's':
+        busket_x_position+=0.1;
+        break;
 
-        case 'a':
-            busket_x_position-=0.1;
-            break;
+    case 'a':
+        busket_x_position-=0.1;
+        break;
 
-        case '+':
-            slices++;
-            stacks++;
-            break;
+    case '+':
+        slices++;
+        stacks++;
+        break;
 
-        case '-':
-            if (slices>3 && stacks>3)
-            {
-                slices--;
-                stacks--;
-            }
-            break;
+    case '-':
+        if (slices>3 && stacks>3)
+        {
+            slices--;
+            stacks--;
+        }
+        break;
     }
 
     glutPostRedisplay();
@@ -121,6 +135,34 @@ static void key(unsigned char key, int x, int y)
 static void idle(void)
 {
     glutPostRedisplay();
+}
+
+void Init()
+{
+    glEnable(GL_TEXTURE_2D);
+
+
+    pix[0].makeCheckImage();
+    pix[0].setTexture(1);	// create texture int parameter as TextureName
+
+
+    //pix[0].readBMPFile("teapot.bmp");
+//	pix[0].setTexture(1);
+
+    pix[1].readBMPFile("D:\\Projects\\opengl\\test\\teapot.bmp");
+    pix[1].setTexture(2);
+
+    pix[2].readBMPFile("D:\\Projects\\opengl\\test\\jack.bmp");
+    pix[2].setTexture(4);
+
+    pix[3].readBMPFile("D:\\Projects\\opengl\\test\\table.bmp");
+    pix[3].setTexture(3);
+
+    pix[4].readBMPFile("D:\\Projects\\opengl\\test\\wood.bmp");
+    pix[4].setTexture(5);
+
+
+
 }
 
 const GLfloat light_ambient[]  = { 0.0f, 0.0f, 0.0f, 1.0f };
@@ -137,9 +179,11 @@ const GLfloat high_shininess[] = { 100.0f };
 
 int main(int argc, char *argv[])
 {
-    for(int i=0; i<n; i++){
+    for(int i=0; i<n; i++)
+    {
         eggs_x_position[i] = randNum(-x_limit,x_limit);
         eggs_y_position[i] = randNum(4,7);
+        egg_color[i] = randNum(4,5);
         std::cout<<eggs_x_position[i]<<" "<<eggs_y_position[i]<<std::endl;
     }
 
@@ -162,10 +206,12 @@ int main(int argc, char *argv[])
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
-    glEnable(GL_LIGHT0);
+    //glEnable(GL_LIGHT0);
     glEnable(GL_NORMALIZE);
     glEnable(GL_COLOR_MATERIAL);
-    glEnable(GL_LIGHTING);
+    //glEnable(GL_LIGHTING);
+
+
 
     glLightfv(GL_LIGHT0, GL_AMBIENT,  light_ambient);
     glLightfv(GL_LIGHT0, GL_DIFFUSE,  light_diffuse);
@@ -177,6 +223,8 @@ int main(int argc, char *argv[])
     glMaterialfv(GL_FRONT, GL_SPECULAR,  mat_specular);
     glMaterialfv(GL_FRONT, GL_SHININESS, high_shininess);
 
+
+    Init();
     glutMainLoop();
 
     return EXIT_SUCCESS;

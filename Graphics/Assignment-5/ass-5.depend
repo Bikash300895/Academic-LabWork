@@ -1,12 +1,9 @@
 # depslib dependency file v1.0
-1543249005 source:d:\projects\opengl\project\main.cpp
+1543379168 source:d:\projects\opengl\ass-5\main.cpp
 	<GLUT/glut.h>
 	<GL/glut.h>
 	<stdlib.h>
-	<iostream>
-	<cstdlib>
-	<ctime>
-	"RGBpixmap.cpp"
+	<math.h>
 
 983676786 c:\program files (x86)\codeblocks\mingw\include\gl\glut.h
 	<windows.h>
@@ -224,22 +221,6 @@
 	<stddef.h>
 	<GL/gl.h>
 
-1541523764 d:\projects\opengl\project\rgbpixmap.cpp
-	<fstream>
-	<iostream>
-	<GL/glut.h>
-
-1543249005 source:d:\projects\academic-labwork\graphics\project\main.cpp
-	<GLUT/glut.h>
-	<GL/glut.h>
-	<stdlib.h>
-	<iostream>
-	<cstdlib>
-	<ctime>
-	"RGBpixmap.cpp"
-
-1541523764 d:\projects\academic-labwork\graphics\project\rgbpixmap.cpp
-	<fstream>
-	<iostream>
-	<GL/glut.h>
+1341006774 c:\program files (x86)\codeblocks\mingw\include\math.h
+	<_mingw.h>
 
