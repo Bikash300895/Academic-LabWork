@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <ctime>
 #include "RGBpixmap.cpp"
+#include <math.h>
 
 static int score = 0;
 
@@ -29,6 +30,43 @@ static int egg_color[5];
 
 RGBpixmap pix[6];
 
+float point_x[]={0.0, 0.1,  0.2, 0.25, 0.3, 0.3, 0.25, 0.2,0.15, 0.1, 0};
+float point_y[]={0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, .95};
+int number_of_points = 11;
+
+void egg()
+{
+    // Loop for 9 rounds
+    for(int i=0; i<number_of_points-1; i++){
+        // Loop for 360 degree
+        int total_point=20+1;
+        int degre = int(360/(total_point-1));
+
+        float round_x_points_1[total_point];
+        float round_z_points_1[total_point];
+        float round_x_points_2[total_point];
+        float round_z_points_2[total_point];
+
+        for(int d=0; d<total_point; d++){
+            //storage for 20 x and z points
+            round_x_points_1[d] = point_x[i] * cos(d*degre*3.1416/180);
+            round_x_points_2[d] = point_x[i+1] * cos(d*degre*3.1416/180);
+
+            round_z_points_1[d] = point_x[i] * sin(d*degre*3.1416/180);
+            round_z_points_2[d] = point_x[i+1] * sin(d*degre*3.1416/180);
+
+
+        }
+
+        glBegin(GL_QUAD_STRIP);
+            for(int d=0; d<total_point; d++){
+                glVertex3d(round_x_points_2[d], point_y[i+1], round_z_points_2[d]);
+                glVertex3d(round_x_points_1[d], point_y[i], round_z_points_1[d]);
+            }
+        glEnd();
+
+    }
+}
 
 
 /* GLUT callback Handlers */
@@ -93,9 +131,10 @@ static void display(void)
         glEnable(GL_TEXTURE_2D);
 
         glTranslated(eggs_x_position[i],eggs_y_position[i],-9);
-        glRotated(60,1,0,0);
-        glRotated(a,0,0,1);
-        glutSolidSphere(0.5,slices,stacks);
+        //glRotated(60,1,0,0);
+        glRotated(a,0,1,0);
+        //glutSolidSphere(0.5,slices,stacks);
+        egg();
 
         glDisable(GL_TEXTURE_2D);
         glPopMatrix();
@@ -109,7 +148,8 @@ static void display(void)
 
     glTranslated(busket_x_position,0,-9);
     glRotated(a,0,0,1);
-    glutSolidTorus(0.2,0.8,slices,stacks);
+    glutSolidTorus(0.2,0.7,slices,stacks);
+
     glDisable(GL_TEXTURE_2D);
     glPopMatrix();
 
@@ -129,11 +169,11 @@ static void key(unsigned char key, int x, int y)
         break;
 
     case 's':
-        busket_x_position+=0.1;
+        busket_x_position+=0.3;
         break;
 
     case 'a':
-        busket_x_position-=0.1;
+        busket_x_position-=0.3;
         break;
 
     case '+':
